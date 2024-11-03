@@ -1,18 +1,6 @@
 import streamlit as st
 st.cache_data.clear()
 
-st.set_page_config(
-    page_title="Inicio",
-    page_icon="🧊",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    menu_items={
-        'Get Help': 'https://www.extremelycoolapp.com/help',
-        'Report a bug': "https://www.extremelycoolapp.com/bug",
-        'About': "# This is a header. This is an *extremely* cool app!"
-    }
-)
-
 st.write("Versión de Streamlit:", st.__version__)
 
 col1, col2, col3 = st.columns([3,3,3])
