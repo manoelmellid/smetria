@@ -14,18 +14,18 @@ with col3:
 st.divider()
 st.header("Herramienta de navegacion geospacial")
 
-today = datetime.datetime.now()
-next_year = today.year + 1
-jan_1 = datetime.date(next_year, 1, 1)
-dec_31 = datetime.date(next_year, 12, 31)
+# Obtener la fecha de hoy
+hoy = datetime.date.today()
+# Calcular la fecha máxima (hoy + 3 días)
+max_fecha = hoy + datetime.timedelta(days=3)
 
-# Selección de fechas
+# Crear el selector de fecha
 d = st.date_input(
-    "Select your vacation for next year",
-    (jan_1, datetime.date(next_year, 1, 7)),
-    jan_1,
-    dec_31,
-    format="MM.DD.YYYY",
+    "Selecciona tu fecha de vacaciones:",
+    hoy,  # Fecha predeterminada
+    min_value=hoy,  # Fecha mínima
+    max_value=max_fecha,  # Fecha máxima
+    format="MM.DD.YYYY"  # Formato de la fecha
 )
 
 # Comprobar si se seleccionaron dos fechas
