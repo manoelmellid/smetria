@@ -43,9 +43,6 @@ with st.form(key='my_form'):
     # Comprobar si se seleccionaron dos fechas
     if isinstance(d, tuple) and len(d) == 2:
         start_date, end_date = d
-        # Mostrar las fechas
-        st.write("Start Date:", start_date)
-        st.write("End Date:", end_date)
     else:
         st.error("Por favor selecciona una fecha de inicio y de fin")
     
