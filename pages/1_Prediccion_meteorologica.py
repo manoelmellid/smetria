@@ -28,14 +28,6 @@ with st.form(key='my_form'):
     # Entradas del formulario
     input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
     
-    opcion_seleccionada = st.selectbox("Selecciona un período de tiempo:", ["Fecha Concreta"], ["Completa 2 días"], ["Completa 3 días"])
-    if opcion_seleccionada == "Fecha Concreta":
-        days=1
-    if opcion_seleccionada == "Completa 2 días":
-        days=2
-    if opcion_seleccionada == "Completa 3 días":
-        days=3
-    
     # Botón para enviar el formulario
     submit_button = st.form_submit_button(label='Enviar')
 
