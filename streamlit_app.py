@@ -13,13 +13,10 @@ st.markdown("<h3 style='text-align: center;'>Camino de Santiago - Camino Portugu
 
 st.divider()
 
-st.write("""Esta aplicación cuenta con 4 funcionalidades para el usuario, un sistema de predicción meteorológica, una herramienta de consultas
+st.write("""SMETRIA cuenta con 4 funcionalidades para el usuario, un sistema de predicción meteorológica, una herramienta de consultas
 geospaciales, un modelo predictivo de flujos y un modelo predictivo de ocupación
 """)
 
-if st.button("Predicción"):
-    st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/prediccion'>", unsafe_allow_html=True)
-st.divider()
 
 st.write("""
 Esta web se a desarrollado en el marco de la asignatura Proxecto Integrador I, del Grao de Intelixencia Artificial 
