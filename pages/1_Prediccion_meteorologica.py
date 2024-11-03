@@ -20,10 +20,18 @@ latitud = None
 concello_id = None
 ubicacion = None
 adelante = None
+days=None
+
+max_km_value = obcoor.query_max_km_value()
 
 with st.form(key='my_form'):
     # Entradas del formulario
-    input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
+    input_km = st.number_input(
+        "Indica el Km del Camino dónde te encuentras",
+        min_value=0.0,
+        max_value=max_km_value  # Establece el valor máximo
+    )
+    
     # opcion_seleccionada = st.selectbox("Selecciona un número:", [1, 2, 3, 4, 5])
     # if opcion_seleccionada == 1:
         # days=1
@@ -35,7 +43,6 @@ with st.form(key='my_form'):
     if submit_button:
         if input_text:
             km_camino = float(input_text.replace(',', '.'))
-            max_km_value = obcoor.query_max_km_value()  # Asumimos que esto devuelve un valor numérico
             n = int(km_camino)
     
             if km_camino == max_km_value:
