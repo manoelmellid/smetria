@@ -27,4 +27,10 @@ d = st.date_input(
     dec_31,
     format="MM.DD.YYYY",
 )
-st.write(d)
+
+# Desestructurar las fechas de inicio y fin
+start_date, end_date = d
+
+# Mostrar las fechas
+st.write("Start Date:", start_date)
+st.write("End Date:", end_date)
