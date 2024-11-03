@@ -35,4 +35,4 @@ if isinstance(d, tuple) and len(d) == 2:
     st.write("Start Date:", start_date)
     st.write("End Date:", end_date)
 else:
-    st.error("Please select both start and end dates.")
+    st.error("Por favor selecciona una fecha de inicio y de fin")
