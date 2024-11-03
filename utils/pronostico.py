@@ -1,6 +1,6 @@
 import requests
 import json
-from datetime import datetime, timedelta
+import datetime
 import csv_json as cj
 import streamlit as st
 import os
@@ -9,6 +9,12 @@ API_KEY = st.secrets["API_KEY"]
 base_url = 'https://servizos.meteogalicia.gal/apiv4/getNumericForecastInfo'
 
 def pronostico(location_id, start_date, end_date):
+    hora_actual = datetime.now()
+    # Establece start_date como la hora actual más una hora
+    start_date = hora_actual + timedelta(hours=1)
+    # end_date es al final del día de start_date
+    end_date = datetime(start_date.year, start_date.month, start_date.day, 23, 59, 59)
+    
     params = {
         'API_KEY': API_KEY,
         'locationIds': location_id,
