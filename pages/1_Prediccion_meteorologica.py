@@ -39,12 +39,15 @@ with st.form(key='my_form'):
         (today, today + datetime.timedelta(days=3)),  # Rango de hoy a 3 días después
         today,
         today + datetime.timedelta(days=3),  # Fecha máxima
-        format="MM.DD.YYYY",
+        format="DD/MM/YYYY",
     )
     
     # Comprobar si se seleccionaron dos fechas
     if isinstance(d, tuple) and len(d) == 2:
         start_date, end_date = d
+        st.write(start_date)
+        st.wrtite(end_date)
+
     else:
         st.error("Por favor selecciona una fecha de inicio y de fin")
     
