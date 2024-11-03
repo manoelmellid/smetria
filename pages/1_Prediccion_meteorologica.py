@@ -23,7 +23,7 @@ adelante = None
 
 with st.form(key='my_form'):
     # Entradas del formulario
-    input_text = st.text_input("Km del Camino donde te encuentras")
+    input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
     # opcion_seleccionada = st.selectbox("Selecciona un número:", [1, 2, 3, 4, 5])
     # if opcion_seleccionada == 1:
         # days=1
