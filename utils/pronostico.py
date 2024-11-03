@@ -26,7 +26,7 @@ def pronostico(location_id, start_date, end_date):
     if response.status_code == 200:
         # Convertir a JSON y mostrar los datos
         forecast_data = response.json()
-        print(f"Pronóstico para el ID {location_id} del {start_date.date()} al {end_date.date()}:")
+        print(f"Pronóstico para el ID {location_id} del {start_date} al {end_date}:")
         print(forecast_data)
 
         # Especifica el nombre del archivo donde se guardará el JSON
