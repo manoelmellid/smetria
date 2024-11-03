@@ -27,6 +27,26 @@ max_km_value = obcoor.query_max_km_value()
 with st.form(key='my_form'):
     # Entradas del formulario
     input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
+
+    today = datetime.datetime.now()
+
+    # Selección de fechas
+    d = st.date_input(
+        "Select your vacation for next year",
+        (today, today + datetime.timedelta(days=3)),  # Rango de hoy a 3 días después
+        today,
+        today + datetime.timedelta(days=3),  # Fecha máxima
+        format="MM.DD.YYYY",
+    )
+    
+    # Comprobar si se seleccionaron dos fechas
+    if isinstance(d, tuple) and len(d) == 2:
+        start_date, end_date = d
+        # Mostrar las fechas
+        st.write("Start Date:", start_date)
+        st.write("End Date:", end_date)
+    else:
+        st.error("Por favor selecciona una fecha de inicio y de fin")
     
     # Botón para enviar el formulario
     submit_button = st.form_submit_button(label='Enviar')
