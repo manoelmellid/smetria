@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 st.set_page_config(
-    page_title="Herramienta de navegacion"
+    page_title="Herramienta de navegacion",
     page_icon="🧊",
     layout="wide",
     initial_sidebar_state="expanded",
