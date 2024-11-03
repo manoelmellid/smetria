@@ -35,9 +35,12 @@ with st.form(key='my_form'):
     if submit_button:
         if input_text:
             km_camino = float(input_text.replace(',', '.'))
+            max_km_value = obcoor.query_max_km_value()  # Asumimos que esto devuelve un valor numérico
             n = int(km_camino)
-
-            if n < km_camino < n + 0.25:
+    
+            if km_camino == max_km_value:
+                resultado = km_camino  # Mantiene el valor igual si es igual a max_km_value
+            elif n < km_camino < n + 0.25:
                 resultado = n + 0.25
             elif n + 0.25 < km_camino < n + 0.5:
                 resultado = n + 0.5
