@@ -27,12 +27,7 @@ with b2:
         st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/Herramienta_de_navegacion'>", unsafe_allow_html=True)
 with b3:
     if st.button("Flujos"):
-        st.markdown("""
-            <div style="text-align: center;">
-                <meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/Modelo_predictivo_de_flujos'>
-                Redirigiendo a la página...
-            </div>
-        """, unsafe_allow_html=True)
+        st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/Modelo_predictivo_de_flujos'>", unsafe_allow_html=True)
 with b4:
     if st.button("Ocupación hotelera"):
         st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/Modelo_predictivo_de_ocupacion'>", unsafe_allow_html=True)
