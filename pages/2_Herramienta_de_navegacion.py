@@ -14,12 +14,12 @@ with col3:
 st.divider()
 st.header("Herramienta de navegacion geospacial")
 
-
 today = datetime.datetime.now()
 next_year = today.year + 1
 jan_1 = datetime.date(next_year, 1, 1)
 dec_31 = datetime.date(next_year, 12, 31)
 
+# Selección de fechas
 d = st.date_input(
     "Select your vacation for next year",
     (jan_1, datetime.date(next_year, 1, 7)),
@@ -28,10 +28,11 @@ d = st.date_input(
     format="MM.DD.YYYY",
 )
 
-# Desestructurar las fechas de inicio y fin
-start_date, end_date = d
-
-# Mostrar las fechas solo si la fecha de fin está seleccionada
-if end_date:
+# Comprobar si se seleccionaron dos fechas
+if isinstance(d, tuple) and len(d) == 2:
+    start_date, end_date = d
+    # Mostrar las fechas
     st.write("Start Date:", start_date)
     st.write("End Date:", end_date)
+else:
+    st.write("Please select both start and end dates.")
