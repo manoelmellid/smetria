@@ -8,11 +8,7 @@ import os
 API_KEY = st.secrets["API_KEY"]
 base_url = 'https://servizos.meteogalicia.gal/apiv4/getNumericForecastInfo'
 
-def pronostico(location_id, days):
-    # Parámetros de la solicitud
-    start_date = datetime.now()  # Hoy
-    end_date = start_date + timedelta(days=days)  # Hasta 'days' días después
-
+def pronostico(location_id, start_date, end_date):
     params = {
         'API_KEY': API_KEY,
         'locationIds': location_id,
