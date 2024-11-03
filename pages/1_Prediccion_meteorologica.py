@@ -28,9 +28,13 @@ with st.form(key='my_form'):
     # Entradas del formulario
     input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
     
-    opcion_seleccionada = st.selectbox("Selecciona un número:", [1, 2, 3, 4, 5])
+    opcion_seleccionada = st.selectbox("Selecciona un número:", [1, 2, 3)
     if opcion_seleccionada == 1:
         days=1
+    if opcion_seleccionada == 2:
+        days=2
+    if opcion_seleccionada == 3:
+        days=3
     
     # Botón para enviar el formulario
     submit_button = st.form_submit_button(label='Enviar')
