@@ -44,8 +44,6 @@ with st.form(key='my_form'):
             # Comparar el valor de input con el máximo
             if input_km > max_km_value:
                 st.warning(f"El valor {input_km} es mayor que el máximo permitido: {max_km_value}.")
-            else:
-                st.success(f"El valor {input_km} es válido.")
         except ValueError:
             st.error("Por favor, ingresa un número válido.")
         
