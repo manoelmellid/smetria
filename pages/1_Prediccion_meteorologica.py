@@ -53,7 +53,7 @@ with st.form(key='my_form'):
             adelante = 1
 
             max_km_value = obcoor.query_max_km_value()
-            st.wrtite("Valor máximo",max_km_value)
+            st.write("Valor máximo",max_km_value)
             
             # Imprimir las coordenadas
             if longitud is not None and latitud is not None:
