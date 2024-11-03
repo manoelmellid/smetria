@@ -21,7 +21,12 @@ b1, b2, b3, b4 = st.columns([3,3,3,3])
 
 with b1:
     if st.button("Predicción meteorológica"):
-        st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/Prediccion_meteorologica'>", unsafe_allow_html=True)
+        st.markdown("""
+            <div style="text-align: center;">
+                <meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/Modelo_predictivo_de_flujos'>
+                Redirigiendo a la página...
+            </div>
+        """, unsafe_allow_html=True)
 with b2:
     if st.button("Navegación geoespacial"):
         st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/Herramienta_de_navegacion'>", unsafe_allow_html=True)
