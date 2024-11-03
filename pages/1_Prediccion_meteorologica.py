@@ -30,8 +30,7 @@ with st.form(key='my_form'):
     
     opcion_seleccionada = st.selectbox("Selecciona un período de tiempo:", ["Fecha Concreta"], ["Completa 2 días"], ["Completa 3 días"])
     if opcion_seleccionada == "Fecha Concreta":
-        date = st.date_input("Pick a date")
-        st.write(date)
+        days=1
     if opcion_seleccionada == "Completa 2 días":
         days=2
     if opcion_seleccionada == "Completa 3 días":
