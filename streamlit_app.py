@@ -3,7 +3,7 @@ st.cache_data.clear()
 
 st.set_page_config(
     page_title="Inicio",
-    #page_icon="🧊",
+    page_icon="🧊",
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
