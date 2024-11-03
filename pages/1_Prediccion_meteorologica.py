@@ -28,9 +28,9 @@ with st.form(key='my_form'):
     # Entradas del formulario
     input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
     
-    # opcion_seleccionada = st.selectbox("Selecciona un número:", [1, 2, 3, 4, 5])
-    # if opcion_seleccionada == 1:
-        # days=1
+    opcion_seleccionada = st.selectbox("Selecciona un número:", [1, 2, 3, 4, 5])
+    if opcion_seleccionada == 1:
+        days=1
     
     # Botón para enviar el formulario
     submit_button = st.form_submit_button(label='Enviar')
@@ -90,8 +90,7 @@ if latitud is not None and longitud is not None:
     st.map(data)
 
 if adelante is not None and longitud is not None:
-    dias = 2
-    prn.pronostico(ubicacion, dias)
+    prn.pronostico(ubicacion, days)
 
     # Carga de los datos
     df = pd.read_csv("salida_forecast_data.csv")
