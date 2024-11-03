@@ -14,13 +14,19 @@ def json_to_csv(input_json_file, output_csv_file):
         
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
-        
+
+        # Verificar si 'features' existe y no está vacío
+        features = data.get('features', [])
+        if not features:
+            print("No se encontraron features en el JSON.")
+            return  # Salir si no hay features
+
         # Extraer los datos de interés de cada feature en el JSON
-        for feature in data['features']:
+        for feature in features:
             location_name = feature['properties']['name']
             latitude, longitude = feature['geometry']['coordinates']
             
-            for day in feature['properties']['days']:
+            for day in feature['properties'].get('days', []):
                 # Verificar si 'variables' existe y no es None
                 if day.get('variables') is None:
                     continue  # Saltar este día si no contiene variables
