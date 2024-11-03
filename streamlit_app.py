@@ -19,10 +19,21 @@ geospaciales, un modelo predictivo de flujos y un modelo predictivo de ocupació
 
 b1, b2, b3, b4 = st.columns([3,3,3,3])
 
-if st.button("Predicción"):
-    st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/Prediccion_meteorologica'>", unsafe_allow_html=True)
-st.divider()
+with b1:
+    if st.button("Predicción meteorológica"):
+        st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/Prediccion_meteorologica'>", unsafe_allow_html=True)
+with b2:
+    if st.button("Navegación geoespacial"):
+        st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/Herramienta_de_navegacion'>", unsafe_allow_html=True)
+with b3:
+    if st.button("Flujos"):
+        st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/Modelo_predictivo_de_flujos'>", unsafe_allow_html=True)
+with b4:
+    if st.button("Ocupación hotelera"):
+        st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/Modelo_predictivo_de_ocupacion'>", unsafe_allow_html=True)
 
+
+st.divider()
 st.write("""
 Esta web se ha desarrollado en el marco de la asignatura Proxecto Integrador I, del Grao de Intelixencia Artificial 
 de la Universidade de Santiago de Compostela.
