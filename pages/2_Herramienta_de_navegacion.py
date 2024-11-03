@@ -2,17 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-st.set_page_config(
-    page_title="Herramienta de navegacion",
-    page_icon="🧊",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    menu_items={
-        'Get Help': 'https://www.extremelycoolapp.com/help',
-        'Report a bug': "https://www.extremelycoolapp.com/bug",
-        'About': "# This is a header. This is an *extremely* cool app!"
-    }
-)
+st.set_page_config(page_title="Herramienta de navegacion")
 
 col1, col2, col3 = st.columns([3,3,3])
 with col1:
@@ -21,6 +11,19 @@ with col3:
     st.header("SMETRIA")
 
 st.divider()
-
 st.header("Herramienta de navegacion geospacial")
-# Aquí incluirías todo el código específico para la predicción
+
+
+today = datetime.datetime.now()
+next_year = today.year + 1
+jan_1 = datetime.date(next_year, 1, 1)
+dec_31 = datetime.date(next_year, 12, 31)
+
+d = st.date_input(
+    "Select your vacation for next year",
+    (jan_1, datetime.date(next_year, 1, 7)),
+    jan_1,
+    dec_31,
+    format="MM.DD.YYYY",
+)
+d
