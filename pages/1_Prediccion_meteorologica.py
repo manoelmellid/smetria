@@ -51,6 +51,9 @@ with st.form(key='my_form'):
             # Actualiza las variables con los resultados de la función
             longitud, latitud, concello_id, ubicacion = obcoor.query_csv_data(resultado)
             adelante = 1
+
+            max_km_value = obcoor.query_max_km_value()
+            st.wrtite("Valor máximo",max_km_value)
             
             # Imprimir las coordenadas
             if longitud is not None and latitud is not None:
