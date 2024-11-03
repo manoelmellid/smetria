@@ -94,7 +94,7 @@ if latitud is not None and longitud is not None:
     # Mostrar el mapa solo si los datos son válidos
     st.map(data)
 
-if adelante is not None:
+if adelante is not None and longitud is not None:
     dias = 2
     prn.pronostico(ubicacion, dias)
 
