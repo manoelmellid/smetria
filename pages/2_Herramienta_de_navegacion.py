@@ -15,16 +15,13 @@ st.divider()
 st.header("Herramienta de navegacion geospacial")
 
 today = datetime.datetime.now()
-next_year = today.year + 1
-jan_1 = datetime.date(next_year, 1, 1)
-dec_31 = datetime.date(next_year, 12, 31)
 
 # Selección de fechas
 d = st.date_input(
     "Select your vacation for next year",
-    (jan_1, datetime.date(next_year, 1, 7)),
-    jan_1,
-    dec_31,
+    (today, today + datetime.timedelta(days=3)),  # Rango de hoy a 3 días después
+    today,
+    today + datetime.timedelta(days=3),  # Fecha máxima
     format="MM.DD.YYYY",
 )
 
