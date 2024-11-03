@@ -1,8 +1,6 @@
 import streamlit as st
 st.cache_data.clear()
 
-st.write("Versión de Streamlit:", st.__version__)
-
 col1, col2, col3 = st.columns([3,3,3])
 with col1:
     st.image("amtega_logo.png_2089811488.png", use_column_width=True)
