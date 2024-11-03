@@ -18,3 +18,21 @@ def query_csv_data(km_value):
     else:
         # Si no se encuentra el km_value, retornar None para los valores de longitud y latitud
         return None, None, None, None
+
+def query_max_km_data():
+    # Cargar el archivo CSV
+    df = pd.read_csv('vertices_250_camino_pt.csv')  # Asegúrate de que la ruta sea correcta
+
+    # Obtener el índice de la fila con el valor más alto en la columna 'km'
+    max_km_index = df['km'].idxmax()
+
+    # Obtener la fila correspondiente
+    max_km_row = df.iloc[max_km_index]
+
+    # Extraer los valores deseados
+    longitud = float(max_km_row['longitud'])  # Convertir a float
+    latitud = float(max_km_row['latitud'])    # Convertir a float
+    concello_id = max_km_row['concello_id']   # Texto
+    ubicacion = max_km_row['ubicacion']       # Texto
+
+    return longitud, latitud, concello_id, ubicacion
