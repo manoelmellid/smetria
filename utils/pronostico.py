@@ -10,10 +10,10 @@ base_url = 'https://servizos.meteogalicia.gal/apiv4/getNumericForecastInfo'
 
 def pronostico(location_id, start_date, end_date):
     # Obtén la hora actual correctamente
-    hora_actual = datetime.now()
+    fecha_actual = datetime.now().date()
 
-    if start_date.date() == end_date.date():
-        if start_date.date() == fecha_actual:
+    if start_date == end_date:
+        if start_date == fecha_actual:
             # Si el día es hoy, el tiempo empieza desde ahora + 1 hora hasta las 23:59
             hora_actual = datetime.now()
             start_date = hora_actual + timedelta(hours=1)
