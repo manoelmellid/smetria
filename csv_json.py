@@ -18,7 +18,6 @@ def json_to_csv(input_json_file, output_csv_file):
         # Verificar si 'features' existe y no está vacío
         features = data.get('features', [])
         if not features:
-            print("No se encontraron features en el JSON.")
             return  # Salir si no hay features
 
         # Extraer los datos de interés de cada feature en el JSON
