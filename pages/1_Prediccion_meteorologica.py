@@ -54,10 +54,7 @@ with st.form(key='my_form'):
             
             # Imprimir las coordenadas
             if longitud is not None and latitud is not None:
-                st.write(f"Longitud: {longitud}")
-                st.write(f"Latitud: {latitud}")
-                st.write(f"Ahora mismo te encuentras en el concello de {concello_id}")
-                st.write(f"Ubicación: {ubicacion}")
+                st.write(f"{latitud},{longitud}")
             else:
                 st.write("No se encontraron resultados para el valor de Km proporcionado.")
         else:
