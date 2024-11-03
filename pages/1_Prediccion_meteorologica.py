@@ -22,6 +22,8 @@ concello_id = None
 ubicacion = None
 adelante = None
 days=None
+start_date = None
+end_date = None
 
 max_km_value = obcoor.query_max_km_value()
 
@@ -104,7 +106,7 @@ if latitud is not None and longitud is not None:
     st.map(data)
 
 if adelante is not None and longitud is not None:
-    prn.pronostico(ubicacion, days)
+    prn.pronostico(ubicacion, start_date, end_date)
 
     # Carga de los datos
     df = pd.read_csv("salida_forecast_data.csv")
