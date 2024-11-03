@@ -17,9 +17,10 @@ st.write("""SMETRIA cuenta con 4 funcionalidades para el usuario, un sistema de 
 geospaciales, un modelo predictivo de flujos y un modelo predictivo de ocupación
 """)
 
+st.divider()
 
 st.write("""
-Esta web se a desarrollado en el marco de la asignatura Proxecto Integrador I, del Grao de Intelixencia Artificial 
+Esta web se ha desarrollado en el marco de la asignatura Proxecto Integrador I, del Grao de Intelixencia Artificial 
 de la Universidade de Santiago de Compostela.
 """)
 
