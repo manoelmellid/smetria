@@ -33,7 +33,7 @@ with st.form(key='my_form'):
 
     # Selección de fechas
     d = st.date_input(
-        "Select your vacation for next year",
+        "Selecciona el periodo de tiempo",
         (today, today + datetime.timedelta(days=3)),  # Rango de hoy a 3 días después
         today,
         today + datetime.timedelta(days=3),  # Fecha máxima
