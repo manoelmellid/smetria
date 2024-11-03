@@ -26,11 +26,7 @@ max_km_value = obcoor.query_max_km_value()
 
 with st.form(key='my_form'):
     # Entradas del formulario
-    input_km = st.number_input(
-        "Indica el Km del Camino dónde te encuentras",
-        min_value=0.0,
-        max_value=max_km_value  # Establece el valor máximo
-    )
+    input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
     
     # opcion_seleccionada = st.selectbox("Selecciona un número:", [1, 2, 3, 4, 5])
     # if opcion_seleccionada == 1:
@@ -41,6 +37,18 @@ with st.form(key='my_form'):
 
     # Verifica si el campo de texto no está vacío solo después de que se presiona el botón
     if submit_button:
+        try:
+            # Convertir el input a un número
+            input_km = float(input_text)
+            
+            # Comparar el valor de input con el máximo
+            if input_km > max_km_value:
+                st.warning(f"El valor {input_km} es mayor que el máximo permitido: {max_km_value}.")
+            else:
+                st.success(f"El valor {input_km} es válido.")
+        except ValueError:
+            st.error("Por favor, ingresa un número válido.")
+        
         if input_text:
             km_camino = float(input_text.replace(',', '.'))
             n = int(km_camino)
