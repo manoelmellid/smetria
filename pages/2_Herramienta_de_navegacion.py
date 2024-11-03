@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import datetime
 
 st.set_page_config(page_title="Herramienta de navegacion")
 
@@ -26,4 +27,4 @@ d = st.date_input(
     dec_31,
     format="MM.DD.YYYY",
 )
-d
+st.write(d)
