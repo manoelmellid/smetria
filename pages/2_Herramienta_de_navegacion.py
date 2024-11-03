@@ -31,6 +31,7 @@ d = st.date_input(
 # Desestructurar las fechas de inicio y fin
 start_date, end_date = d
 
-# Mostrar las fechas
-st.write("Start Date:", start_date)
-st.write("End Date:", end_date)
+# Mostrar las fechas solo si la fecha de fin está seleccionada
+if end_date:
+    st.write("Start Date:", start_date)
+    st.write("End Date:", end_date)
