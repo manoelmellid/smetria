@@ -2,6 +2,8 @@ import pandas as pd
 import streamlit as st
 import resumen_datos as rdata
 
+from utils import resumen_datos as redat
+
 # Función para reorganizar temperaturas, precipitaciones y cielo y mostrar las tablas
 def tabla_tiempo(archivo_csv):
     # Leer el archivo CSV
@@ -74,4 +76,4 @@ def tabla_tiempo(archivo_csv):
         st.write(f"Pronóstico para el día: {dia}")
         st.dataframe(tabla_completa)
 
-        rdata.analizar_temperaturas(archivo_csv)
+        redat.analizar_temperaturas(archivo_csv)
