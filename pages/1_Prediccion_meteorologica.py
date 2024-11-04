@@ -23,6 +23,7 @@ ubicacion = None
 adelante = None
 start_date = None
 end_date = None
+days=None
 
 max_km_value = concam.query_max_km_value()
 
