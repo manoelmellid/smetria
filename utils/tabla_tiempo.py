@@ -27,6 +27,21 @@ emoticonos = {
             'RAIN_HAIL': '🌨️💧'
         }
 
+def estado_medio_cielo(df, dia):
+    # Filtrar los datos para la fecha especificada
+    df_dia = df[df['date_time'].dt.date == dia]
+
+    # Contar las ocurrencias de cada estado del cielo
+    conteo_estados = df_dia['sky_state'].value_counts()
+
+    # Obtener el estado del cielo más frecuente
+    estado_medio = conteo_estados.idxmax()
+
+    # Obtener el emoticono correspondiente al estado medio
+    emoticono_estado_medio = emoticonos.get(estado_medio, '🌈')  # Emoticono por defecto si no se encuentra el estado
+
+    return emoticono_estado_medio
+
 # Función para reorganizar temperaturas, precipitaciones y cielo y mostrar las tablas
 def tabla_tiempo(archivo_csv):
     # Leer el archivo CSV
