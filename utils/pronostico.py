@@ -1,7 +1,7 @@
 import requests
 import json
 from datetime import datetime, timedelta  # Corrige la importación
-import csv_json as cj
+from utils import csv_json as cj
 import streamlit as st
 import os
 
