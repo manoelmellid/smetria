@@ -37,12 +37,10 @@ def analizar_temperaturas(df):
     minimo = min(temperaturas) if temperaturas else None
     media = sum(temperaturas) / len(temperaturas) if temperaturas else None
 
-    col1, col2, col3 = st.columns([2, 2, 2])
+    col1, col2 = st.columns([2, 2])
     
     # Mostrar en la interfaz de Streamlit
     with col1:
         st.metric(label="Temperatura Máxima", value=maximo)
     with col2:
         st.metric(label="Temperatura Mínima", value=minimo)
-    with col3:
-        st.metric(label="Temperatura Media", value=round(media, 2) if media is not None else None)
