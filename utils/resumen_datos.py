@@ -12,10 +12,8 @@ def temperaturas(archivo_csv):
             temperaturas.append(float(row['temperature']))
 
     # Calcular la media, el máximo y el mínimo
-    media = sum(temperaturas) / len(temperaturas) if temperaturas else 0
     maximo = max(temperaturas) if temperaturas else None
     minimo = min(temperaturas) if temperaturas else None
 
     st.write(f"Temperaura máxima: {maximo}")
     st.write(f"Temperaura minima: {minimo}")
-    st.write(f"Temperaura media: {media}")
