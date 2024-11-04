@@ -41,6 +41,6 @@ def analizar_temperaturas(df):
     
     # Mostrar en la interfaz de Streamlit
     with col1:
-        st.metric(label="Temperatura Máxima", value=maximo)
+        st.metric(label="Temperatura Máxima", value=f"{maximo}º")
     with col2:
-        st.metric(label="Temperatura Mínima", value=minimo)
+        st.metric(label="Temperatura Mínima", value=f"{minimo}º")
