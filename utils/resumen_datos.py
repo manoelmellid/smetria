@@ -34,13 +34,6 @@ def analizar_temperaturas(df):
     # Calcular el máximo y el mínimo
     maximo = max(temperaturas) if temperaturas else None
     minimo = min(temperaturas) if temperaturas else None
-    media = sum(temperaturas) / len(temperaturas) if temperaturas else None
 
-    col1, col2 = st.columns([2, 2])
-    
-    # Mostrar en la interfaz de Streamlit
-    with col1:
-        st.metric(label="Temperatura Máxima", value=f"{maximo}º")
-    with col2:
-        st.metric(label="Temperatura Mínima", value=f"{minimo}º")
+    return maximo, minimo
     
