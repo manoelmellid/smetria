@@ -21,7 +21,6 @@ latitud = None
 concello_id = None
 ubicacion = None
 adelante = None
-days=None
 start_date = None
 end_date = None
 
