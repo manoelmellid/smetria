@@ -75,5 +75,3 @@ def tabla_tiempo(archivo_csv):
         st.dataframe(tabla_completa)
 
         rdata.analizar_temperaturas(archivo_csv)
-# Llamar a la función desde el código principal
-tabla_tiempo("salida_forecast_data.csv")
