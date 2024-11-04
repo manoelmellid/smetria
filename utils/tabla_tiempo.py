@@ -73,7 +73,5 @@ def tabla_tiempo(archivo_csv):
 
         # Mostrar la tabla en Streamlit
         st.write(f"Pronóstico para el día: {dia}")
-
-        redat.analizar_temperaturas(archivo_csv)
-
+        redat.analizar_temperaturas(df_dia)
         st.dataframe(tabla_completa)
