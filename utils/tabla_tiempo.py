@@ -76,7 +76,7 @@ def tabla_tiempo(archivo_csv):
                 'Hora': horas,
                 'Temperatura': temperaturas,
                 'Precipitación': precipitaciones,
-                'Estado del Cielo': estado_cielo
+                'Estado del cielo': estado_cielo
             }
         )
 
@@ -84,7 +84,7 @@ def tabla_tiempo(archivo_csv):
         tabla_completa = tabla_reformateada.transpose()
 
         # Reemplazar estados del cielo por emoticonos
-        tabla_completa.loc['Estado del Cielo'] = tabla_completa.loc['Estado del Cielo'].map(emoticonos)
+        tabla_completa.loc['Estado del cielo'] = tabla_completa.loc['Estado del cielo'].map(emoticonos)
 
         # Obtener el estado medio del cielo para el día
         estado_cielo_medio = estado_medio_cielo(df, dia)
