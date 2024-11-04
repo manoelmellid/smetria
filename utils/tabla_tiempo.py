@@ -1,32 +1,33 @@
 import pandas as pd
 import streamlit as st
-
 from utils import resumen_datos as redat
 
+# Diccionario de emoticonos para los estados del cielo
 emoticonos = {
-            'SUNNY': '☀️',
-            'HIGH_CLOUDS': '🌥️',
-            'PARTLY_CLOUDY': '⛅',
-            'OVERCAST': '☁️',
-            'CLOUDY': '☁️',
-            'FOG': '🌫️',
-            'SHOWERS': '🌧️',
-            'OVERCAST_AND_SHOWERS': '🌧️☁️',
-            'INTERMITENT_SNOW': '🌨️',
-            'DRIZZLE': '🌦️',
-            'RAIN': '🌧️',
-            'SNOW': '❄️',
-            'STORMS': '⛈️',
-            'MIST': '🌫️',
-            'FOG_BANK': '🌁',
-            'MID_CLOUDS': '🌥️',
-            'WEAK_RAIN': '🌦️',
-            'WEAK_SHOWERS': '🌦️',
-            'STORM_THEN_CLOUDY': '⛈️☁️',
-            'MELTED_SNOW': '☔',
-            'RAIN_HAIL': '🌨️💧'
-        }
+    'SUNNY': '☀️',
+    'HIGH_CLOUDS': '🌥️',
+    'PARTLY_CLOUDY': '⛅',
+    'OVERCAST': '☁️',
+    'CLOUDY': '☁️',
+    'FOG': '🌫️',
+    'SHOWERS': '🌧️',
+    'OVERCAST_AND_SHOWERS': '🌧️☁️',
+    'INTERMITENT_SNOW': '🌨️',
+    'DRIZZLE': '🌦️',
+    'RAIN': '🌧️',
+    'SNOW': '❄️',
+    'STORMS': '⛈️',
+    'MIST': '🌫️',
+    'FOG_BANK': '🌁',
+    'MID_CLOUDS': '🌥️',
+    'WEAK_RAIN': '🌦️',
+    'WEAK_SHOWERS': '🌦️',
+    'STORM_THEN_CLOUDY': '⛈️☁️',
+    'MELTED_SNOW': '☔',
+    'RAIN_HAIL': '🌨️💧'
+}
 
+# Función para calcular el estado medio del cielo para cada día
 def estado_medio_cielo(df, dia):
     # Filtrar los datos para la fecha especificada
     df_dia = df[df['date_time'].dt.date == dia]
@@ -85,10 +86,12 @@ def tabla_tiempo(archivo_csv):
         # Reemplazar estados del cielo por emoticonos
         tabla_completa.loc['Estado del Cielo'] = tabla_completa.loc['Estado del Cielo'].map(emoticonos)
 
+        # Obtener el estado medio del cielo para el día
+        estado_cielo_medio = estado_medio_cielo(df, dia)
+
         # Mostrar la tabla en Streamlit
         dia_formateado = dia.strftime('%d-%m-%Y')
         st.write(f"Pronóstico para el día: {dia_formateado}")
+        st.write(f"Estado medio del cielo: {estado_cielo_medio}")  # Mostrar el estado medio
         redat.analizar_temperaturas(df_dia)
         st.dataframe(tabla_completa)
-
-import pandas as pd
