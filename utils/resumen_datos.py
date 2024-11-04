@@ -1,4 +1,5 @@
 import csv
+import streamlit as st
 
 def temperaturas(archivo_csv):
     temperaturas = []
@@ -14,5 +15,9 @@ def temperaturas(archivo_csv):
     media = sum(temperaturas) / len(temperaturas) if temperaturas else 0
     maximo = max(temperaturas) if temperaturas else None
     minimo = min(temperaturas) if temperaturas else None
+
+    st.write(f"Temperaura máxima: {maximo}")
+    st.write(f"Temperaura minima: {minimo}")
+    st.write(f"Temperaura media: {media}")
     
     return media, maximo, minimo
