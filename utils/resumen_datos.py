@@ -39,8 +39,8 @@ def analizar_temperaturas(archivo_csv):
     col1, col2 = st.columns([2,2])
     # Mostrar en la interfaz de Streamlit
     with col1:
-        st.metric(label="Temperatura Máxima", value=maximo, delta="1.2 °F")
+        st.metric(label="Temperatura Máxima", value=maximo, delta=(maximo-minimo))
     with col2:
-        st.metric(label="Temperatura Mínima", value=minimo, delta="0.0 °F")
+        st.metric(label="Temperatura Mínima", value=minimo, delta=(minimo-maximo))
 
 # Aquí deberías invocar la función, proporcionando el nombre del archivo CSV que deseas analizar
