@@ -5,7 +5,7 @@ import datetime
 
 st.set_page_config(page_title="Predicción meteorológica")
 
-from utils import obtener_coordenadas as obcoor, pronostico as prn
+from utils import consultas_camino as concam, pronostico as prn
 
 col1, col2, col3 = st.columns([3,3,3])
 with col1:
@@ -25,7 +25,7 @@ days=None
 start_date = None
 end_date = None
 
-max_km_value = obcoor.query_max_km_value()
+max_km_value = concam.query_max_km_value()
 
 with st.form(key='my_form'):
     # Entradas del formulario
@@ -81,7 +81,7 @@ with st.form(key='my_form'):
                 resultado = km_camino  # Si no está en ningún rango, devuelve el número original
 
             # Actualiza las variables con los resultados de la función
-            longitud, latitud, concello_id, ubicacion = obcoor.query_csv_data(resultado)
+            longitud, latitud, concello_id, ubicacion = concam.query_csv_data(resultado)
             adelante = 1
             
             # Imprimir las coordenadas
