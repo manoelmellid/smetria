@@ -85,10 +85,9 @@ with st.form(key='my_form'):
             adelante = 1
 
             # Imprimir las coordenadas
-            if longitud is not None and latitud is not None:
-                st.write(f"Coordenadas: {latitud}, {longitud}")
-            else:
+            if longitud is None and latitud is None:
                 st.write("No se encontraron resultados para el valor de Km proporcionado.")
+                
         else:
             st.warning("Por favor, introduce una distancia en kilómetros.")
 
