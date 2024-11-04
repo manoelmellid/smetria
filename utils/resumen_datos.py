@@ -19,10 +19,10 @@ def temperaturas(archivo_csv):
     st.write(f"Temperaura máxima: {maximo}")
     st.write(f"Temperaura minima: {minimo}")
 
-def analizar_temperaturas(archivo_csv):
-    # Cargar el archivo CSV en un DataFrame
-    df = pd.read_csv(archivo_csv)
+import pandas as pd
+import streamlit as st
 
+def analizar_temperaturas(df):
     # Convertir la columna 'temperature' a numérico
     df['temperature'] = pd.to_numeric(df['temperature'], errors='coerce')
 
@@ -35,12 +35,14 @@ def analizar_temperaturas(archivo_csv):
     # Calcular el máximo y el mínimo
     maximo = max(temperaturas) if temperaturas else None
     minimo = min(temperaturas) if temperaturas else None
+    media = sum(temperaturas) / len(temperaturas) if temperaturas else None
 
-    col1, col2 = st.columns([2,2])
+    col1, col2, col3 = st.columns([2, 2, 2])
+    
     # Mostrar en la interfaz de Streamlit
     with col1:
-        st.metric(label="Temperatura Máxima", value=maximo, delta=(maximo-minimo))
+        st.metric(label="Temperatura Máxima", value=maximo)
     with col2:
-        st.metric(label="Temperatura Mínima", value=minimo, delta=(minimo-maximo))
-
-# Aquí deberías invocar la función, proporcionando el nombre del archivo CSV que deseas analizar
+        st.metric(label="Temperatura Mínima", value=minimo)
+    with col3:
+        st.metric(label="Temperatura Media", value=round(media, 2) if media is not None else None)
