@@ -25,9 +25,9 @@ def tabla_tiempo(archivo_csv):
         df_dia = df_dia.sort_values(by='hour')
 
         # Crear listas con las horas, temperaturas, precipitaciones y estado del cielo
-        horas = df_dia['hour'][:24].tolist()
-        temperaturas = df_dia['temperature'][:24].tolist()
-        precipitaciones = df_dia['precipitation_amount'][:24].tolist()
+        horas = [f"{h}:00" for h in df_dia['hour'][:24].tolist()]
+        temperaturas = [f"{temp} º" for temp in df_dia['temperature'][:24].tolist()]
+        precipitaciones = [f"{prec} lm²" for prec in df_dia['precipitation_amount'][:24].tolist()]
         estado_cielo = df_dia['sky_state'][:24].tolist()
 
         # Crear un DataFrame sin índices, donde la primera fila es la de horas
@@ -68,7 +68,6 @@ def tabla_tiempo(archivo_csv):
             'RAIN_HAIL': '🌨️💧'
         }
         # Reemplazar estados del cielo por emoticonos
-        # Asegurarse de aplicar el mapeo solo en la fila correspondiente
         tabla_completa.loc['Estado del Cielo'] = tabla_completa.loc['Estado del Cielo'].map(emoticonos)
 
         # Mostrar la tabla en Streamlit
