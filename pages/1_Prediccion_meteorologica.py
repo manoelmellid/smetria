@@ -41,13 +41,13 @@ with st.form(key='my_form'):
         today + datetime.timedelta(days=3),  # Fecha máxima
         format="DD/MM/YYYY",
     )
-    
+
     # Comprobar si se seleccionaron dos fechas
     if isinstance(d, tuple) and len(d) == 2:
         start_date, end_date = d
     else:
         st.error("Por favor selecciona una fecha de inicio y de fin")
-    
+
     # Botón para enviar el formulario
     submit_button = st.form_submit_button(label='Enviar')
 
@@ -62,7 +62,11 @@ with st.form(key='my_form'):
                 st.warning(f"El valor {input_km} es mayor que el máximo permitido: {max_km_value}.")
         except ValueError:
             st.error("Por favor, ingresa un número válido.")
-    
+
+        if input_text:
+            km_camino = float(input_text.replace(',', '.'))
+            n = int(km_camino)
+
             if km_camino == max_km_value:
                 resultado = km_camino  # Mantiene el valor igual si es igual a max_km_value
             elif n < km_camino < n + 0.25:
@@ -79,7 +83,7 @@ with st.form(key='my_form'):
             # Actualiza las variables con los resultados de la función
             longitud, latitud, concello_id, ubicacion = concam.query_csv_data(resultado)
             adelante = 1
-            
+
             # Imprimir las coordenadas
             if longitud is not None and latitud is not None:
                 st.write(f"Coordenadas: {latitud}, {longitud}")
@@ -97,16 +101,16 @@ if latitud is not None and longitud is not None:
         'lat': [latitud],  # Mejor como lista
         'lon': [longitud]
     }, index=[0])  # Proporciona un índice
-    
+
     # Mostrar el mapa solo si los datos son válidos
     st.map(data)
 
 if adelante is not None and longitud is not None:
     # Pronostico
     prn.pronostico(ubicacion, start_date, end_date)
-    
+
     # Tablas de horas
     ttiempo.tabla_tiempo("salida_forecast_data.csv")
-    
+
     # Carga de los datos
     df = pd.read_csv("salida_forecast_data.csv")
