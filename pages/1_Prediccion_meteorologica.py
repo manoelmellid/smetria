@@ -5,7 +5,7 @@ import datetime
 
 st.set_page_config(page_title="Predicción meteorológica")
 
-from utils import consultas_camino as concam, pronostico as prn
+from utils import consultas_camino as concam, pronostico as prn, resumen_datos as redat
 
 col1, col2, col3 = st.columns([3,3,3])
 with col1:
@@ -111,11 +111,17 @@ if adelante is not None and longitud is not None:
     # Carga de los datos
     df = pd.read_csv("salida_forecast_data.csv")
 
+    media, maximo, minimo = redat.temperaturas("salida_forecast_data.csv")
+
     # Convertir la columna 'date_time' en un formato de fecha adecuado
     df['date_time'] = pd.to_datetime(df['date_time'])
 
     # Gráfica de Temperature
     st.write("### Temperatura esperada:")
+    st.write(f"Temperaura máxima: {maximo}")
+    st.write(f"Temperaura minima: {minimo}")
+    st.write(f"Temperaura media: {media}")
+
     st.bar_chart(df[['date_time', 'temperature']].set_index('date_time'))
 
     # Gráfica de Precipitation Amount
