@@ -110,14 +110,13 @@ if adelante is not None and longitud is not None:
 
     # Carga de los datos
     df = pd.read_csv("salida_forecast_data.csv")
-
-    media, maximo, minimo = redat.temperaturas("salida_forecast_data.csv")
-
     # Convertir la columna 'date_time' en un formato de fecha adecuado
     df['date_time'] = pd.to_datetime(df['date_time'])
 
     # Gráfica de Temperature
     st.write("### Temperatura esperada:")
+    redat.temperaturas("salida_forecast_data.csv")
+
     st.write(f"Temperaura máxima: {maximo}")
     st.write(f"Temperaura minima: {minimo}")
     st.write(f"Temperaura media: {media}")
