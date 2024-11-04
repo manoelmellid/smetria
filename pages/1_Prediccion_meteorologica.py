@@ -24,7 +24,6 @@ adelante = None
 start_date = None
 end_date = None
 days=None
-error_message = ""
 
 max_km_value = concam.query_max_km_value()
 
@@ -63,8 +62,6 @@ with st.form(key='my_form'):
                 st.warning(f"El valor {input_km} es mayor que el máximo permitido: {max_km_value}.")
         except ValueError:
             st.error("Por favor, ingresa un número válido.")
-    if error_message:
-        st.error(error_message)
         
         if input_text:
             km_camino = float(input_text.replace(',', '.'))
