@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import resumen_datos as rdata
 
 # Función para reorganizar temperaturas, precipitaciones y cielo y mostrar las tablas
 def tabla_tiempo(archivo_csv):
@@ -7,10 +8,6 @@ def tabla_tiempo(archivo_csv):
     df = pd.read_csv(archivo_csv)
     # Convertir la columna 'date_time' a formato de fecha y hora
     df['date_time'] = pd.to_datetime(df['date_time'])
-
-    # Crear dos variables para la fecha de inicio y fin
-    start_date = df['date_time'].min().date()
-    end_date = df['date_time'].max().date()
 
     # Extraer los días únicos
     dias_unicos = df['date_time'].dt.date.unique()
@@ -27,6 +24,7 @@ def tabla_tiempo(archivo_csv):
         df_dia = df_dia.sort_values(by='hour')
 
         # Crear listas con las horas, temperaturas, precipitaciones y estado del cielo
+        horas = df_dia['hour'][:24].tolist()
         temperaturas = df_dia['temperature'][:24].tolist()
         precipitaciones = df_dia['precipitation_amount'][:24].tolist()
         estado_cielo = df_dia['sky_state'][:24].tolist()
@@ -34,6 +32,7 @@ def tabla_tiempo(archivo_csv):
         # Crear un DataFrame sin índices, donde la primera fila es la de horas
         tabla_reformateada = pd.DataFrame(
             {
+                'Hora': horas,
                 'Temperatura': temperaturas,
                 'Precipitación': precipitaciones,
                 'Estado del Cielo': estado_cielo
@@ -50,15 +49,31 @@ def tabla_tiempo(archivo_csv):
             'PARTLY_CLOUDY': '⛅',
             'OVERCAST': '☁️',
             'CLOUDY': '☁️',
-            'FOG': '🌫️'
+            'FOG': '🌫️',
+            'SHOWERS': '🌧️',
+            'OVERCAST_AND_SHOWERS': '🌧️☁️',
+            'INTERMITENT_SNOW': '🌨️',
+            'DRIZZLE': '🌦️',
+            'RAIN': '🌧️',
+            'SNOW': '❄️',
+            'STORMS': '⛈️',
+            'MIST': '🌫️',
+            'FOG_BANK': '🌁',
+            'MID_CLOUDS': '🌥️',
+            'WEAK_RAIN': '🌦️',
+            'WEAK_SHOWERS': '🌦️',
+            'STORM_THEN_CLOUDY': '⛈️☁️',
+            'MELTED_SNOW': '☔',
+            'RAIN_HAIL': '🌨️💧'
         }
         # Reemplazar estados del cielo por emoticonos
         # Asegurarse de aplicar el mapeo solo en la fila correspondiente
         tabla_completa.loc['Estado del Cielo'] = tabla_completa.loc['Estado del Cielo'].map(emoticonos)
 
         # Mostrar la tabla en Streamlit
-        st.write(f"Datos para el día: {dia}")
+        st.write(f"Pronóstico para el día: {dia}")
         st.dataframe(tabla_completa)
 
+        rdata.analizar_temperaturas(archivo_csv)
 # Llamar a la función desde el código principal
 tabla_tiempo("salida_forecast_data.csv")
