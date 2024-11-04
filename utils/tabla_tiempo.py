@@ -91,7 +91,7 @@ def tabla_tiempo(archivo_csv):
 
         # Mostrar la tabla en Streamlit
         dia_formateado = dia.strftime('%d-%m-%Y')
-        st.write(f"Pronóstico para el día: {dia_formateado}")
+        st.write(f"#### Pronóstico para el día: {dia_formateado}")
 
         maximo, minimo = redat.analizar_temperaturas(df_dia)
 
