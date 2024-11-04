@@ -1,8 +1,7 @@
 import pandas as pd
 import streamlit as st
-import resumen_datos as rdata
 
-#from utils import resumen_datos as redat
+from utils import resumen_datos as redat
 
 # Función para reorganizar temperaturas, precipitaciones y cielo y mostrar las tablas
 def tabla_tiempo(archivo_csv):
