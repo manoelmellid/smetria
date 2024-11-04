@@ -108,7 +108,7 @@ if latitud is not None and longitud is not None:
 if adelante is not None and longitud is not None:
     prn.pronostico(ubicacion, start_date, end_date)
     # Llamar a la función desde el código principal
-    tabla_tiempo("salida_forecast_data.csv")
+    ttiempo.tabla_tiempo("salida_forecast_data.csv")
     # Carga de los datos
     df = pd.read_csv("salida_forecast_data.csv")
     # Convertir la columna 'date_time' en un formato de fecha adecuado
