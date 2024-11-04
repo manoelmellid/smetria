@@ -92,7 +92,6 @@ def tabla_tiempo(archivo_csv):
         # Mostrar la tabla en Streamlit
         dia_formateado = dia.strftime('%d-%m-%Y')
         st.write(f"Pronóstico para el día: {dia_formateado}")
-        st.write(f"Estado medio del cielo: {estado_cielo_medio}")  # Mostrar el estado medio
 
         maximo, minimo = redat.analizar_temperaturas(df_dia)
 
@@ -102,4 +101,6 @@ def tabla_tiempo(archivo_csv):
             st.metric(label="Temperatura Máxima", value=f"{maximo}º")
         with col2:
             st.metric(label="Temperatura Mínima", value=f"{minimo}º")
+        with col3:
+            st.write(f"Estado medio del cielo: {estado_cielo_medio}")  # Mostrar el estado medio
         st.dataframe(tabla_completa)
