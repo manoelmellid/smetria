@@ -72,6 +72,7 @@ def tabla_tiempo(archivo_csv):
         tabla_completa.loc['Estado del Cielo'] = tabla_completa.loc['Estado del Cielo'].map(emoticonos)
 
         # Mostrar la tabla en Streamlit
-        st.write(f"Pronóstico para el día: {dia}")
+        dia_formateado = dia.strftime('%d-%m_%Y')
+        st.write(f"Pronóstico para el día: {dia_formateado}")
         redat.analizar_temperaturas(df_dia)
         st.dataframe(tabla_completa)
