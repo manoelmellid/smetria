@@ -2,6 +2,8 @@ import csv
 import streamlit as st
 import pandas as pd
 
+from utils import tabla_tiempo as ttiempo
+
 def temperaturas(archivo_csv):
     temperaturas = []
 
@@ -18,9 +20,6 @@ def temperaturas(archivo_csv):
 
     st.write(f"Temperaura máxima: {maximo}")
     st.write(f"Temperaura minima: {minimo}")
-
-import pandas as pd
-import streamlit as st
 
 def analizar_temperaturas(df):
     # Convertir la columna 'temperature' a numérico
@@ -44,3 +43,4 @@ def analizar_temperaturas(df):
         st.metric(label="Temperatura Máxima", value=f"{maximo}º")
     with col2:
         st.metric(label="Temperatura Mínima", value=f"{minimo}º")
+    
