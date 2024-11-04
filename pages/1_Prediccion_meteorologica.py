@@ -5,7 +5,7 @@ import datetime
 
 st.set_page_config(page_title="Predicción meteorológica")
 
-from utils import consultas_camino as concam, pronostico as prn, resumen_datos as redat
+from utils import consultas_camino as concam, pronostico as prn, resumen_datos as redat, tabla_tiempo as ttiempo
 
 col1, col2, col3 = st.columns([3,3,3])
 with col1:
