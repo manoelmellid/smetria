@@ -115,7 +115,7 @@ if adelante is not None and longitud is not None:
 
     # Gráfica de Temperature
     st.write("### Temperatura esperada:")
-    redat.temperaturas("salida_forecast_data.csv")
+    st.write(redat.temperaturas("salida_forecast_data.csv"))
 
     st.write(f"Temperaura máxima: {maximo}")
     st.write(f"Temperaura minima: {minimo}")
