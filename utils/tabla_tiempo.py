@@ -103,5 +103,5 @@ def tabla_tiempo(archivo_csv):
             st.metric(label="Temperatura Mínima", value=f"{minimo}º")
         with col3:
             st.write("Estado medio del cielo:")
-            st.write(f"#{estado_cielo_medio}")  # Mostrar el estado medio
+            st.write(f"{estado_cielo_medio}")  # Mostrar el estado medio
         st.dataframe(tabla_completa)
