@@ -95,7 +95,7 @@ def tabla_tiempo(archivo_csv):
 
         maximo, minimo = redat.analizar_temperaturas(df_dia)
 
-        col1, col2 = st.columns([2, 2])
+        col1, col2, col3 = st.columns([2, 2, 2])
         # Mostrar en la interfaz de Streamlit
         with col1:
             st.metric(label="Temperatura Máxima", value=f"{maximo}º")
