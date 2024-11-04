@@ -77,25 +77,3 @@ def tabla_tiempo(archivo_csv):
         st.dataframe(tabla_completa)
 
 import pandas as pd
-
-def estado_medio_cielo(df, fecha):
-    # Filtrar los datos para la fecha especificada
-    df_fecha = df[df['date_time'].dt.date == fecha]
-
-    # Contar las ocurrencias de cada estado del cielo
-    conteo_estados = df_fecha['sky_state'].value_counts()
-
-    # Obtener el estado del cielo más frecuente
-    estado_medio = conteo_estados.idxmax()
-
-    # Obtener el emoticono correspondiente al estado medio
-    emoticono_estado_medio = emoticonos.get(estado_medio, '🌈')  # Emoticono por defecto si no se encuentra el estado
-
-    return emoticono_estado_medio
-
-# Ejemplo de uso
-# df = pd.read_csv("tu_archivo.csv")
-# df['date_time'] = pd.to_datetime(df['date_time'])
-# fecha = pd.to_datetime("2024-11-04").date()  # Por ejemplo, para una fecha específica
-# print(estado_medio_cielo(df, fecha))
-
