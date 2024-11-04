@@ -59,9 +59,16 @@ with st.form(key='my_form'):
     if input_km > max_km_value:
         st.warning(f"El valor {input_km} es mayor que el máximo permitido: {max_km_value}.")
         
-        if input_text:
-            km_camino = float(input_text.replace(',', '.'))
-            n = int(km_camino)
+        if submit_button:
+            try:
+                # Convertir el input a un número
+                input_km = float(input_text)
+    
+                # Comparar el valor de input con el máximo
+                if input_km > max_km_value:
+                    st.warning(f"El valor {input_km} es mayor que el máximo permitido: {max_km_value}.")
+            except ValueError:
+                st.error("Por favor, ingresa un número válido.")
     
             if km_camino == max_km_value:
                 resultado = km_camino  # Mantiene el valor igual si es igual a max_km_value
