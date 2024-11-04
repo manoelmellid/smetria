@@ -106,23 +106,11 @@ if latitud is not None and longitud is not None:
     st.map(data)
 
 if adelante is not None and longitud is not None:
+    # Pronostico
     prn.pronostico(ubicacion, start_date, end_date)
-    # Llamar a la función desde el código principal
+    
+    # Tablas de horas
     ttiempo.tabla_tiempo("salida_forecast_data.csv")
+    
     # Carga de los datos
     df = pd.read_csv("salida_forecast_data.csv")
-    # Convertir la columna 'date_time' en un formato de fecha adecuado
-    df['date_time'] = pd.to_datetime(df['date_time'])
-
-    # Gráfica de Temperature
-    st.write("### Temperatura esperada:")
-    redat.temperaturas("salida_forecast_data.csv")
-    st.bar_chart(df[['date_time', 'temperature']].set_index('date_time'))
-
-    # Gráfica de Precipitation Amount
-    st.write("### Precipitaciones esperadas:")
-    st.bar_chart(df[['date_time', 'precipitation_amount']].set_index('date_time'))
-
-    # Gráfica de Wind Speed
-    st.write("### Evolución del viento a lo largo del día")
-    st.line_chart(df[['date_time', 'wind_speed']].set_index('date_time'))
