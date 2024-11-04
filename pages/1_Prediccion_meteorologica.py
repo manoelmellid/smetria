@@ -117,8 +117,6 @@ if adelante is not None and longitud is not None:
     st.write("### Temperatura esperada:")
     st.write(redat.temperaturas("salida_forecast_data.csv"))
 
-    redat.temperaturas("salida_forecast_data.csv")
-
     st.bar_chart(df[['date_time', 'temperature']].set_index('date_time'))
 
     # Gráfica de Precipitation Amount
