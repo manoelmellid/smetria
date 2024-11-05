@@ -22,7 +22,7 @@ with col3:
 st.divider()
 
 st.header("Herramientas de navegación")
-st.write("## Parámetros de Filtro")
+st.write("### Parámetros de Filtro")
 
 # Función para cargar el archivo CSV de ubicaciones
 @st.cache_data
