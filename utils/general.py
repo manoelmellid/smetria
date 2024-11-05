@@ -22,11 +22,4 @@ def login():
                 st.success("Bienvenido, Administrador")
             else:
                 st.session_state.logged_in = False
-    
-    # Si está logueado, muestra las vistas según el rol
-    if st.session_state.logged_in == True:
-        st.write("Bienvenido al área de personal.")
-        st.write("Datos privados de flujo...")
-    else:
-        st.write("Bienvenido, usuario normal.")
-        st.write("Información pública...")
+    return st.session_state.logged_in
