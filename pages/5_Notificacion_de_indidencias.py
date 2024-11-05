@@ -14,7 +14,6 @@ st.divider()
 st.header("Sistema de notificación de incidencias")
 
 # ---------------------------------------------------
-logged_in = False
 # Campos del formulario
 nombre = st.text_input("Nombre")
 email = st.text_input("Correo electrónico")
