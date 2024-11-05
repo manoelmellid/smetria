@@ -4,6 +4,9 @@ import geopandas as gpd
 from shapely.geometry import Point
 from geopy.distance import geodesic
 
+longitud = None
+latitud = None
+
 st.set_page_config(page_title="Herramienta de Navegacion")
 
 col1, col2, col3 = st.columns([3,3,3])
@@ -40,9 +43,56 @@ gdf['lon'] = gdf['geometry'].x
 tipos = df['tipo'].unique()
 tipo_seleccionado = st.multiselect("Selecciona el tipo de ubicación", tipos, default=tipos[0])
 
+max_km_value = concam.query_max_km_value()
+
+with st.form(key='my_form'):
+    # Entradas del formulario
+    input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
+
+    # Botón para enviar el formulario
+    submit_button = st.form_submit_button(label='Enviar')
+
+    # Verifica si el campo de texto no está vacío solo después de que se presiona el botón
+    if submit_button:
+        try:
+            # Convertir el input a un número
+            input_km = float(input_text)
+
+            # Comparar el valor de input con el máximo
+            if input_km > max_km_value:
+                st.warning(f"El valor {input_km} es mayor que el máximo permitido: {max_km_value}.")
+        except ValueError:
+            st.error("Por favor, ingresa un número válido.")
+
+        if input_text:
+            km_camino = float(input_text.replace(',', '.'))
+            n = int(km_camino)
+
+            if km_camino == max_km_value:
+                resultado = km_camino  # Mantiene el valor igual si es igual a max_km_value
+            elif n < km_camino < n + 0.25:
+                resultado = n + 0.25
+            elif n + 0.25 < km_camino < n + 0.5:
+                resultado = n + 0.5
+            elif n + 0.5 < km_camino < n + 0.75:
+                resultado = n + 0.75
+            elif n + 0.75 < km_camino < n + 1:
+                resultado = n + 1
+            else:
+                resultado = km_camino  # Si no está en ningún rango, devuelve el número original
+
+            # Actualiza las variables con los resultados de la función
+            longitud, latitud, concello_id, ubicacion = concam.query_csv_data(resultado)
+            adelante = 1
+
+            # Imprimir las coordenadas
+            if longitud is None and latitud is None:
+                st.write("No se encontraron resultados para el valor de Km proporcionado.")
+                
+        else:
+            st.warning("Por favor, introduce una distancia en kilómetros.")
+
 # Entrada de coordenadas y radio de distancia
-latitud = st.number_input("Latitud", value=43.0, format="%.6f")
-longitud = st.number_input("Longitud", value=-8.0, format="%.6f")
 radio_km = st.slider("Radio de distancia (km)", min_value=1, max_value=10, value=5)
 
 # Filtrar el dataframe por tipo de ubicación seleccionado
