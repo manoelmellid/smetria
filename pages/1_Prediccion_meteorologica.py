@@ -36,7 +36,7 @@ with st.form(key='my_form'):
     # Selección de fechas
     d = st.date_input(
         "Selecciona el periodo de tiempo",
-        (today, today + datetime.timedelta(days=3)),  # Por defecto
+        (today, today + datetime.timedelta(days=4)),  # Por defecto
         today,
         today + datetime.timedelta(days=4),  # Fecha máxima
         format="DD/MM/YYYY",
