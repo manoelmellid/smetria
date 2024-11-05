@@ -88,6 +88,36 @@ def mostrar_puntos_con_arcos(latitud, longitud, altura_columna=500):
         get_fill_color=[255, 0, 0, 140],  # Color rojo
     )
 
+    # Capa de texto para mostrar los nombres de los puntos
+    text_layer = pdk.Layer(
+        "TextLayer",
+        data=puntos,
+        get_position=["lon", "lat"],
+        get_text="name",  # Esta es la clave que contiene el nombre del lugar
+        get_size=20,  # Tamaño del texto
+        get_color=[0, 0, 0, 255],  # Color del texto (negro)
+        get_angle=0,  # Ángulo del texto (0 para horizontal)
+        get_text_anchor="'middle'",  # Alineación del texto
+        get_alignment_baseline="'center'",  # Alineación vertical
+    )
+
+    # Agregar también el punto adicional como texto
+    text_layer_adicional = pdk.Layer(
+        "TextLayer",
+        data=[{
+            "name": punto_adicional[0],
+            "lon": longitud,
+            "lat": latitud,
+        }],
+        get_position=["lon", "lat"],
+        get_text="name",  # Nombre del punto adicional
+        get_size=20,
+        get_color=[255, 0, 0, 255],  # Color del texto (rojo para el punto adicional)
+        get_angle=0,
+        get_text_anchor="'middle'",
+        get_alignment_baseline="'center'",
+    )
+
     # Configuración del mapa
     deck = pdk.Deck(
         map_style="mapbox://styles/mapbox/light-v9",
@@ -97,7 +127,7 @@ def mostrar_puntos_con_arcos(latitud, longitud, altura_columna=500):
             "zoom": 10,
             "pitch": 50,
         },
-        layers=[arc_layer, columna_layer],
+        layers=[arc_layer, columna_layer, text_layer, text_layer_adicional],
     )
 
     # Mostrar el mapa en Streamlit
