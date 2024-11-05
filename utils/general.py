@@ -28,6 +28,9 @@ import streamlit as st
 import pydeck as pdk
 
 # Función para crear el mapa
+import streamlit as st
+import pydeck as pdk
+
 def mostrar_puntos_con_arcos(latitud, longitud, altura_columna=500):
     # Puntos predefinidos
     puntos = [
@@ -43,7 +46,31 @@ def mostrar_puntos_con_arcos(latitud, longitud, altura_columna=500):
     ]
 
     # Agregar el punto recibido como argumento
-    puntos.append(("Punto Adicional", longitud, latitud))
+    punto_adicional = ("Punto Adicional", longitud, latitud)
+
+    # Insertar el punto recibido en la posición correcta
+    punto_insertado = None
+    for i in range(len(puntos) - 1):
+        lat1, lon1 = puntos[i][2], puntos[i][1]
+        lat2, lon2 = puntos[i + 1][2], puntos[i + 1][1]
+
+        # Calcular la distancia euclidiana simple entre el punto a insertar y los puntos
+        distancia1 = (lat1 - latitud) ** 2 + (lon1 - longitud) ** 2
+        distancia2 = (lat2 - latitud) ** 2 + (lon2 - longitud) ** 2
+
+        # Insertar el punto en la posición más cercana
+        if distancia1 < distancia2:
+            puntos.insert(i + 1, punto_adicional)
+            punto_insertado = True
+            break
+        elif distancia2 < distancia1:
+            puntos.insert(i + 1, punto_adicional)
+            punto_insertado = True
+            break
+    
+    if not punto_insertado:
+        # Si no se insertó en ningún lado, agregarlo al final de la lista
+        puntos.append(punto_adicional)
 
     # Crear las líneas de arco entre los puntos
     arcos = []
