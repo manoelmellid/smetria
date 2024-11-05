@@ -34,7 +34,8 @@ def query_max_km_value():
         return None
 
 # Crear un cliente de OpenRouteService con tu API Key
-client = openrouteservice.Client(key='tu_api_key')
+api_key = st.secrets["API_KEY_openroute"]
+client = openrouteservice.Client(key='api_key')
 
 def obtener_ruta(punto_inicio, punto_destino):
     # Convertir puntos a formato de OpenRouteService: [lon, lat]
