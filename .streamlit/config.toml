@@ -1,3 +1,5 @@
+script = "SMETRIA.py"
+
 [client]
 showErrorDetails = false
 
