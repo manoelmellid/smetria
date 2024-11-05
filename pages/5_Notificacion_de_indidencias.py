@@ -9,11 +9,23 @@ with col1:
     st.image("amtega_logo.png_2089811488.png", use_column_width=True)
 with col3:
     st.header("SMETRIA")
-
 st.divider()
-st.header("Sistema de notificación de incidencias")
 
+st.header("Sistema de notificación de incidencias")
+col1, col2 = st.columns([4,2])
+with col1:
+    st.header("Sistema de notificación de incidencias")
+with col2:
+    st.session_state.logged_in = gen.login()
 # ---------------------------------------------------
+# Si está logueado, muestra las vistas según el rol
+if st.session_state.logged_in == True:
+    st.write("Bienvenido al área de personal.")
+    st.write("Datos privados de flujo...")
+else:
+    st.write("Bienvenido, usuario normal.")
+    st.write("Información pública...")
+
 # Campos del formulario
 nombre = st.text_input("Nombre")
 email = st.text_input("Correo electrónico")
@@ -31,15 +43,5 @@ if st.button("Enviar"):
         st.success("¡Mensaje guardado con éxito!")
     else:
         st.error("Por favor, llena todos los campos.")
-
-st.session_state.logged_in = gen.login()
-
-# Si está logueado, muestra las vistas según el rol
-if st.session_state.logged_in == True:
-    st.write("Bienvenido al área de personal.")
-    st.write("Datos privados de flujo...")
-else:
-    st.write("Bienvenido, usuario normal.")
-    st.write("Información pública...")
 
 
