@@ -27,6 +27,22 @@ emoticonos = {
     'RAIN_HAIL': '🌨️💧'
 }
 
+def analizar_temperaturas(df):
+    # Convertir la columna 'temperature' a numérico
+    df['temperature'] = pd.to_numeric(df['temperature'], errors='coerce')
+
+    # Filtrar valores NaN
+    df = df.dropna(subset=['temperature'])
+
+    # Obtener la lista de temperaturas
+    temperaturas = df['temperature'].tolist()
+
+    # Calcular el máximo y el mínimo
+    maximo = max(temperaturas) if temperaturas else None
+    minimo = min(temperaturas) if temperaturas else None
+
+    return maximo, minimo
+
 # Función para calcular el estado medio del cielo para cada día
 def estado_medio_cielo(df, dia):
     # Filtrar los datos para la fecha especificada
@@ -93,7 +109,7 @@ def tabla_tiempo(archivo_csv):
         dia_formateado = dia.strftime('%d-%m-%Y')
         st.write(f"#### Pronóstico para el día: {dia_formateado}")
 
-        maximo, minimo = redat.analizar_temperaturas(df_dia)
+        maximo, minimo = analizar_temperaturas(df_dia)
 
         col1, col2, col3 = st.columns([2, 2, 2])
         # Mostrar en la interfaz de Streamlit
