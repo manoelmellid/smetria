@@ -107,7 +107,7 @@ if submit_button:
                     view_state = pdk.ViewState(
                         latitude=latitud,
                         longitude=longitud,
-                        zoom=5,
+                        zoom=50,
                         pitch=0
                     )
 
