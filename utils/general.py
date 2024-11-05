@@ -1,4 +1,5 @@
 import streamlit as st
+import pydeck as pdk
 
 def login():
     if 'logged_in' not in st.session_state:
@@ -28,8 +29,6 @@ import streamlit as st
 import pydeck as pdk
 
 # Función para crear el mapa
-import streamlit as st
-import pydeck as pdk
 
 def mostrar_puntos_con_arcos(latitud, longitud, altura_columna=500):
     # Puntos predefinidos
@@ -46,9 +45,9 @@ def mostrar_puntos_con_arcos(latitud, longitud, altura_columna=500):
     ]
 
     # Agregar el punto recibido como argumento
-    puntos.append(("Punto Adicional", longitud, latitud))
+    punto_adicional = ("Punto Adicional", longitud, latitud)
 
-    # Crear las líneas de arco entre los puntos
+    # Crear las líneas de arco solo entre los puntos predefinidos
     arcos = []
     for i in range(len(puntos) - 1):
         lat1, lon1 = puntos[i][2], puntos[i][1]
@@ -58,7 +57,7 @@ def mostrar_puntos_con_arcos(latitud, longitud, altura_columna=500):
             "target": [lon2, lat2],
             "outbound": 100  # Ancho de la línea (puedes ajustarlo)
         })
-    
+
     # Agregar la capa del arco
     arc_layer = pdk.Layer(
         "ArcLayer",
