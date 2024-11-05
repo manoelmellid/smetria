@@ -1,5 +1,7 @@
 import streamlit as st
 import csv
+import 
+from utils import general as gen
 
 st.set_page_config(page_title="Notificación de incidencias")
 
@@ -31,6 +33,8 @@ if st.button("Enviar"):
         st.success("¡Mensaje guardado con éxito!")
     else:
         st.error("Por favor, llena todos los campos.")
+
+logged_in = gen.login()
 
 # Si está logueado, muestra las vistas según el rol
 if st.session_state.logged_in == True:
