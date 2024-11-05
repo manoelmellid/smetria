@@ -25,33 +25,30 @@ def login():
                 st.session_state.logged_in = False
     return st.session_state.logged_in
 
-import streamlit as st
-import pydeck as pdk
-
 # Función para crear el mapa
 
 def mostrar_puntos_con_arcos(latitud, longitud, altura_columna=500):
-    # Puntos predefinidos
+    # Puntos predefinidos, ahora usando un diccionario con las coordenadas
     puntos = [
-        ("Tui", -8.647561062369814, 42.03689869234378),
-        ("Porriño", -8.621155902537511, 42.161771976830565),
-        ("Redondela", -8.608127425736257, 42.28321455965748),
-        ("Ponte Sampaio", -8.60739744888831, 42.34692538060731),
-        ("Pontevedra", -8.64485792166723, 42.43147462464597),
-        ("Caldas de Rei", -8.643032777153794, 42.60372324695396),
-        ("Padrón", -8.661625079278618, 42.738909894811925),
-        ("Milladoiro", -8.580879782625436, 42.844542908024806),
-        ("Santiago de Compostela", -8.54365852835325, 42.8805986746478),
+        {"name": "Tui", "lon": -8.647561062369814, "lat": 42.03689869234378},
+        {"name": "Porriño", "lon": -8.621155902537511, "lat": 42.161771976830565},
+        {"name": "Redondela", "lon": -8.608127425736257, "lat": 42.28321455965748},
+        {"name": "Ponte Sampaio", "lon": -8.60739744888831, "lat": 42.34692538060731},
+        {"name": "Pontevedra", "lon": -8.64485792166723, "lat": 42.43147462464597},
+        {"name": "Caldas de Rei", "lon": -8.643032777153794, "lat": 42.60372324695396},
+        {"name": "Padrón", "lon": -8.661625079278618, "lat": 42.738909894811925},
+        {"name": "Milladoiro", "lon": -8.580879782625436, "lat": 42.844542908024806},
+        {"name": "Santiago de Compostela", "lon": -8.54365852835325, "lat": 42.8805986746478},
     ]
 
-    # Agregar el punto recibido como argumento
-    punto_adicional = ("Punto Adicional", longitud, latitud)
+    # Agregar el punto adicional sin nombre
+    punto_adicional = {"lon": longitud, "lat": latitud}
 
     # Crear las líneas de arco solo entre los puntos predefinidos
     arcos = []
     for i in range(len(puntos) - 1):
-        lat1, lon1 = puntos[i][2], puntos[i][1]
-        lat2, lon2 = puntos[i + 1][2], puntos[i + 1][1]
+        lat1, lon1 = puntos[i]["lat"], puntos[i]["lon"]
+        lat2, lon2 = puntos[i + 1]["lat"], puntos[i + 1]["lon"]
         arcos.append({
             "source": [lon1, lat1],
             "target": [lon2, lat2],
@@ -88,7 +85,7 @@ def mostrar_puntos_con_arcos(latitud, longitud, altura_columna=500):
         get_fill_color=[255, 0, 0, 140],  # Color rojo
     )
 
-    # Capa de texto para mostrar los nombres de los puntos
+    # Capa de texto para mostrar los nombres de los puntos predefinidos
     text_layer = pdk.Layer(
         "TextLayer",
         data=puntos,
@@ -101,18 +98,17 @@ def mostrar_puntos_con_arcos(latitud, longitud, altura_columna=500):
         get_alignment_baseline="'center'",  # Alineación vertical
     )
 
-    # Agregar también el punto adicional como texto
+    # No agregar texto para el punto adicional (solo lo mostramos como un punto sin nombre)
     text_layer_adicional = pdk.Layer(
         "TextLayer",
         data=[{
-            "name": punto_adicional[0],
             "lon": longitud,
             "lat": latitud,
         }],
         get_position=["lon", "lat"],
-        get_text="name",  # Nombre del punto adicional
-        get_size=20,
-        get_color=[255, 0, 0, 255],  # Color del texto (rojo para el punto adicional)
+        get_text="name",  # No se usa nombre para el punto adicional
+        get_size=0,  # Sin texto visible
+        get_color=[255, 0, 0, 0],  # Transparente (sin color visible)
         get_angle=0,
         get_text_anchor="'middle'",
         get_alignment_baseline="'center'",
