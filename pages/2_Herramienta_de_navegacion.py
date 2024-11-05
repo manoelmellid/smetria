@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-from shapely.geometry import Point
 from geopy.distance import geodesic
 
 # Configuración de la página
@@ -29,11 +28,12 @@ def cargar_datos(file_path):
 file_path = "puntos_interes.csv"  # Asegúrate de que el archivo esté en el directorio o provee la ruta correcta
 df = cargar_datos(file_path)
 
-# Extraer coordenadas de la columna 'geom' sin geopandas
+# Extraer coordenadas de la columna 'geom' sin shapely ni geopandas
 def extraer_coordenadas(geom):
     coords = geom.replace("POINT (", "").replace(")", "").split()
     return float(coords[0]), float(coords[1])
 
+# Aplicar la función de extracción de coordenadas a la columna 'geom'
 df['longitud'], df['latitud'] = zip(*df['geom'].apply(extraer_coordenadas))
 
 # Selección del tipo de ubicación
@@ -48,7 +48,7 @@ radio_km = st.sidebar.slider("Radio de distancia (km)", min_value=1, max_value=1
 # Filtrar el dataframe por tipo de ubicación seleccionado
 df_filtrado = df[df['tipo'].isin(tipo_seleccionado)]
 
-# Filtrar por distancia
+# Filtrar por distancia usando geopy
 punto_usuario = (latitud_usuario, longitud_usuario)
 df_filtrado['distancia_km'] = df_filtrado.apply(
     lambda row: geodesic(punto_usuario, (row['latitud'], row['longitud'])).km, axis=1
