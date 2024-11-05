@@ -3,6 +3,7 @@ import pandas as pd
 import geopandas as gpd
 from shapely.geometry import Point
 from geopy.distance import geodesic
+import pydeck as pdk
 from utils import consultas_camino as concam
 
 # Variables de longitud y latitud inicializadas como None
@@ -98,9 +99,42 @@ if submit_button:
                     )
                     df_filtrado = df_filtrado[df_filtrado['distancia_km'] <= radio_km]
 
-                    # Mostrar resultados en el mapa
-                    st.write(f"### Ubicaciones dentro de {radio_km} km del punto especificado")
-                    st.map(df_filtrado[['lat', 'lon']])
+                    # Crear datos para pydeck
+                    data_ubicaciones = df_filtrado[['lat', 'lon']].to_dict(orient='records')
+                    data_usuario = [{'lat': latitud, 'lon': longitud}]
+
+                    # Configurar el mapa con pydeck
+                    view_state = pdk.ViewState(
+                        latitude=latitud,
+                        longitude=longitud,
+                        zoom=10,
+                        pitch=0
+                    )
+
+                    # Capa para las ubicaciones
+                    ubicaciones_layer = pdk.Layer(
+                        'ScatterplotLayer',
+                        data=data_ubicaciones,
+                        get_position='[lon, lat]',
+                        get_color='[0, 0, 255, 160]',  # Color azul
+                        get_radius=100,
+                    )
+
+                    # Capa para el punto de usuario
+                    usuario_layer = pdk.Layer(
+                        'ScatterplotLayer',
+                        data=data_usuario,
+                        get_position='[lon, lat]',
+                        get_color='[255, 0, 0, 200]',  # Color rojo
+                        get_radius=150,
+                    )
+
+                    # Renderizar el mapa
+                    st.pydeck_chart(pdk.Deck(
+                        map_style='mapbox://styles/mapbox/streets-v11',
+                        initial_view_state=view_state,
+                        layers=[ubicaciones_layer, usuario_layer]
+                    ))
 
                     # Mostrar tabla con detalles
                     st.write(df_filtrado[['id', 'tipo', 'nome', 'distancia_km']].sort_values(by='distancia_km'))
