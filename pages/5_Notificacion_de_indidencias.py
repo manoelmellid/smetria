@@ -1,6 +1,5 @@
 import streamlit as st
 import csv
-import 
 from utils import general as gen
 
 st.set_page_config(page_title="Notificación de incidencias")
