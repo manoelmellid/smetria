@@ -24,6 +24,10 @@ df = cargar_datos(file_path)
 df['geometry'] = df['geom'].apply(lambda x: Point(map(float, x.replace("POINT (", "").replace(")", "").split())))
 gdf = gpd.GeoDataFrame(df, geometry='geometry')
 
+# Extraer latitud y longitud para uso en el mapa
+gdf['lat'] = gdf['geometry'].y
+gdf['lon'] = gdf['geometry'].x
+
 # Selección del tipo de ubicación
 tipos = df['tipo'].unique()
 tipo_seleccionado = st.sidebar.multiselect("Selecciona el tipo de ubicación", tipos, default=tipos[0])
@@ -43,7 +47,7 @@ df_filtrado = df_filtrado[df_filtrado['distancia_km'] <= radio_km]
 
 # Mostrar resultados en el mapa
 st.write(f"### Ubicaciones dentro de {radio_km} km del punto especificado")
-st.map(df_filtrado[['geometry']])
+st.map(df_filtrado[['lat', 'lon']])
 
 # Mostrar tabla con detalles de las ubicaciones
 st.write(df_filtrado[['id', 'tipo', 'nome', 'distancia_km']].sort_values(by='distancia_km'))
