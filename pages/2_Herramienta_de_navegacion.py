@@ -15,26 +15,26 @@ with col3:
 st.divider()
 st.header("Herramienta de navegacion geospacial")
 
-# ---------------------------------------------------------
+# ----------------------------------------------------------------------
+
 st.sidebar.header("Parámetros de Filtro")
 
 # Función para cargar el archivo CSV de ubicaciones
 @st.cache_data
-def cargar_ubicaciones():
-    # Cargar el archivo CSV (asegúrate de que el archivo esté en el directorio o provee la ruta correcta)
-    df = pd.read_csv("puntos_interes.csv")
-    
-    # Conversión de datos en un GeoDataFrame para facilitar cálculos de distancia
-    df['geometry'] = df['geom'].apply(lambda x: Point(map(float, x.replace("POINT (", "").replace(")", "").split())))
-    gdf = gpd.GeoDataFrame(df, geometry='geometry')
-    
-    return gdf
+def cargar_datos(file_path):
+    df = pd.read_csv(file_path)
+    return df
 
-# Cargar las ubicaciones utilizando la función definida
-gdf = cargar_ubicaciones()
+# Cargar el archivo CSV (asegúrate de que el archivo esté en el directorio o provee la ruta correcta)
+file_path = "puntos_interes.csv"  # Reemplaza con la ruta de tu archivo si es necesario
+df = cargar_datos(file_path)
+
+# Conversión de datos en un GeoDataFrame para facilitar cálculos de distancia
+df['geometry'] = df['geom'].apply(lambda x: Point(map(float, x.replace("POINT (", "").replace(")", "").split())))
+gdf = gpd.GeoDataFrame(df, geometry='geometry')
 
 # Selección del tipo de ubicación
-tipos = gdf['tipo'].unique()
+tipos = df['tipo'].unique()
 tipo_seleccionado = st.sidebar.multiselect("Selecciona el tipo de ubicación", tipos, default=tipos[0])
 
 # Entrada de coordenadas y radio de distancia
@@ -56,3 +56,4 @@ st.map(df_filtrado[['geometry']])
 
 # Mostrar tabla con detalles de las ubicaciones
 st.write(df_filtrado[['id', 'tipo', 'nome', 'distancia_km']].sort_values(by='distancia_km'))
+
