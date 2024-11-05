@@ -5,7 +5,7 @@ import datetime
 
 st.set_page_config(page_title="Predicción meteorológica")
 
-from utils import consultas_camino as concam, pronostico as prn, tabla_tiempo as ttiempo
+from utils import general as gen, consultas_camino as concam, pronostico as prn, tabla_tiempo as ttiempo
 
 col1, col2, col3 = st.columns([3,3,3])
 with col1:
@@ -100,6 +100,7 @@ if latitud is not None and longitud is not None:
     }, index=[0])  # Proporciona un índice
 
     # Mostrar el mapa solo si los datos son válidos
+    gen.mostrar_puntos_con_arcos(latitud, longitud, altura_columna=500)
     st.map(data)
 
 if adelante is not None and longitud is not None:
