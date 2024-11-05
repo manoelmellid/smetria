@@ -115,7 +115,6 @@ if submit_button:
     else:
         st.warning("Por favor, introduce una distancia en kilómetros.")
 
-Consultas camino.py
 # Crear un cliente de OpenRouteService con tu API Key
 api_key = st.secrets["API_KEY_openroute"]
 client = openrouteservice.Client(key='api_key')
