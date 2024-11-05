@@ -136,5 +136,3 @@ if submit_button:
 
             # Mostrar tabla con detalles
             st.write(df_filtrado[['enderezo', 'concello', 'tipo', 'nome', 'distancia_km']].sort_values(by='distancia_km').reset_index(drop=True))
-    else:
-        st.warning("Por favor, introduce una distancia en kilómetros.")
