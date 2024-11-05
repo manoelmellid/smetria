@@ -1,6 +1,5 @@
 import pandas as pd
 import streamlit as st
-from utils import resumen_datos as redat
 
 # Diccionario de emoticonos para los estados del cielo
 emoticonos = {
