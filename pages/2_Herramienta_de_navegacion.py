@@ -60,85 +60,81 @@ with st.form(key='my_form'):
 # Solo ejecutar el código si se ha presionado el botón 'Enviar'
 if submit_button:
     if input_text:
-        try:
-            input_km = float(input_text)
-
-            if input_km > max_km_value:
+        input_km = float(input_text)
+        if input_km > max_km_value:
                 st.warning(f"El valor {input_km} es mayor que el máximo permitido: {max_km_value}.")
-            else:
-                km_camino = float(input_text.replace(',', '.'))
-                n = int(km_camino)
+    else:
+        km_camino = float(input_text.replace(',', '.'))
+        n = int(km_camino)
 
-                # Calcular el valor ajustado basado en el rango
-                if km_camino == max_km_value:
-                    resultado = km_camino
-                elif n < km_camino < n + 0.25:
-                    resultado = n + 0.25
-                elif n + 0.25 < km_camino < n + 0.5:
-                    resultado = n + 0.5
-                elif n + 0.5 < km_camino < n + 0.75:
-                    resultado = n + 0.75
-                elif n + 0.75 < km_camino < n + 1:
-                    resultado = n + 1
-                else:
-                    resultado = km_camino
+        # Calcular el valor ajustado basado en el rango
+        if km_camino == max_km_value:
+            resultado = km_camino
+        elif n < km_camino < n + 0.25:
+            resultado = n + 0.25
+        elif n + 0.25 < km_camino < n + 0.5:
+            resultado = n + 0.5
+        elif n + 0.5 < km_camino < n + 0.75:
+            resultado = n + 0.75
+        elif n + 0.75 < km_camino < n + 1:
+            resultado = n + 1
+        else:
+            resultado = km_camino
 
-                # Consultar datos y actualizar variables
-                longitud, latitud, concello_id, ubicacion = concam.query_csv_data(resultado)
+        # Consultar datos y actualizar variables
+        longitud, latitud, concello_id, ubicacion = concam.query_csv_data(resultado)
 
-                if longitud is None and latitud is None:
-                    st.write("No se encontraron resultados para el valor de Km proporcionado.")
-                else:
-                    # Filtrar el dataframe por tipo de ubicación seleccionado
-                    df_filtrado = gdf[gdf['tipo'].isin(tipo_seleccionado)]
+        if longitud is None and latitud is None:
+            st.write("No se encontraron resultados para el valor de Km proporcionado.")
+        else:
+            # Filtrar el dataframe por tipo de ubicación seleccionado
+            df_filtrado = gdf[gdf['tipo'].isin(tipo_seleccionado)]
 
-                    # Calcular distancias
-                    punto_usuario = (latitud, longitud)
-                    df_filtrado['distancia_km'] = df_filtrado['geometry'].apply(
-                        lambda x: geodesic(punto_usuario, (x.y, x.x)).km
-                    )
-                    df_filtrado = df_filtrado[df_filtrado['distancia_km'] <= radio_km]
+            # Calcular distancias
+            punto_usuario = (latitud, longitud)
+            df_filtrado['distancia_km'] = df_filtrado['geometry'].apply(
+                lambda x: geodesic(punto_usuario, (x.y, x.x)).km
+            )
+            df_filtrado = df_filtrado[df_filtrado['distancia_km'] <= radio_km]
 
-                    # Crear datos para pydeck
-                    data_ubicaciones = df_filtrado[['lat', 'lon']].to_dict(orient='records')
-                    data_usuario = [{'lat': latitud, 'lon': longitud}]
+            # Crear datos para pydeck
+            data_ubicaciones = df_filtrado[['lat', 'lon']].to_dict(orient='records')
+            data_usuario = [{'lat': latitud, 'lon': longitud}]
 
-                    # Configurar el mapa con pydeck
-                    view_state = pdk.ViewState(
-                        latitude=latitud,
-                        longitude=longitud,
-                        zoom=12,
-                        pitch=0
-                    )
+            # Configurar el mapa con pydeck
+            view_state = pdk.ViewState(
+                latitude=latitud,
+                longitude=longitud,
+                zoom=12,
+                pitch=0
+            )
 
-                    # Capa para las ubicaciones
-                    ubicaciones_layer = pdk.Layer(
-                        'ScatterplotLayer',
-                        data=data_ubicaciones,
-                        get_position='[lon, lat]',
-                        get_color='[0, 0, 255, 160]',  # Color azul
-                        get_radius=100,
-                    )
+            # Capa para las ubicaciones
+            ubicaciones_layer = pdk.Layer(
+                'ScatterplotLayer',
+                data=data_ubicaciones,
+                get_position='[lon, lat]',
+                get_color='[0, 0, 255, 160]',  # Color azul
+                get_radius=100,
+            )
 
-                    # Capa para el punto de usuario
-                    usuario_layer = pdk.Layer(
-                        'ScatterplotLayer',
-                        data=data_usuario,
-                        get_position='[lon, lat]',
-                        get_color='[255, 0, 0, 200]',  # Color rojo
-                        get_radius=150,
-                    )
+            # Capa para el punto de usuario
+            usuario_layer = pdk.Layer(
+                'ScatterplotLayer',
+                data=data_usuario,
+                get_position='[lon, lat]',
+                get_color='[255, 0, 0, 200]',  # Color rojo
+                get_radius=150,
+            )
 
-                    # Renderizar el mapa
-                    st.pydeck_chart(pdk.Deck(
-                        map_style='mapbox://styles/mapbox/streets-v11',
-                        initial_view_state=view_state,
-                        layers=[ubicaciones_layer, usuario_layer]
-                    ))
+            # Renderizar el mapa
+            st.pydeck_chart(pdk.Deck(
+                map_style='mapbox://styles/mapbox/streets-v11',
+                initial_view_state=view_state,
+                layers=[ubicaciones_layer, usuario_layer]
+            ))
 
-                    # Mostrar tabla con detalles
-                    st.write(df_filtrado[['enderezo', 'concello', 'tipo', 'nome', 'distancia_km']].sort_values(by='distancia_km').reset_index(drop=True))
-        except ValueError:
-            st.error("Por favor, ingresa un número válido.")
+            # Mostrar tabla con detalles
+            st.write(df_filtrado[['enderezo', 'concello', 'tipo', 'nome', 'distancia_km']].sort_values(by='distancia_km').reset_index(drop=True))
     else:
         st.warning("Por favor, introduce una distancia en kilómetros.")
