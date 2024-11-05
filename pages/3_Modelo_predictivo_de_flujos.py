@@ -34,7 +34,7 @@ def login():
                 st.session_state.logged_in = False
     
     # Si está logueado, muestra las vistas según el rol
-    if st.session_state.logged_in == True
+    if st.session_state.logged_in == True:
         st.write("Bienvenido al área de personal.")
         st.write("Datos privados de flujo...")
     else:
