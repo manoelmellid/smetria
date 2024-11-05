@@ -12,6 +12,11 @@ with col3:
 st.divider()
 st.header("Sistema de notificación de incidencias")
 
+def guardar_en_archivo(nombre, email, mensaje):
+    with open('contactos.csv', mode='a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([nombre, email, mensaje])
+
 col1, col2, col3 = st.columns([2,2,2])
 with col2:
     st.session_state.logged_in = gen.login()
@@ -32,10 +37,5 @@ else:
             st.success("¡Mensaje guardado con éxito!")
         else:
             st.error("Por favor, llena todos los campos.")
-
-def guardar_en_archivo(nombre, email, mensaje):
-    with open('contactos.csv', mode='a', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow([nombre, email, mensaje])
 
 
