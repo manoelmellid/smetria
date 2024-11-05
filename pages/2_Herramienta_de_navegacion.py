@@ -4,11 +4,19 @@ import geopandas as gpd
 from shapely.geometry import Point
 from geopy.distance import geodesic
 
-# Configuración de la página
-st.set_page_config(page_title="Filtro de Ubicaciones", page_icon="📍")
+st.set_page_config(page_title="Herramienta de Navegacion")
 
-st.markdown("# Filtro de Ubicaciones Cercanas")
-st.sidebar.header("Parámetros de Filtro")
+col1, col2, col3 = st.columns([3,3,3])
+with col1:
+    st.image("amtega_logo.png_2089811488.png", use_column_width=True)
+with col3:
+    st.header("SMETRIA")
+
+st.divider()
+
+st.header("Herramientas de navegación")
+# Aquí incluirías todo el código específico para la predicción
+st.header("Parámetros de Filtro")
 
 # Función para cargar el archivo CSV de ubicaciones
 @st.cache_data
@@ -30,12 +38,12 @@ gdf['lon'] = gdf['geometry'].x
 
 # Selección del tipo de ubicación
 tipos = df['tipo'].unique()
-tipo_seleccionado = st.sidebar.multiselect("Selecciona el tipo de ubicación", tipos, default=tipos[0])
+tipo_seleccionado = st.multiselect("Selecciona el tipo de ubicación", tipos, default=tipos[0])
 
 # Entrada de coordenadas y radio de distancia
-latitud = st.sidebar.number_input("Latitud", value=43.0, format="%.6f")
-longitud = st.sidebar.number_input("Longitud", value=-8.0, format="%.6f")
-radio_km = st.sidebar.slider("Radio de distancia (km)", min_value=1, max_value=10, value=5)
+latitud = st.number_input("Latitud", value=43.0, format="%.6f")
+longitud = st.number_input("Longitud", value=-8.0, format="%.6f")
+radio_km = st.slider("Radio de distancia (km)", min_value=1, max_value=10, value=5)
 
 # Filtrar el dataframe por tipo de ubicación seleccionado
 df_filtrado = gdf[gdf['tipo'].isin(tipo_seleccionado)]
