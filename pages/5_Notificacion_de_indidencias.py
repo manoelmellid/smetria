@@ -10,10 +10,9 @@ with col1:
 with col3:
     st.header("SMETRIA")
 st.divider()
+st.header("Sistema de notificación de incidencias")
 
-col1, col2 = st.columns([4,2])
-with col1:
-    st.header("Sistema de notificación de incidencias")
+col1, col2, col3 = st.columns([2,2,2])
 with col2:
     st.session_state.logged_in = gen.login()
 # ---------------------------------------------------
