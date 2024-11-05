@@ -24,9 +24,13 @@ def login():
         username = st.text_input("Usuario")
         password = st.text_input("Contraseña", type="password")
         
+        # Obtener las credenciales de st.secrets
+        admin_username = st.secrets["general"]["admin_username"]
+        admin_password = st.secrets["general"]["admin_password"]
+        
         if st.button("Iniciar sesión"):
             # Solo se permite login para el admin
-            if username == 'admin' and password == 'adminpassword':
+            if username == admin_username and password == admin_password:
                 st.session_state.logged_in = True
                 st.session_state.role = 'admin'
                 st.success("Bienvenido, Administrador")
