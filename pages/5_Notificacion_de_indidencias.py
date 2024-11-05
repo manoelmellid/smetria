@@ -32,4 +32,12 @@ if st.button("Enviar"):
     else:
         st.error("Por favor, llena todos los campos.")
 
+# Si está logueado, muestra las vistas según el rol
+if st.session_state.logged_in == True:
+    st.write("Bienvenido al área de personal.")
+    st.write("Datos privados de flujo...")
+else:
+    st.write("Bienvenido, usuario normal.")
+    st.write("Información pública...")
+
 
