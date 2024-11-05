@@ -1,4 +1,5 @@
 import pandas as pd
+import openrouteservice
 
 def query_csv_data(km_value):
     # Cargar el archivo CSV
@@ -31,3 +32,15 @@ def query_max_km_value():
     else:
         # Si el DataFrame está vacío, retornar None
         return None
+
+# Crear un cliente de OpenRouteService con tu API Key
+client = openrouteservice.Client(key='tu_api_key')
+
+def obtener_ruta(punto_inicio, punto_destino):
+    # Convertir puntos a formato de OpenRouteService: [lon, lat]
+    ruta = client.directions(
+        coordinates=[(punto_inicio[1], punto_inicio[0]), (punto_destino[1], punto_destino[0])],
+        profile='driving-car',  # Puedes cambiar a 'cycling-regular' o 'foot-walking' si es necesario
+        format='geojson'
+    )
+    return ruta
