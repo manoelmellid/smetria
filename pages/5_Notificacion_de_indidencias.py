@@ -1,6 +1,5 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
+import csv
 
 st.set_page_config(page_title="Notificación de incidencias")
 
@@ -11,6 +10,35 @@ with col3:
     st.header("SMETRIA")
 
 st.divider()
-
 st.header("Sistema de notificación de incidencias")
-# Aquí incluirías todo el código específico para la predicción
+
+# ---------------------------------------------------
+
+# Campos del formulario
+nombre = st.text_input("Nombre")
+email = st.text_input("Correo electrónico")
+mensaje = st.text_area("Mensaje")
+
+# Botón de envío
+if st.button("Enviar"):
+    if nombre and email and mensaje:
+        st.success("¡Mensaje enviado con éxito!")
+        # Aquí se agregará el código para enviar la información
+    else:
+        st.error("Por favor, llena todos los campos.")
+
+
+def guardar_en_archivo(nombre, email, mensaje):
+    with open('contactos.csv', mode='a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([nombre, email, mensaje])
+
+# Usar la función cuando el formulario se envíe
+if st.button("Enviar"):
+    if nombre and email and mensaje:
+        guardar_en_archivo(nombre, email, mensaje)
+        st.success("¡Mensaje guardado con éxito!")
+    else:
+        st.error("Por favor, llena todos los campos.")
+
+
