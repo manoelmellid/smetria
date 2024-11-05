@@ -15,8 +15,7 @@ def pronostico(location_id, start_date, end_date):
     if start_date == end_date:
         if start_date == fecha_actual:
             # Si el día es hoy, el tiempo empieza desde ahora + 1 hora hasta las 23:59
-            hora_actual = datetime.now()
-            start_date = hora_actual + timedelta(hours=1)
+            start_date = datetime.now()
             end_date = datetime(start_date.year, start_date.month, start_date.day, 23, 59, 59)
         else:
             # Si es cualquier otro día, empieza desde las 0:00 hasta las 23:59 del día seleccionado
