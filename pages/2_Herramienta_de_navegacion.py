@@ -43,12 +43,17 @@ gdf['lon'] = gdf['geometry'].x
 tipos = df['tipo'].unique()
 tipo_seleccionado = st.multiselect("Selecciona el tipo de ubicación", tipos, default=tipos[0])
 
+# Campo de entrada para el km del Camino
+input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
+
+# Barra deslizante para seleccionar el radio de distancia
+radio_km = st.slider("Radio de distancia (km)", min_value=1, max_value=10, value=5)
+
 # Obtener valor máximo de Km permitido desde la función
 max_km_value = concam.query_max_km_value()
 
-# Crear un formulario
+# Crear un formulario para procesar la búsqueda al enviar
 with st.form(key='my_form'):
-    input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
     submit_button = st.form_submit_button(label='Enviar')
 
 # Solo ejecutar el código si se ha presionado el botón 'Enviar'
@@ -83,9 +88,6 @@ if submit_button:
                 if longitud is None and latitud is None:
                     st.write("No se encontraron resultados para el valor de Km proporcionado.")
                 else:
-                    # Entrada de coordenadas y radio de distancia
-                    radio_km = st.slider("Radio de distancia (km)", min_value=1, max_value=10, value=5)
-
                     # Filtrar el dataframe por tipo de ubicación seleccionado
                     df_filtrado = gdf[gdf['tipo'].isin(tipo_seleccionado)]
 
