@@ -3,6 +3,7 @@ import pandas as pd
 import geopandas as gpd
 from shapely.geometry import Point
 from geopy.distance import geodesic
+from utils import consultas_camino as concam
 
 longitud = None
 latitud = None
