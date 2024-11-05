@@ -22,4 +22,4 @@ def login():
                 st.success("Bienvenido, Administrador")
             else:
                 st.session_state.logged_in = False
-    return logged_in
+    return st.session_state.logged_in
