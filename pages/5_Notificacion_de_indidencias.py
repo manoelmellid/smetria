@@ -32,7 +32,7 @@ if st.button("Enviar"):
     else:
         st.error("Por favor, llena todos los campos.")
 
-logged_in = gen.login()
+st.session_state.logged_in = gen.login()
 
 # Si está logueado, muestra las vistas según el rol
 if st.session_state.logged_in == True:
