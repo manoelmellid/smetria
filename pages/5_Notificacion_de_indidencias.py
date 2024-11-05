@@ -19,15 +19,6 @@ nombre = st.text_input("Nombre")
 email = st.text_input("Correo electrónico")
 mensaje = st.text_area("Mensaje")
 
-# Botón de envío
-if st.button("Enviar"):
-    if nombre and email and mensaje:
-        st.success("¡Mensaje enviado con éxito!")
-        # Aquí se agregará el código para enviar la información
-    else:
-        st.error("Por favor, llena todos los campos.")
-
-
 def guardar_en_archivo(nombre, email, mensaje):
     with open('contactos.csv', mode='a', newline='') as file:
         writer = csv.writer(file)
