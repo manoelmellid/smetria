@@ -69,6 +69,20 @@ if submit_button:
                 km_camino = float(input_text.replace(',', '.'))
                 n = int(km_camino)
 
+                # Calcular el valor ajustado basado en el rango
+                if km_camino == max_km_value:
+                    resultado = km_camino
+                elif n < km_camino < n + 0.25:
+                    resultado = n + 0.25
+                elif n + 0.25 < km_camino < n + 0.5:
+                    resultado = n + 0.5
+                elif n + 0.5 < km_camino < n + 0.75:
+                    resultado = n + 0.75
+                elif n + 0.75 < km_camino < n + 1:
+                    resultado = n + 1
+                else:
+                    resultado = km_camino
+
                 # Consultar datos y actualizar variables
                 longitud, latitud, concello_id, ubicacion = concam.query_csv_data(resultado)
 
@@ -85,30 +99,44 @@ if submit_button:
                     )
                     df_filtrado = df_filtrado[df_filtrado['distancia_km'] <= radio_km]
 
-                    # Obtener el punto más cercano
-                    punto_destino = df_filtrado.iloc[df_filtrado['distancia_km'].idxmin()]
+                    # Crear datos para pydeck
+                    data_ubicaciones = df_filtrado[['lat', 'lon']].to_dict(orient='records')
+                    data_usuario = [{'lat': latitud, 'lon': longitud}]
 
-                    # Mostrar ruta
-                    ruta = concam.obtener_ruta(punto_usuario, (punto_destino['lat'], punto_destino['lon']))
+                    # Configurar el mapa con pydeck
+                    view_state = pdk.ViewState(
+                        latitude=latitud,
+                        longitude=longitud,
+                        zoom=12,
+                        pitch=0
+                    )
 
-                    # Mostrar la ruta en el mapa
+                    # Capa para las ubicaciones
+                    ubicaciones_layer = pdk.Layer(
+                        'ScatterplotLayer',
+                        data=data_ubicaciones,
+                        get_position='[lon, lat]',
+                        get_color='[0, 0, 255, 160]',  # Color azul
+                        get_radius=100,
+                    )
+
+                    # Capa para el punto de usuario
+                    usuario_layer = pdk.Layer(
+                        'ScatterplotLayer',
+                        data=data_usuario,
+                        get_position='[lon, lat]',
+                        get_color='[255, 0, 0, 200]',  # Color rojo
+                        get_radius=150,
+                    )
+
+                    # Renderizar el mapa
                     st.pydeck_chart(pdk.Deck(
                         map_style='mapbox://styles/mapbox/streets-v11',
                         initial_view_state=view_state,
-                        layers=[
-                            ubicaciones_layer,
-                            usuario_layer,
-                            pdk.Layer(
-                                'GeoJsonLayer',
-                                data=ruta,
-                                get_fill_color='[255, 0, 0, 150]',
-                                get_line_color='[0, 255, 0]',
-                                get_line_width=5,
-                            ),
-                        ]
+                        layers=[ubicaciones_layer, usuario_layer]
                     ))
 
-                    # Mostrar detalles de las ubicaciones más cercanas
+                    # Mostrar tabla con detalles
                     st.write(df_filtrado[['enderezo', 'concello', 'tipo', 'nome', 'distancia_km']].sort_values(by='distancia_km').reset_index(drop=True))
         except ValueError:
             st.error("Por favor, ingresa un número válido.")
