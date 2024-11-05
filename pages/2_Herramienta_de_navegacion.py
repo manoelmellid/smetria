@@ -89,7 +89,7 @@ if submit_button:
                     punto_destino = df_filtrado.iloc[df_filtrado['distancia_km'].idxmin()]
 
                     # Mostrar ruta
-                    ruta = obtener_ruta(punto_usuario, (punto_destino['lat'], punto_destino['lon']))
+                    ruta = concam.obtener_ruta(punto_usuario, (punto_destino['lat'], punto_destino['lon']))
 
                     # Mostrar la ruta en el mapa
                     st.pydeck_chart(pdk.Deck(
