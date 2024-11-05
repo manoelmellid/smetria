@@ -17,7 +17,7 @@ def cargar_datos(file_path):
     return df
 
 # Cargar el archivo CSV (asegúrate de que el archivo esté en el directorio o provee la ruta correcta)
-file_path = "/mnt/data/tu_archivo.csv"  # Reemplaza con la ruta de tu archivo si es necesario
+file_path = "puntos_interes.csv"  # Reemplaza con la ruta de tu archivo si es necesario
 df = cargar_datos(file_path)
 
 # Conversión de datos en un GeoDataFrame para facilitar cálculos de distancia
