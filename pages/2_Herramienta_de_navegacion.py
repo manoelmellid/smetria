@@ -138,6 +138,7 @@ if submit_button:
 
                     # Mostrar tabla con detalles
                     st.write(df_filtrado[['id', 'tipo', 'nome', 'distancia_km']].sort_values(by='distancia_km'))
+                    st.dataframe(df_filtrado[['id', 'tipo', 'nome', 'distancia_km']].sort_values(by='distancia_km'), hide_index=True)
         except ValueError:
             st.error("Por favor, ingresa un número válido.")
     else:
