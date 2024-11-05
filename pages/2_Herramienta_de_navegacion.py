@@ -42,7 +42,7 @@ gdf['lon'] = gdf['geometry'].x
 
 # Selección de tipo de ubicación
 tipos = df['tipo'].unique()
-tipo_seleccionado = st.multiselect("Selecciona el tipo de ubicación", tipos, default=tipos[0])
+tipo_seleccionado = st.multiselect("Selecciona el tipo de ubicación", tipos, default=tipos[3])
 
 # Campo de entrada para el km del Camino
 input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
