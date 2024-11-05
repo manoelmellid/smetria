@@ -137,7 +137,7 @@ if submit_button:
                     ))
 
                     # Mostrar tabla con detalles
-                    st.dataframe(df_filtrado[['enderezo', 'concello', 'nome', 'distancia_km']].sort_values(by='distancia_km'), hide_index=True)
+                    st.dataframe(df_filtrado[['enderezo', 'nome', 'distancia_km']].sort_values(by='distancia_km'), hide_index=True)
         except ValueError:
             st.error("Por favor, ingresa un número válido.")
     else:
