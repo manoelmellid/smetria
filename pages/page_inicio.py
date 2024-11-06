@@ -16,7 +16,7 @@ with b3:
     if st.button("Ocupación hotelera"):
         st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/page_ocupacion'>", unsafe_allow_html=True)
 with b4:
-    if st.button("Flujos de peregrinos"):
+    if st.button("Notificación de incidencias"):
         st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/page_notificacion'>", unsafe_allow_html=True)
         
 st.divider()
