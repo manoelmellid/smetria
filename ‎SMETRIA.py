@@ -10,11 +10,11 @@ with col3:
 st.markdown("<h3 style='text-align: center;'>Sistema de monitorización de eventos en tramos</h3>", unsafe_allow_html=True)
 st.markdown("<h3 style='text-align: center;'>Camino de Santiago - Camino Portugués</h3>", unsafe_allow_html=True)
 
-st.write(st.navigation(pages, position="sidebar", expanded=False))
 pages = {
     "Your account": [
         st.Page("1_Prediccion_meteorologica.py", title="Prediccion meteorologica"),
         st.Page("2_Herramienta_de_navegacion.py", title="Herramienta de navegacion"),],}
+st.write(st.navigation(pages, position="sidebar", expanded=False))
 pg = st.navigation(pages)
 pg.run()
 pga = st.navigation([st.Page(page1), st.Page("page2.py")])
