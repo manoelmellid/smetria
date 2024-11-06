@@ -47,7 +47,7 @@ def escribir_en_archivo_github(contenido_nuevo):
     
     # Crear el cuerpo del commit
     data = {
-        'message': 'Actualización del archivo contactos.csv',
+        'message': 'Actualización del archivo respuestas.csv',
         'content': contenido_base64,
         'sha': sha,
     }
