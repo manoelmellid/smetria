@@ -17,7 +17,8 @@ with b3:
         st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/Modelo_predictivo_de_flujos'>", unsafe_allow_html=True)
 with b4:
     if st.button("Ocupación hotelera"):
-        run(st.Page("pages/page_ocupacion.py"))
+        st.experimental_set_query_params(page="ocupacion")
+        #run(st.Page("pages/page_ocupacion.py"))
 
 st.divider()
 st.write("""
