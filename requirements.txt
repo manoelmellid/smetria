@@ -5,5 +5,4 @@ shapely
 geopy
 pydeck
 openrouteservice
-io
 requests
