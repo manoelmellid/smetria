@@ -14,18 +14,10 @@ pages = {
     "Your account": [
         st.Page("prueba_pagina.py", title="Prediccion meteorologica"),
         st.Page("prueba_pagina2.py", title="Herramienta de navegacion"),],}
-
-pga = st.navigation([st.Page("prueba_pagina.py"), st.Page("prueba_pagina2.py")])
-pga.run()
-# Agregar la navegación en la barra lateral
+pg = st.navigation(pages)
+pg.run()
 st.sidebar.title("Navegación")
-selected_page = st.sidebar.radio("Selecciona una página", list(pages.keys()))
-# Ejecutar la página seleccionada
-page_file = pages[selected_page]
 
-# Ejecutar el archivo de la página seleccionada
-with open(page_file, "r") as file:
-    exec(file.read())
 st.divider()
 # -------------------------------------------------------------------------------
 st.write("""SMETRIA cuenta con 4 funcionalidades para el usuario, un sistema de predicción meteorológica, una herramienta de consultas
