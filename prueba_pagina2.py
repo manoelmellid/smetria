@@ -10,8 +10,6 @@ from utils import consultas_camino as concam
 longitud = None
 latitud = None
 
-st.set_page_config(page_title="Herramienta de Navegación")
-
 # Configurar las columnas para el diseño
 col1, col2, col3 = st.columns([3, 3, 3])
 with col1:
