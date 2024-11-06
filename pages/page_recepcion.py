@@ -8,4 +8,4 @@ st.session_state.logged_in = gen.login()
 # Si está logueado, muestra las vistas según el rol
 if st.session_state.logged_in == True:
     st.write("Bienvenido al área de personal.")
-    git.leer_archivo_github()
+    st.write(git.leer_archivo_github())
