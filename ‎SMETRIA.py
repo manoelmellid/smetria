@@ -17,7 +17,7 @@ pages = {
 st.write(st.navigation(pages, position="sidebar", expanded=False))
 pg = st.navigation(pages)
 pg.run()
-pga = st.navigation([st.Page(page1), st.Page("page2.py")])
+pga = st.navigation([st.Page(page1), st.Page("2_Herramienta_de_navegacion.py")])
 pga.run()
 st.divider()
 
