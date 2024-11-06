@@ -21,12 +21,12 @@ pga.run()
 st.sidebar.title("Navegación")
 selected_page = st.sidebar.radio("Selecciona una página", list(pages.keys()))
 # Ejecutar la página seleccionada
-#page_file = pages[selected_page]
+page_file = pages[selected_page]
 
 # Ejecutar el archivo de la página seleccionada
-#with open(page_file, "r") as file:
-#    exec(file.read())
-#st.divider()
+with open(page_file, "r") as file:
+    exec(file.read())
+st.divider()
 # -------------------------------------------------------------------------------
 st.write("""SMETRIA cuenta con 4 funcionalidades para el usuario, un sistema de predicción meteorológica, una herramienta de consultas
 geospaciales, un modelo predictivo de flujos y un modelo predictivo de ocupación
