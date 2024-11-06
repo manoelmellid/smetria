@@ -10,13 +10,7 @@ with col3:
 st.markdown("<h3 style='text-align: center;'>Sistema de monitorización de eventos en tramos</h3>", unsafe_allow_html=True)
 st.markdown("<h3 style='text-align: center;'>Camino de Santiago - Camino Portugués</h3>", unsafe_allow_html=True)
 
-pages = {
-    "Your account": [
-        st.Page("prueba_pagina.py", title="Prediccion meteorologica"),
-        st.Page("prueba_pagina2.py", title="Herramienta de navegacion"),],}
-pg = st.navigation(pages)
-pg.run()
-pga = st.navigation([st.Page(page1), st.Page("2_Herramienta_de_navegacion.py")])
+pga = st.navigation([st.Page(prueba_pagina.py), st.Page("prueba_pagina2.py")])
 pga.run()
 # Agregar la navegación en la barra lateral
 #st.sidebar.title("Navegación")
