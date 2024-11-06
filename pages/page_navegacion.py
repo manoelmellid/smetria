@@ -100,5 +100,5 @@ if submit_button:
 
         # Mostrar tabla con detalles
         st.dataframe(df_filtrado[['enderezo', 'nome', 'distancia_km']].sort_values(by='distancia_km'), hide_index=True)
-    else:
-        st.warning("Por favor, introduce una distancia en kilómetros.")
+else:
+    st.warning("Por favor, introduce una distancia en kilómetros.")
