@@ -9,4 +9,4 @@ st.session_state.logged_in = gen.login()
 if st.session_state.logged_in == True:
     st.write("Bienvenido al área de personal.")
     # Mostrar la tabla en Streamlit
-    st.table(git.leer_archivo_github())
+    st.write(git.leer_archivo_github())
