@@ -4,22 +4,21 @@ st.write("""SMETRIA cuenta con 4 funcionalidades para el usuario, un sistema de 
 geospaciales, un modelo predictivo de flujos y un modelo predictivo de ocupación
 """)
 
-b1, b2, b3, b4 = st.columns([3,3,3,3])
+b1, b2, b3, b4, b5 = st.columns([3,3,3,3,3])
 
 with b1:
     if st.button("Predicción meteorológica"):
-        st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/Prediccion_meteorologica'>", unsafe_allow_html=True)
+        st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/page_meteorologia'>", unsafe_allow_html=True)
 with b2:
     if st.button("Navegación geoespacial"):
-        st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/Herramienta_de_navegacion'>", unsafe_allow_html=True)
+        st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/page_navegacion'>", unsafe_allow_html=True)
 with b3:
-    if st.button("Flujos de peregrinos"):
-        st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/Modelo_predictivo_de_flujos'>", unsafe_allow_html=True)
-with b4:
     if st.button("Ocupación hotelera"):
-        st.experimental_set_query_params(page="ocupacion")
-        #run(st.Page("pages/page_ocupacion.py"))
-
+        st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/page_ocupacion'>", unsafe_allow_html=True)
+with b4:
+    if st.button("Flujos de peregrinos"):
+        st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/page_notificacion'>", unsafe_allow_html=True)
+        
 st.divider()
 st.write("""
 Esta web se ha desarrollado en el marco de la asignatura Proxecto Integrador I, del Grao de Intelixencia Artificial 
