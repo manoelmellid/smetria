@@ -9,6 +9,7 @@ with col3:
 
 st.markdown("<h3 style='text-align: center;'>Sistema de monitorización de eventos en tramos</h3>", unsafe_allow_html=True)
 st.markdown("<h3 style='text-align: center;'>Camino de Santiago - Camino Portugués</h3>", unsafe_allow_html=True)
+st.divider()
 
 pages = {
     "SMETRIA": [
@@ -18,7 +19,6 @@ pages = {
 pg = st.navigation(pages)
 pg.run()
 
-st.divider()
 # -------------------------------------------------------------------------------
 
 
