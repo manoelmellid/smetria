@@ -15,9 +15,9 @@ BASE_URL = f'https://api.github.com/repos/{USUARIO_GITHUB}/{REPOSITORIO}/content
 
 # Función para leer el archivo desde GitHub
 def visualizar_archivo():
-    # Leer el archivo contactos.csv y cargarlo en una lista
+    # Leer el archivo respuestas.csv y cargarlo en una lista
     try:
-        with open('contactos.csv', mode='r') as file:
+        with open('respuestas.csv', mode='r') as file:
             reader = csv.reader(file)
             datos = list(reader)
             if datos:
