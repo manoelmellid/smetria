@@ -41,41 +41,7 @@ with st.form(key='my_form'):
 
 # Verifica si el campo de texto no está vacío solo después de que se presiona el botón
 if submit_button:
-    if input_text:
-        try:
-            input_km = float(input_text) # Convertir el input a un número
-            
-            if input_km > max_km_value: # Comparar el valor de input con el máximo
-                st.warning(f"El valor {input_km} es mayor que el máximo permitido: {max_km_value}.")
-        except ValueError:
-            st.error("Por favor, ingresa un número válido.")
-        
-    if input_text:
-        km_camino = float(input_text.replace(',', '.'))
-        n = int(km_camino)
-    
-        if km_camino == max_km_value:
-            resultado = km_camino  # Mantiene el valor igual si es igual a max_km_value
-        elif n < km_camino < n + 0.25:
-            resultado = n + 0.25
-        elif n + 0.25 < km_camino < n + 0.5:
-            resultado = n + 0.5
-        elif n + 0.5 < km_camino < n + 0.75:
-            resultado = n + 0.75
-        elif n + 0.75 < km_camino < n + 1:
-            resultado = n + 1
-        else:
-            resultado = km_camino  # Si no está en ningún rango, devuelve el número original
-    
-        # Actualiza las variables con los resultados de la función
-        longitud, latitud, concello_id, ubicacion = concam.query_csv_data(resultado)
-        adelante = 1
-    
-        if longitud is None and latitud is None:
-            st.write("No se encontraron resultados para el valor de Km proporcionado.")
-            
-    else:
-        st.warning("Por favor, introduce una distancia en kilómetros.")
+    longitud, latitud, concello_id, ubicacion = procesar_ubicacion(input_text, max_km_value, concam)
 
 if concello_id is not None:
     st.write(f"### Predicción para tu ubicación: {concello_id}")
