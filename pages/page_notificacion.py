@@ -1,13 +1,8 @@
 import streamlit as st
 import csv
-from utils import general as gen
+from utils import general as gen, github as git
 
 st.header("Sistema de notificación de incidencias")
-
-def guardar_en_archivo(nombre, email, mensaje):
-    with open('contactos.csv', mode='a', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow([nombre, email, mensaje])
 
 # Campos del formulario
 nombre = st.text_input("Nombre")
@@ -17,7 +12,7 @@ mensaje = st.text_area("Mensaje")
 
 if st.button("Enviar"):
     if nombre and email and mensaje:
-        guardar_en_archivo(nombre, email, mensaje)
+        git.guardar_en_archivo(nombre, email, mensaje):
         st.success("¡Mensaje guardado con éxito!")
     else:
         st.error("Por favor, llena todos los campos.")
