@@ -41,7 +41,7 @@ with st.form(key='my_form'):
 
 # Obtener las coordenadas del punto kilometrico
 if submit_button:
-    longitud, latitud, concello_id, ubicacion = procesar_ubicacion(input_text, max_km_value, concam)
+    longitud, latitud, concello_id, ubicacion = prn.procesar_ubicacion(input_text, max_km_value, concam)
 
 if concello_id is not None:
     st.write(f"### Predicción para tu ubicación: {concello_id}")
