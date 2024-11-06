@@ -4,7 +4,7 @@ st.write("""SMETRIA cuenta con 4 funcionalidades para el usuario, un sistema de 
 geospaciales, un modelo predictivo de flujos y un modelo predictivo de ocupación
 """)
 
-b1, b2, b3, b4, b5 = st.columns([3,3,3,3,3])
+b1, b2, b3, b4 = st.columns([3,3,3,3])
 
 with b1:
     if st.button("Predicción meteorológica"):
