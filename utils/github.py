@@ -24,16 +24,11 @@ def leer_archivo_github():
         archivo = response.json()
         contenido_base64 = archivo['content']
         contenido = base64.b64decode(contenido_base64).decode('utf-8')
-        
-        # Convertir el contenido CSV a un DataFrame de pandas
-        from io import StringIO
-        df = pd.read_csv(StringIO(contenido))
-        
-        return df
+        return contenido
     else:
-        # Si el archivo no existe o hay un error, devolver un DataFrame vacío
-        return pd.DataFrame()
-
+        # Si el archivo no existe, devolver un CSV vacío
+        return ''
+        
 # Función para escribir en el archivo de GitHub
 def escribir_en_archivo_github(contenido_nuevo):
     # Leer el contenido actual del archivo
