@@ -27,7 +27,7 @@ def visualizar_archivo():
             else:
                 st.write("No hay datos disponibles.")
     except FileNotFoundError:
-        st.write("El archivo contactos.csv no existe aún.")
+        st.write("El archivo respuesta.csv no existe aún.")
 
 # Función para escribir en el archivo de GitHub
 def escribir_en_archivo_github(contenido_nuevo):
@@ -60,10 +60,10 @@ def escribir_en_archivo_github(contenido_nuevo):
     else:
         print(f"Error al actualizar el archivo: {response.status_code}, {response.text}")
 
-# Función que guarda un nuevo contacto en el archivo CSV en GitHub
+# Función que guarda una nueva respuesta en el archivo CSV en GitHub
 def guardar_en_archivo(nombre, email, mensaje):
     # Crear una nueva fila CSV
     nueva_fila = f'{nombre},{email},{mensaje}'
     
-    # Escribir el nuevo contacto en el archivo GitHub
+    # Escribir la respuesta en el archivo GitHub
     escribir_en_archivo_github(nueva_fila)
