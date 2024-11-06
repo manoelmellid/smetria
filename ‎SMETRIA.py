@@ -5,7 +5,8 @@ col1, col2, col3 = st.columns([3,3,3])
 with col1:
     #st.image("amtega_logo.png_2089811488.png", use_column_width=True)
     #st.logo(image, *, size="medium", link=None, icon_image=None)
-    st.logo("amtega_logo.png_2089811488.png", link="https://amtega.xunta.gal/gl")
+    #st.logo("amtega_logo.png_2089811488.png", link="https://amtega.xunta.gal/gl")
+    st.markdown(f'<a href="{https://amtega.xunta.gal/gl}" target="_blank"><img src="amtega_logo.png_2089811488.png" width="100%"></a>', unsafe_allow_html=True)
 with col3:
     st.header("SMETRIA")
 
