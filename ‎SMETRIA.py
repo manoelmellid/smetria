@@ -12,10 +12,14 @@ st.markdown("<h3 style='text-align: center;'>Camino de Santiago - Camino Portugu
 st.divider()
 
 pages = {
-    "SMETRIA": [
+    "Menú": [
         st.Page("pages/page_inicio.py", title="Inicio"),
         st.Page("pages/page_prediccion.py", title="Prediccion meteorologica"),
-        st.Page("prueba_pagina2.py", title="Herramienta de navegacion"),],}
+        st.Page("pages/page_navegacion.py", title="Herramienta de navegacion"),
+        st.Page("pages/page_flujos.py", title="Modelo predictivo de flujos"),
+        st.Page("pages/page_ocupacion.py", title="Modelo predictivo de ocupación"),
+        st.Page("pages/page_notificacion.py", title="Notificación de incidencias"),
+    ],}
 pg = st.navigation(pages)
 pg.run()
 
