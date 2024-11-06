@@ -13,8 +13,8 @@ st.markdown("<h3 style='text-align: center;'>Camino de Santiago - Camino Portugu
 pga = st.navigation([st.Page("prueba_pagina.py"), st.Page("prueba_pagina2.py")])
 pga.run()
 # Agregar la navegación en la barra lateral
-#st.sidebar.title("Navegación")
-#selected_page = st.sidebar.radio("Selecciona una página", list(pages.keys()))
+st.sidebar.title("Navegación")
+selected_page = st.sidebar.radio("Selecciona una página", list(pages.keys()))
 # Ejecutar la página seleccionada
 #page_file = pages[selected_page]
 
