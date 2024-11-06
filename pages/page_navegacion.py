@@ -4,7 +4,7 @@ import geopandas as gpd
 from shapely.geometry import Point
 from geopy.distance import geodesic
 import pydeck as pdk
-from utils import consultas_camino as concam
+from utils import consultas_camino as concam, pronostico as prn
 
 # Variables de longitud y latitud inicializadas como None
 longitud = None
@@ -47,7 +47,7 @@ with st.form(key='my_form'):
     submit_button = st.form_submit_button(label='Enviar')
 
 if submit_button:
-    longitud, latitud, concello_id, ubicacion = procesar_ubicacion(input_text, max_km_value, concam)
+    longitud, latitud, concello_id, ubicacion = prn.procesar_ubicacion(input_text, max_km_value, concam)
     if longitud is None and latitud is None:
         st.write("No se encontraron resultados para el valor de Km proporcionado.")
     else:
