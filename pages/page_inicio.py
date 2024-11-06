@@ -18,7 +18,8 @@ with b3:
         st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/page_ocupacion'>", unsafe_allow_html=True)
 with b4:
     if st.button("Notificación de incidencias"):
-        st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/page_notificacion'>", unsafe_allow_html=True)
+        #st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/page_notificacion'>", unsafe_allow_html=True)
+        st.switch_page("pages/page_notificacion.py")
         
 st.divider()
 st.write("""
