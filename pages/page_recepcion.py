@@ -23,4 +23,3 @@ st.session_state.logged_in = gen.login()
 if st.session_state.logged_in == True:
     st.write("Bienvenido al área de personal.")
     visualizar_archivo()
-else:
