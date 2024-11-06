@@ -2,9 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import datetime
-
-st.set_page_config(page_title="Predicción meteorológica")
-
 from utils import general as gen, consultas_camino as concam, pronostico as prn, tabla_tiempo as ttiempo
 
 col1, col2, col3 = st.columns([3,3,3])
