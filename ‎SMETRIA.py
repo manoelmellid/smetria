@@ -14,7 +14,7 @@ st.divider()
 pages = {
     "Menú": [
         st.Page("pages/page_inicio.py", title="Inicio"),
-        st.Page("pages/page_prediccion.py", title="Predicción meteorologica"),
+        st.Page("pages/page_meteorologia.py", title="Predicción meteorologica"),
         st.Page("pages/page_navegacion.py", title="Herramienta de navegación"),
         st.Page("pages/page_ocupacion.py", title="Modelo predictivo de ocupación"),
         st.Page("pages/page_notificacion.py", title="Notificación de incidencias"),
