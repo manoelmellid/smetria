@@ -12,7 +12,7 @@ st.markdown("<h3 style='text-align: center;'>Camino de Santiago - Camino Portugu
 
 pages = {
     "Your account": [
-        st.Page("prueba_pagina.py", title="Prediccion meteorologica"),
+        st.Page("pages/page_prediccion.py", title="Prediccion meteorologica"),
         st.Page("prueba_pagina2.py", title="Herramienta de navegacion"),],}
 pg = st.navigation(pages)
 pg.run()
