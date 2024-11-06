@@ -4,14 +4,6 @@ import numpy as np
 import datetime
 from utils import general as gen, consultas_camino as concam, pronostico as prn, tabla_tiempo as ttiempo
 
-col1, col2, col3 = st.columns([3,3,3])
-with col1:
-    st.image("amtega_logo.png_2089811488.png", use_column_width=True)
-with col3:
-    st.header("SMETRIA")
-
-st.divider()
-
 st.header("Predicción meteorológica")
 longitud = None
 latitud = None
