@@ -1,3 +1,5 @@
+import streamlit as st
+
 st.write("""SMETRIA cuenta con 4 funcionalidades para el usuario, un sistema de predicción meteorológica, una herramienta de consultas
 geospaciales, un modelo predictivo de flujos y un modelo predictivo de ocupación
 """)
