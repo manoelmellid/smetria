@@ -24,25 +24,18 @@ def visualizar_archivo():
     except FileNotFoundError:
         st.write("El archivo contactos.csv no existe aún.")
 
-col1, col2, col3 = st.columns([2,2,2])
-with col2:
-    st.session_state.logged_in = gen.login()
-# ---------------------------------------------------
-# Si está logueado, muestra las vistas según el rol
-if st.session_state.logged_in == True:
-    st.write("Bienvenido al área de personal.")
-    visualizar_archivo()
-else:
-    # Campos del formulario
-    nombre = st.text_input("Nombre")
-    email = st.text_input("Correo electrónico")
-    mensaje = st.text_area("Mensaje")
-    # Usar la función cuando el formulario se envíe
-    if st.button("Enviar"):
-        if nombre and email and mensaje:
-            guardar_en_archivo(nombre, email, mensaje)
-            st.success("¡Mensaje guardado con éxito!")
-        else:
-            st.error("Por favor, llena todos los campos.")
+# Campos del formulario
+nombre = st.text_input("Nombre")
+email = st.text_input("Correo electrónico")
+mensaje = st.text_area("Mensaje")
+# Usar la función cuando el formulario se envíe
+
+if st.button("Enviar"):
+    if nombre and email and mensaje:
+        guardar_en_archivo(nombre, email, mensaje)
+        st.success("¡Mensaje guardado con éxito!")
+    else:
+        st.error("Por favor, llena todos los campos.")
+    
 
 
