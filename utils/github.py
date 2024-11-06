@@ -14,20 +14,24 @@ ARCHIVO_GITHUB = st.secrets["github"]["archivo"]
 BASE_URL = f'https://api.github.com/repos/{USUARIO_GITHUB}/{REPOSITORIO}/contents/{ARCHIVO_GITHUB}'
 
 # Función para leer el archivo desde GitHub
-def visualizar_archivo():
-    # Leer el archivo respuestas.csv y cargarlo en una lista
-    try:
-        with open('respuestas.csv', mode='r') as file:
-            reader = csv.reader(file)
-            datos = list(reader)
-            if datos:
-                # Crear un dataframe a partir de los datos y mostrarlo
-                st.write("### Incidencias Registradas")
-                st.dataframe(datos)  # Puedes usar st.table(datos) si no quieres la funcionalidad interactiva
-            else:
-                st.write("No hay datos disponibles.")
-    except FileNotFoundError:
-        st.write("El archivo respuesta.csv no existe aún.")
+def leer_archivo_github():
+    headers = {'Authorization': f'token {TOKEN_GITHUB}'}
+    response = requests.get(BASE_URL, headers=headers)
+    
+    if response.status_code == 200:
+        # Si el archivo existe, decodificar su contenido desde base64
+        archivo = response.json()
+        contenido_base64 = archivo['content']
+        contenido = base64.b64decode(contenido_base64).decode('utf-8')
+        
+        # Convertir el contenido CSV a un DataFrame de pandas
+        from io import StringIO
+        df = pd.read_csv(StringIO(contenido))
+        
+        return df
+    else:
+        # Si el archivo no existe o hay un error, devolver un DataFrame vacío
+        return pd.DataFrame()
 
 # Función para escribir en el archivo de GitHub
 def escribir_en_archivo_github(contenido_nuevo):
