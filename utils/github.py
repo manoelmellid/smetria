@@ -2,6 +2,7 @@ import base64
 import json
 import requests
 import streamlit as st
+import pandas as pd
 
 # Configuración de GitHub desde los secretos de Streamlit
 TOKEN_GITHUB = st.secrets["github"]["token"]
