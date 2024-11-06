@@ -12,7 +12,6 @@ mensaje = st.text_area("Mensaje")
 
 if st.button("Enviar"):
     if nombre and email and mensaje:
-        git.guardar_en_archivo(nombre, email, mensaje)
         st.success("¡Mensaje guardado con éxito!")
     else:
         st.error("Por favor, llena todos los campos.")
