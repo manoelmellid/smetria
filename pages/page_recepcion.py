@@ -9,8 +9,4 @@ st.session_state.logged_in = gen.login()
 if st.session_state.logged_in == True:
     st.write("Bienvenido al área de personal.")
     # Mostrar la tabla en Streamlit
-    df = git.leer_archivo_github()
-    if not df.empty:
-        st.write(df)
-    else:
-        st.write("El archivo no se pudo cargar o está vacío.")
+    st.write(git.leer_archivo_github())
