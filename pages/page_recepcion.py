@@ -1,5 +1,5 @@
 import streamlit as st
-from utils import github as git
+from utils import general as gen, github as git
 
 st.header("Modelo predictivo de flujos")
 # ---------------------------------------------------------------------------------
