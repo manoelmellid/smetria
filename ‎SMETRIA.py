@@ -13,8 +13,8 @@ st.markdown("<h3 style='text-align: center;'>Camino de Santiago - Camino Portugu
 st.write(st.navigation(pages, position="sidebar", expanded=False))
 pages = {
     "Your account": [
-        st.Page("create_account.py", title="Create your account"),
-        st.Page("manage_account.py", title="Manage your account"),],}
+        st.Page("1_Prediccion_meteorologica.py", title="Prediccion meteorologica"),
+        st.Page("2_Herramienta_de_navegacion.py", title="Herramienta de navegacion"),],}
 pg = st.navigation(pages)
 pg.run()
 pga = st.navigation([st.Page(page1), st.Page("page2.py")])
