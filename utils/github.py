@@ -32,7 +32,7 @@ def visualizar_archivo():
 # Función para escribir en el archivo de GitHub
 def escribir_en_archivo_github(contenido_nuevo):
     # Leer el contenido actual del archivo
-    contenido_actual = leer_archivo_github()
+    contenido_actual = visualizar_archivo()
     
     # Agregar el nuevo contenido al final
     contenido_actual += '\n' + contenido_nuevo
