@@ -9,16 +9,15 @@ b1, b2, b3, b4 = st.columns([3,3,3,3])
 
 with b1:
     if st.button("Predicción meteorológica"):
-        st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/page_meteorologia'>", unsafe_allow_html=True)
+        st.switch_page("pages/page_meteorologia.py")
 with b2:
     if st.button("Navegación geoespacial"):
-        st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/page_navegacion'>", unsafe_allow_html=True)
+        st.switch_page("pages/page_navegacion.py")
 with b3:
     if st.button("Ocupación hotelera"):
-        st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/page_ocupacion'>", unsafe_allow_html=True)
+        st.switch_page("pages/page_ocupacion.py")
 with b4:
     if st.button("Notificación de incidencias"):
-        #st.markdown("<meta http-equiv='refresh' content='0; url=https://smetria.streamlit.app/page_notificacion'>", unsafe_allow_html=True)
         st.switch_page("pages/page_notificacion.py")
         
 st.divider()
