@@ -11,7 +11,7 @@ longitud = None
 latitud = None
 
 st.header("Herramientas de navegación")
-st.header("Parámetros de Filtro")
+st.write("### Parámetros de Filtro")
 
 # Función para cargar el archivo CSV de ubicaciones
 @st.cache_data
