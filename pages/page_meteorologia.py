@@ -71,7 +71,6 @@ if submit_button:
         longitud, latitud, concello_id, ubicacion = concam.query_csv_data(resultado)
         adelante = 1
     
-        # Imprimir las coordenadas
         if longitud is None and latitud is None:
             st.write("No se encontraron resultados para el valor de Km proporcionado.")
             
