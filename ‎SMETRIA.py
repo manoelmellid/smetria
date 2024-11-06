@@ -14,11 +14,10 @@ pages = {
     "Your account": [
         st.Page("prueba_pagina.py", title="Prediccion meteorologica"),
         st.Page("prueba_pagina2.py", title="Herramienta de navegacion"),],}
-#st.write(st.navigation(pages, position="sidebar", expanded=False))
 pg = st.navigation(pages)
 pg.run()
-#pga = st.navigation([st.Page(page1), st.Page("2_Herramienta_de_navegacion.py")])
-#pga.run()
+pga = st.navigation([st.Page(page1), st.Page("2_Herramienta_de_navegacion.py")])
+pga.run()
 # Agregar la navegación en la barra lateral
 #st.sidebar.title("Navegación")
 #selected_page = st.sidebar.radio("Selecciona una página", list(pages.keys()))
