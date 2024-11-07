@@ -1,9 +1,11 @@
 import requests
 import json
 from datetime import datetime, timedelta  # Corrige la importación
-from utils import csv_json as cj
+from utils import csv_json as cj, consultas_camino as concam
 import streamlit as st
 import os
+
+max_km_value = concam.query_max_km_value()
 
 API_KEY = st.secrets["API_KEY"]
 base_url = 'https://servizos.meteogalicia.gal/apiv4/getNumericForecastInfo'
@@ -58,20 +60,7 @@ def pronostico(location_id, start_date, end_date):
         # En caso de error, mostrar mensaje de error
         print(f"Error: {response.status_code}")
 
-def procesar_ubicacion(input_text, max_km_value, concam):
-    """
-    Procesa la distancia en kilómetros proporcionada y devuelve la longitud, latitud, concello_id y ubicación.
-    
-    Parámetros:
-        input_text (str): Texto de entrada que representa la distancia en kilómetros.
-        max_km_value (float): Valor máximo permitido para la distancia en kilómetros.
-        concam (obj): Objeto que tiene el método query_csv_data para consultar los datos.
-
-    Retorna:
-        tuple: Una tupla con longitud, latitud, concello_id, y ubicación.
-               Si no se encuentra, retorna (None, None, None, None).
-    """
-    
+def procesar_ubicacion(input_text, concam):
     if not input_text:
         print("Por favor, introduce una distancia en kilómetros.")
         return None, None, None, None  # Valores predeterminados cuando no hay input
