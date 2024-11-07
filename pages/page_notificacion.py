@@ -7,8 +7,9 @@ st.header("Sistema de notificación de incidencias")
 # Campos del formulario
 nombre = st.text_input("Nombre")
 email = st.text_input("Correo electrónico")
+opciones = ['crecida de río', 'Incendio', 'Desprendimiento de tierra', 'Tramo colapsado/cerrado', 'Mobiliario deteriorado', 'Accidente en el camino', 'Animales sueltos', 'Fuente sin agua']
+tipo = st.selectbox('Selecciona una opción:', opciones)
 mensaje = st.text_area("Mensaje")
-# Usar la función cuando el formulario se envíe
 
 if st.button("Enviar"):
     if nombre and email and mensaje:
