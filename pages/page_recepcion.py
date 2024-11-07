@@ -12,3 +12,13 @@ if st.session_state.logged_in == True:
     df = git.cargar_datos(columnas_necesarias=['id', 'estado', 'fecha', 'nombre', 'email', 'latitud', 'longitud', 'tipo_incidencia', 'comentario'])
     # Mostrar la tabla en Streamlit
     st.dataframe(df)
+    id_input = st.text_input("Ingrese el ID de la incidencia a solucionar:")
+    # Botón para cambiar el estado
+    if st.button("Marcar como Solucionado"):
+        if id_input:
+            if id_input in df['id'].values:
+                git.actualizar_estado(id_input)
+            else:
+                st.error(f"No se encontró una incidencia con el ID {id_input}.")
+        else:
+            st.error("Por favor, ingrese un ID para la incidencia.")
