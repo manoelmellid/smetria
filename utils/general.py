@@ -20,7 +20,6 @@ def login():
             if username == admin_username and password == admin_password:
                 st.session_state.logged_in = True
                 st.session_state.role = 'admin'
-                st.success("Bienvenido, Administrador")
             else:
                 st.session_state.logged_in = False
     return st.session_state.logged_in
