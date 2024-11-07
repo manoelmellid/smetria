@@ -1,4 +1,2 @@
 id,estado,fecha,nombre,email,ubicacion,tipo_incidencia,comentario
-d456136b-5281-4225-a87c-22eeb2b4cb12,2024-11-07 10:16:18.787499,carol,carol@gmail.com,"[42.86370557310136, -8.565228762764702]",Animales sueltos,hola no soy Carol
-ac4bb135-b9d4-4590-9103-a5cb4daf0100,2024-11-07 10:29:26.664723,borja,boraj@gmail.com,"[42.437313060926925, -8.643336881491107]",Crecida de río,hola ya no se que poner
 0b292bb7-52bc-4209-87ef-1ce9de9f2cb3,Activo,2024-11-07 11:19:50.632462,jose,jose@correocaliente.com,"[42.34350830145231, -8.608776537319756]",Fuente sin agua,Hola soy Jose el caliente
