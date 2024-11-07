@@ -47,7 +47,7 @@ def cargar_datos(columnas_necesarias=None):
         st.error(f"Error al obtener el archivo desde GitHub. Código de estado: {response.status_code}")
         return pd.DataFrame()  # Retorna un DataFrame vacío si hay un error
 
-def guardar_respuesta_en_csv(nombre, email, input_text, tipo_opc, mensaje):
+def guardar_respuesta_en_csv(nombre, telefono, email, input_text, tipo_opc, mensaje):
     fecha = datetime.datetime.now()
     longitud, latitud, concello_id, ubicacion = prn.procesar_ubicacion(input_text)
     estado="Activo"
@@ -58,7 +58,7 @@ def guardar_respuesta_en_csv(nombre, email, input_text, tipo_opc, mensaje):
     mensaje_limpio = mensaje.replace('\n', ' ').replace('\r', ' ')
     
     # Crear una nueva línea de datos para agregar al archivo
-    nueva_fila = [respuesta_id, estado, fecha, nombre, email, latitud, longitud, tipo_opc, mensaje_limpio]
+    nueva_fila = [respuesta_id, estado, fecha, nombre, telefono, email, latitud, longitud, tipo_opc, mensaje_limpio]
     
     # Obtener el contenido actual del archivo (si existe)
     headers = {
@@ -78,7 +78,7 @@ def guardar_respuesta_en_csv(nombre, email, input_text, tipo_opc, mensaje):
         filas = list(reader)
     else:
         # Inicializar encabezados si el archivo no existe
-        filas = [['id', 'estado', 'fecha', 'nombre', 'email', 'latitud', 'longitud', 'tipo_incidencia', 'comentario']]
+        filas = [['id', 'estado', 'fecha', 'nombre', 'telefono','email', 'latitud', 'longitud', 'tipo_incidencia', 'comentario']]
     
     # Añadir la nueva fila
     filas.append(nueva_fila)
