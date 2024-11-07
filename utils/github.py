@@ -16,7 +16,7 @@ url = f"https://api.github.com/repos/{repo}/contents/{file_path}"
 
 # Función para cargar el archivo CSV desde un URL público
 @st.cache_data
-def cargar_datos(url):
+def cargar_datos():
     # Cargar el archivo CSV desde la URL proporcionada
     df = pd.read_csv(url)
     
