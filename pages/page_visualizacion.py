@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import git  # Asegúrate de que esta es la librería o módulo que has creado para cargar datos
+from utils import github as git
 
 # Cargar los datos con solo las columnas necesarias
 df = git.cargar_datos(columnas_necesarias=['id', 'estado', 'fecha', 'ubicacion', 'tipo_incidencia'])
