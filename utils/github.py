@@ -1,69 +1,71 @@
-import base64
-import json
-import csv
 import requests
-import streamlit as st
-import pandas as pd
+import csv
+import io
+from datetime import datetime
+import uuid
 
 # Configuración de GitHub desde los secretos de Streamlit
-TOKEN_GITHUB = st.secrets["github"]["token"]
-USUARIO_GITHUB = st.secrets["github"]["usuario"]
-REPOSITORIO = st.secrets["github"]["repositorio"]
-ARCHIVO_GITHUB = st.secrets["github"]["archivo"]
+github_token = st.secrets["github"]["github_token"]
+repo = st.secrets["github"]["repo"]
+file_path = st.secrets["github"]["file_path"]
 
-# URL base de la API de GitHub
-BASE_URL = f'https://api.github.com/repos/{USUARIO_GITHUB}/{REPOSITORIO}/contents/{ARCHIVO_GITHUB}'
-
-# Función para leer el archivo desde GitHub
-def leer_archivo_github():
-    headers = {'Authorization': f'token {TOKEN_GITHUB}'}
-    response = requests.get(BASE_URL, headers=headers)
+def guardar_respuesta_en_csv(nombre, email, tipo_opc, mensaje):
+    # Generar un ID único para cada respuesta
+    respuesta_id = str(uuid.uuid4())
     
-    if response.status_code == 200:
-        # Si el archivo existe, decodificar su contenido desde base64
-        archivo = response.json()
-        contenido_base64 = archivo['content']
-        contenido = base64.b64decode(contenido_base64).decode('utf-8')
-        return contenido
-    else:
-        # Si el archivo no existe, devolver un CSV vacío
-        return ''
-        
-# Función para escribir en el archivo de GitHub
-def escribir_en_archivo_github(contenido_nuevo):
-    # Leer el contenido actual del archivo
-    contenido_actual = leer_archivo_github()
+    # Limpiar el mensaje de saltos de línea
+    mensaje_limpio = mensaje.replace('\n', ' ').replace('\r', ' ')
     
-    # Agregar el nuevo contenido al final
-    contenido_actual += '\n' + contenido_nuevo
+    # Crear una nueva línea de datos para agregar al archivo
+    nueva_fila = [respuesta_id, nombre, email, tipo_opc, mensaje_limpio]
     
-    # Codificar el contenido a base64 para GitHub
-    contenido_base64 = base64.b64encode(contenido_actual.encode('utf-8')).decode('utf-8')
+    # URL de la API de GitHub para el archivo específico
+    url = f"https://api.github.com/repos/{repo}/contents/{file_path}"
     
-    # Obtener el SHA del archivo actual para actualizarlo
-    headers = {'Authorization': f'token {TOKEN_GITHUB}'}
-    response = requests.get(BASE_URL, headers=headers)
-    sha = response.json().get('sha')  # Obtén el SHA del archivo
-    
-    # Crear el cuerpo del commit
-    data = {
-        'message': 'Actualización del archivo respuestas.csv',
-        'content': contenido_base64,
-        'sha': sha,
+    # Obtener el contenido actual del archivo (si existe)
+    headers = {
+        "Authorization": f"token {github_token}",
+        "Accept": "application/vnd.github.v3+json"
     }
+    response = requests.get(url, headers=headers)
     
-    # Hacer el PUT para actualizar el archivo
-    response = requests.put(BASE_URL, headers=headers, data=json.dumps(data))
-    
+    # Leer el contenido actual o inicializar una lista de filas vacía
     if response.status_code == 200:
-        print("Archivo actualizado correctamente en GitHub.")
+        # Decodificar el contenido del archivo base64
+        file_info = response.json()
+        content = io.StringIO()
+        content.write(requests.utils.unquote(file_info['content']))
+        content.seek(0)
+        
+        # Leer las filas existentes y agregarlas a una lista
+        reader = csv.reader(content)
+        filas = list(reader)
     else:
-        print(f"Error al actualizar el archivo: {response.status_code}, {response.text}")
-
-# Función que guarda una nueva respuesta en el archivo CSV en GitHub
-def guardar_en_archivo(nombre, email, mensaje):
-    # Crear una nueva fila CSV
-    nueva_fila = f'{nombre},{email},{mensaje}'
+        # Inicializar encabezados si el archivo no existe
+        filas = [['id', 'nombre', 'mail', 'tipo_opc', 'mensaje']]
     
-    # Escribir la respuesta en el archivo GitHub
-    escribir_en_archivo_github(nueva_fila)
+    # Añadir la nueva fila
+    filas.append(nueva_fila)
+    
+    # Escribir el contenido CSV actualizado en un buffer de texto
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerows(filas)
+    content_encoded = output.getvalue().encode('utf-8')
+    
+    # Subir el archivo actualizado a GitHub
+    data = {
+        "message": f"Guardar respuesta ID: {respuesta_id}",
+        "content": requests.utils.quote(content_encoded).decode('utf-8')
+    }
+    if response.status_code == 200:
+        data["sha"] = file_info["sha"]  # SHA actual del archivo en GitHub
+    
+    # Realizar la solicitud de actualización o creación
+    response = requests.put(url, json=data, headers=headers)
+    
+    if response.status_code in [200, 201]:
+        print("Archivo CSV actualizado exitosamente en GitHub.")
+    else:
+        print(f"Error al actualizar el archivo en GitHub: {response.status_code} - {response.text}")
+
