@@ -5,12 +5,27 @@ import io
 import base64
 import uuid
 import datetime
+import pandas as pd
 from utils import pronostico as prn
 
 # Configuración de GitHub desde los secretos de Streamlit
 github_token = st.secrets["github"]["github_token"]
 repo = st.secrets["github"]["repo"]
 file_path = st.secrets["github"]["file_path"]
+url = f"https://api.github.com/repos/{repo}/contents/{file_path}"
+
+
+# Función para cargar el archivo CSV desde un URL público
+@st.cache_data
+def cargar_datos(url):
+    # Cargar el archivo CSV desde la URL proporcionada
+    df = pd.read_csv(url)
+    
+    # Filtrar solo las columnas necesarias
+    columnas_necesarias = ['id', 'fecha', 'ubicacion', 'tipo_incidencia']
+    df_filtrado = df[columnas_necesarias]
+    
+    return df_filtrado
 
 def guardar_respuesta_en_csv(nombre, email, input_text, tipo_opc, mensaje):
     fecha = datetime.datetime.now()
@@ -24,9 +39,6 @@ def guardar_respuesta_en_csv(nombre, email, input_text, tipo_opc, mensaje):
     
     # Crear una nueva línea de datos para agregar al archivo
     nueva_fila = [respuesta_id, fecha, nombre, email, ubicacion, tipo_opc, mensaje_limpio]
-    
-    # URL de la API de GitHub para el archivo específico
-    url = f"https://api.github.com/repos/{repo}/contents/{file_path}"
     
     # Obtener el contenido actual del archivo (si existe)
     headers = {
