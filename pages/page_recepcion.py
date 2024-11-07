@@ -1,7 +1,7 @@
 import streamlit as st
 from utils import general as gen, github as git
 
-st.header("Modelo predictivo de flujos")
+st.header("Sistema de recepción de incidencias")
 # ---------------------------------------------------------------------------------
 
 st.session_state.logged_in = gen.login()
