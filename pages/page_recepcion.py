@@ -11,7 +11,7 @@ if st.session_state.logged_in == True:
     # Cargar los datos filtrados
     df = git.cargar_datos(columnas_necesarias=['id', 'estado', 'fecha', 'nombre', 'email', 'latitud', 'longitud', 'tipo_incidencia', 'comentario'])
     # Mostrar la tabla en Streamlit
-    st.dataframe(df)
+    st.table(df)
     id_input = st.text_input("Ingrese el ID de la incidencia a solucionar:")
     # Botón para cambiar el estado
     if st.button("Marcar como Solucionado"):
