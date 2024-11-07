@@ -4,6 +4,7 @@ import csv
 import io
 import base64
 import uuid
+import datetime
 from utils import pronostico as prn
 
 # Configuración de GitHub desde los secretos de Streamlit
@@ -12,6 +13,7 @@ repo = st.secrets["github"]["repo"]
 file_path = st.secrets["github"]["file_path"]
 
 def guardar_respuesta_en_csv(nombre, email, input_text, tipo_opc, mensaje):
+    fecha = datetime.datetime.now()
     longitud, latitud, concello_id, ubicacion = prn.procesar_ubicacion(input_text)
     ubicacion = [latitud, longitud]
     # Generar un ID único para cada respuesta
@@ -21,7 +23,7 @@ def guardar_respuesta_en_csv(nombre, email, input_text, tipo_opc, mensaje):
     mensaje_limpio = mensaje.replace('\n', ' ').replace('\r', ' ')
     
     # Crear una nueva línea de datos para agregar al archivo
-    nueva_fila = [respuesta_id, nombre, email, ubicacion, tipo_opc, mensaje_limpio]
+    nueva_fila = [respuesta_id, fecha, nombre, email, ubicacion, tipo_opc, mensaje_limpio]
     
     # URL de la API de GitHub para el archivo específico
     url = f"https://api.github.com/repos/{repo}/contents/{file_path}"
