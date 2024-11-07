@@ -17,14 +17,32 @@ url = f"https://api.github.com/repos/{repo}/contents/{file_path}"
 # Función para cargar el archivo CSV desde un URL público
 @st.cache_data
 def cargar_datos():
-    # Cargar el archivo CSV desde la URL proporcionada
-    df = pd.read_csv(url)
+    headers = {
+        "Authorization": f"token {github_token}"
+    }
+    response = requests.get(url, headers=headers)
     
-    # Filtrar solo las columnas necesarias
-    columnas_necesarias = ['id', 'fecha', 'ubicacion', 'tipo_incidencia']
-    df_filtrado = df[columnas_necesarias]
-    
-    return df_filtrado
+    # Verificar si la solicitud fue exitosa
+    if response.status_code == 200:
+        content = response.json()
+        
+        # Obtener el contenido base64 del archivo CSV
+        file_content_base64 = content['content']
+        
+        # Decodificar el contenido base64
+        file_content = base64.b64decode(file_content_base64)
+        
+        # Convertir el contenido a un DataFrame de pandas
+        df = pd.read_csv(io.BytesIO(file_content))
+        
+        # Filtrar solo las columnas necesarias
+        columnas_necesarias = ['id', 'fecha', 'ubicacion', 'tipo_incidencia']
+        df_filtrado = df[columnas_necesarias]
+        
+        return df_filtrado
+    else:
+        st.error(f"Error al obtener el archivo desde GitHub. Código de estado: {response.status_code}")
+        return pd.DataFrame()  # Retorna un DataFrame vacío si hay un error
 
 def guardar_respuesta_en_csv(nombre, email, input_text, tipo_opc, mensaje):
     fecha = datetime.datetime.now()
