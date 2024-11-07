@@ -7,7 +7,7 @@ st.header("Sistema de notificación de incidencias")
 # Campos del formulario
 nombre = st.text_input("Nombre")
 email = st.text_input("Correo electrónico")
-opciones = ['crecida de río', 'Incendio', 'Desprendimiento de tierra', 'Tramo colapsado/cerrado', 'Mobiliario deteriorado', 'Accidente en el camino', 'Animales sueltos', 'Fuente sin agua']
+opciones = ['Crecida de río', 'Incendio', 'Desprendimiento de tierra', 'Tramo colapsado/cerrado', 'Mobiliario deteriorado', 'Accidente en el camino', 'Animales sueltos', 'Fuente sin agua']
 tipo = st.selectbox('Selecciona una opción:', opciones)
 mensaje = st.text_area("Mensaje")
 
