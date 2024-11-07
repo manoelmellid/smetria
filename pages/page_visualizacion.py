@@ -1,5 +1,5 @@
 import streamlit as st
-from utils import gtihub as git
+from utils import github as git
 
 df = git.cargar_datos(columnas_necesarias=['id', 'estado', 'fecha', 'ubicacion', 'tipo_incidencia'])
 
