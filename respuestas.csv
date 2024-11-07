@@ -1,3 +1,3 @@
 id,estado,fecha,nombre,email,latitud,longitud,tipo_incidencia,comentario
 0b292bb7-52bc-4209-87ef-1ce9de9f2cb3,Solucionado,2024-11-07 11:19:50.632462,jose,jose@correocaliente.com,42.34350830145231,-8.608776537319756,Fuente sin agua,Hola soy Jose el caliente
-afabfdd6-ad52-4ced-964c-2d9da490271b,Activo,2024-11-07 11:49:49.849462,borja,borja@gmail.com,42.437313060926925,-8.643336881491107,Accidente en el camino,hola esto es la millonésima prueba
+afabfdd6-ad52-4ced-964c-2d9da490271b,Solucionado,2024-11-07 11:49:49.849462,borja,borja@gmail.com,42.437313060926925,-8.643336881491107,Accidente en el camino,hola esto es la millonésima prueba
