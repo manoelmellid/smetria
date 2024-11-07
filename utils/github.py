@@ -14,13 +14,6 @@ repo = st.secrets["github"]["repo"]
 file_path = st.secrets["github"]["file_path"]
 url = f"https://api.github.com/repos/{repo}/contents/{file_path}"
 
-# Función para cargar el archivo CSV desde un URL público
-import streamlit as st
-import requests
-import pandas as pd
-import io
-import base64
-
 @st.cache_data
 def cargar_datos(columnas_necesarias=None):
     headers = {
@@ -57,7 +50,6 @@ def cargar_datos(columnas_necesarias=None):
 def guardar_respuesta_en_csv(nombre, email, input_text, tipo_opc, mensaje):
     fecha = datetime.datetime.now()
     longitud, latitud, concello_id, ubicacion = prn.procesar_ubicacion(input_text)
-    ubicacion = [latitud, longitud]
     estado="Activo"
     # Generar un ID único para cada respuesta
     respuesta_id = str(uuid.uuid4())
@@ -66,7 +58,7 @@ def guardar_respuesta_en_csv(nombre, email, input_text, tipo_opc, mensaje):
     mensaje_limpio = mensaje.replace('\n', ' ').replace('\r', ' ')
     
     # Crear una nueva línea de datos para agregar al archivo
-    nueva_fila = [respuesta_id, estado, fecha, nombre, email, ubicacion, tipo_opc, mensaje_limpio]
+    nueva_fila = [respuesta_id, estado, fecha, nombre, email, latitud, longitud, tipo_opc, mensaje_limpio]
     
     # Obtener el contenido actual del archivo (si existe)
     headers = {
@@ -86,7 +78,7 @@ def guardar_respuesta_en_csv(nombre, email, input_text, tipo_opc, mensaje):
         filas = list(reader)
     else:
         # Inicializar encabezados si el archivo no existe
-        filas = [['id', 'estado', 'fecha', 'nombre', 'email', 'ubicacion', 'tipo_incidencia', 'comentario']]
+        filas = [['id', 'estado', 'fecha', 'nombre', 'email', 'latitud', 'longitud', 'tipo_incidencia', 'comentario']]
     
     # Añadir la nueva fila
     filas.append(nueva_fila)
