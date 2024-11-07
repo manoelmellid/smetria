@@ -2,6 +2,9 @@ import streamlit as st
 import pandas as pd
 from utils import github as git
 
+st.header("Sistema de recepción de incidencias")
+# ---------------------------------------------------------------------------------
+
 # Cargar los datos con solo las columnas necesarias
 df = git.cargar_datos(columnas_necesarias=['id', 'estado', 'fecha', 'latitud', 'longitud', 'tipo_incidencia'])
 
