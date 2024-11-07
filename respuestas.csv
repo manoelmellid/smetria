@@ -1,2 +1,2 @@
-id,estado,fecha,nombre,email,ubicacion,tipo_incidencia,comentario
-0b292bb7-52bc-4209-87ef-1ce9de9f2cb3,Activo,2024-11-07 11:19:50.632462,jose,jose@correocaliente.com,"[42.34350830145231, -8.608776537319756]",Fuente sin agua,Hola soy Jose el caliente
+id,estado,fecha,nombre,email,latidud,longitud,tipo_incidencia,comentario
+0b292bb7-52bc-4209-87ef-1ce9de9f2cb3,Activo,2024-11-07 11:19:50.632462,jose,jose@correocaliente.com,42.34350830145231,-8.608776537319756,Fuente sin agua,Hola soy Jose el caliente
