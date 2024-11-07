@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 import csv
 import io
-from datetime import datetime
+import base64
 import uuid
 
 # Configuración de GitHub desde los secretos de Streamlit
@@ -34,9 +34,7 @@ def guardar_respuesta_en_csv(nombre, email, tipo_opc, mensaje):
     if response.status_code == 200:
         # Decodificar el contenido del archivo base64
         file_info = response.json()
-        content = io.StringIO()
-        content.write(requests.utils.unquote(file_info['content']))
-        content.seek(0)
+        content = io.StringIO(base64.b64decode(file_info['content']).decode('utf-8'))
         
         # Leer las filas existentes y agregarlas a una lista
         reader = csv.reader(content)
@@ -52,12 +50,12 @@ def guardar_respuesta_en_csv(nombre, email, tipo_opc, mensaje):
     output = io.StringIO()
     writer = csv.writer(output)
     writer.writerows(filas)
-    content_encoded = output.getvalue().encode('utf-8')
+    content_encoded = base64.b64encode(output.getvalue().encode('utf-8')).decode('utf-8')
     
     # Subir el archivo actualizado a GitHub
     data = {
         "message": f"Guardar respuesta ID: {respuesta_id}",
-        "content": requests.utils.quote(content_encoded).decode('utf-8')
+        "content": content_encoded
     }
     if response.status_code == 200:
         data["sha"] = file_info["sha"]  # SHA actual del archivo en GitHub
@@ -69,4 +67,3 @@ def guardar_respuesta_en_csv(nombre, email, tipo_opc, mensaje):
         print("Archivo CSV actualizado exitosamente en GitHub.")
     else:
         print(f"Error al actualizar el archivo en GitHub: {response.status_code} - {response.text}")
-
