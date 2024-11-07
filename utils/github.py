@@ -104,3 +104,57 @@ def guardar_respuesta_en_csv(nombre, email, input_text, tipo_opc, mensaje):
         print("Archivo CSV actualizado exitosamente en GitHub.")
     else:
         print(f"Error al actualizar el archivo en GitHub: {response.status_code} - {response.text}")
+
+def actualizar_estado(respuesta_id):
+    # Cargar los datos del CSV
+    headers = {
+        "Authorization": f"token {github_token}",
+        "Accept": "application/vnd.github.v3+json"
+    }
+    response = requests.get(url, headers=headers)
+    
+    # Verificar si la solicitud fue exitosa
+    if response.status_code == 200:
+        # Decodificar el contenido base64
+        file_info = response.json()
+        content = io.StringIO(base64.b64decode(file_info['content']).decode('utf-8'))
+        
+        # Leer las filas existentes
+        reader = csv.reader(content)
+        filas = list(reader)
+        
+        # Buscar la fila con el id correspondiente
+        for fila in filas:
+            if fila[0] == respuesta_id:  # La primera columna es el ID
+                # Cambiar el estado a 'Solucionado'
+                fila[1] = 'Solucionado'  # La segunda columna es el estado
+                break
+        else:
+            # Si no se encuentra el id, informar al usuario
+            st.error(f"No se encontró el id {respuesta_id} en el archivo.")
+            return
+        
+        # Escribir el contenido CSV actualizado en un buffer de texto
+        output = io.StringIO()
+        writer = csv.writer(output)
+        writer.writerows(filas)
+        content_encoded = base64.b64encode(output.getvalue().encode('utf-8')).decode('utf-8')
+        
+        # Subir el archivo actualizado a GitHub
+        data = {
+            "message": f"Actualizar estado a Solucionado para ID: {respuesta_id}",
+            "content": content_encoded
+        }
+        if response.status_code == 200:
+            data["sha"] = file_info["sha"]  # SHA actual del archivo en GitHub
+        
+        # Realizar la solicitud de actualización
+        response = requests.put(url, json=data, headers=headers)
+        
+        if response.status_code in [200, 201]:
+            print("Estado actualizado exitosamente en GitHub.")
+        else:
+            print(f"Error al actualizar el archivo en GitHub: {response.status_code} - {response.text}")
+    else:
+        st.error(f"Error al obtener el archivo desde GitHub. Código de estado: {response.status_code}")
+
