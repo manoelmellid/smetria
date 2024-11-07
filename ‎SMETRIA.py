@@ -18,6 +18,7 @@ pages = {
         st.Page("pages/page_navegacion.py", title="Herramienta de navegación"),
         st.Page("pages/page_ocupacion.py", title="Modelo predictivo de ocupación"),
         st.Page("pages/page_notificacion.py", title="Notificación de incidencias"),
+        st.Page("pages/page_visualizacion.py", title="Mapa de incidencias"),
     ],
     "Área privada": [
         st.Page("pages/page_recepcion.py", title="Recepción de incidencias"),
