@@ -2,7 +2,7 @@ import streamlit as st
 import csv
 from utils import general as gen, github as git
 
-st.header("Sistema de notificación de incidencias")
+st.header("Sistema de notificación de incidencias - SINICAS")
 
 # Campos del formulario
 nombre = st.text_input("Nombre y apellidos")
