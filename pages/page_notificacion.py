@@ -7,6 +7,7 @@ st.header("Sistema de notificación de incidencias")
 # Campos del formulario
 nombre = st.text_input("Nombre")
 email = st.text_input("Correo electrónico")
+input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
 opciones = ['Crecida de río', 'Incendio', 'Desprendimiento de tierra', 'Tramo colapsado/cerrado', 'Mobiliario deteriorado', 'Accidente en el camino', 'Animales sueltos', 'Fuente sin agua']
 tipo_opc = st.selectbox('Selecciona una opción:', opciones)
 mensaje = st.text_area("Añada más detalles si lo considera necesario:")
@@ -17,6 +18,7 @@ if st.button("Enviar"):
         git.guardar_respuesta_en_csv(
             nombre=nombre,
             email=email,
+            input_text=input_text
             tipo_opc=tipo_opc,
             mensaje=mensaje,
         )
