@@ -5,9 +5,9 @@ from utils import general as gen, github as git
 st.header("Sistema de notificación de incidencias")
 
 # Campos del formulario
-nombre = st.text_input("Nombre")
+nombre = st.text_input("Nombre y apellidos")
 email = st.text_input("Correo electrónico")
-input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
+input_text = st.text_input("Indique el Km del Camino dónde se encuentra")
 opciones = ['Crecida de río', 'Incendio', 'Desprendimiento de tierra', 'Tramo colapsado/cerrado', 'Mobiliario deteriorado', 'Accidente en el camino', 'Animales sueltos', 'Fuente sin agua']
 tipo_opc = st.selectbox('Selecciona una opción:', opciones)
 mensaje = st.text_area("Añada más detalles si lo considera necesario:")
