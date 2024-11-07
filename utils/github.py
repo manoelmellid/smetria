@@ -15,8 +15,14 @@ file_path = st.secrets["github"]["file_path"]
 url = f"https://api.github.com/repos/{repo}/contents/{file_path}"
 
 # Función para cargar el archivo CSV desde un URL público
+import streamlit as st
+import requests
+import pandas as pd
+import io
+import base64
+
 @st.cache_data
-def cargar_datos():
+def cargar_datos(columnas_necesarias=None):
     headers = {
         "Authorization": f"token {github_token}"
     }
@@ -35,9 +41,13 @@ def cargar_datos():
         # Convertir el contenido a un DataFrame de pandas
         df = pd.read_csv(io.BytesIO(file_content))
         
-        # Filtrar solo las columnas necesarias
-        columnas_necesarias = ['id', 'fecha', 'ubicacion', 'tipo_incidencia']
-        df_filtrado = df[columnas_necesarias]
+        # Filtrar solo las columnas necesarias si se especificaron
+        if columnas_necesarias is not None:
+            # Validar que las columnas existen en el DataFrame
+            columnas_existentes = [col for col in columnas_necesarias if col in df.columns]
+            df_filtrado = df[columnas_existentes]
+        else:
+            df_filtrado = df  # Si no se especifican columnas, devolver el DataFrame completo
         
         return df_filtrado
     else:
