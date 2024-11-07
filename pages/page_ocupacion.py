@@ -4,4 +4,5 @@ st.header("Modelo predictivo de ocupacion")
 
 # ---------------------------------------------------------------------
 
-tipo_seleccionado = st.multiselect("Selecciona el tipo de ubicación", ['Caca', 'Culo'], default=tipos[3])
+opciones = ['Caca', 'Culo']
+tipo_opc = st.selectbox('Selecciona el tipo de incidencia:', opciones)
