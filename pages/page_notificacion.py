@@ -8,7 +8,7 @@ st.header("Sistema de notificación de incidencias")
 nombre = st.text_input("Nombre")
 email = st.text_input("Correo electrónico")
 opciones = ['Crecida de río', 'Incendio', 'Desprendimiento de tierra', 'Tramo colapsado/cerrado', 'Mobiliario deteriorado', 'Accidente en el camino', 'Animales sueltos', 'Fuente sin agua']
-tipo = st.selectbox('Selecciona una opción:', opciones)
+tipo_opc = st.selectbox('Selecciona una opción:', opciones)
 mensaje = st.text_area("Añada más detalles si lo considera necesario:")
 
 if st.button("Enviar"):
