@@ -12,10 +12,10 @@ tipo = st.selectbox('Selecciona una opción:', opciones)
 mensaje = st.text_area("Añada más detalles si lo considera necesario:")
 
 if st.button("Enviar"):
-    if nombre and email and mensaje:
-        st.success("¡Mensaje guardado con éxito!")
+    if nombre and email:
+        st.success("Notificación enviada con éxito")
     else:
-        st.error("Por favor, llena todos los campos.")
+        st.error("Por favor, cubra los campos obligatorios.")
     
 
 
