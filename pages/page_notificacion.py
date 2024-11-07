@@ -18,7 +18,7 @@ if st.button("Enviar"):
         git.guardar_respuesta_en_csv(
             nombre=nombre,
             email=email,
-            input_text=input_text
+            input_text=input_text,
             tipo_opc=tipo_opc,
             mensaje=mensaje,
         )
