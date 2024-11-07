@@ -4,6 +4,7 @@ import csv
 import io
 import base64
 import uuid
+from utils import pronostico as prn
 
 # Configuración de GitHub desde los secretos de Streamlit
 github_token = st.secrets["github"]["github_token"]
