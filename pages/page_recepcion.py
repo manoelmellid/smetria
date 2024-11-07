@@ -22,16 +22,12 @@ if st.session_state.logged_in == True:
     if st.button("Marcar como Solucionado"):
         # Verificar si el ID ingresado existe en el DataFrame
         if id_input:
-            if id_input.isdigit():  # Verificar que el ID es un número
-                id_input = int(id_input)
-                if id_input in df['id'].values:
-                    # Actualizar el estado de la incidencia
-                    df.loc[df['id'] == id_input, 'estado'] = 'Solucionado'
-                    st.success(f"La incidencia con ID {id_input} ha sido marcada como 'Solucionado'.")
-                else:
-                    st.error(f"No se encontró una incidencia con el ID {id_input}.")
+            if id_input in df['id'].values:  # Buscar el ID directamente en la columna 'id'
+                # Actualizar el estado de la incidencia
+                df.loc[df['id'] == id_input, 'estado'] = 'Solucionado'
+                st.success(f"La incidencia con ID {id_input} ha sido marcada como 'Solucionado'.")
             else:
-                st.error("Por favor, ingrese un ID válido (número).")
+                st.error(f"No se encontró una incidencia con el ID {id_input}.")
         else:
             st.error("Por favor, ingrese un ID para la incidencia.")
 
