@@ -4,8 +4,8 @@ st.header("Modelo predictivo de ocupacion")
 
 # ---------------------------------------------------------------------
 
-opciones = ['Albergue', 'Fecha']
-tipo_opc = st.selectbox('Selecciona el tipo de incidencia:', opciones)
+concellos = ['Albergue', 'Concello']
+tipo_opc = st.selectbox('Selecciona el concello:', opciones)
 
 if tipo_opc == 'Albergue':
   albergues = ['Tui1', 'Tui2']
