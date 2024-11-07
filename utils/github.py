@@ -85,7 +85,7 @@ def guardar_respuesta_en_csv(nombre, email, input_text, tipo_opc, mensaje):
         filas = list(reader)
     else:
         # Inicializar encabezados si el archivo no existe
-        filas = [['id', 'nombre', 'mail', 'tipo_opc', 'mensaje']]
+        filas = [['id', 'fecha', 'nombre', 'email', 'ubicacion', 'tipo_incidencia', 'comentario']]
     
     # Añadir la nueva fila
     filas.append(nueva_fila)
