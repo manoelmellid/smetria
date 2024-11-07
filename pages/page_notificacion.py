@@ -13,7 +13,14 @@ mensaje = st.text_area("Añada más detalles si lo considera necesario:")
 
 if st.button("Enviar"):
     if nombre and email:
-        st.success("Notificación enviada con éxito")
+        # Llamar a la función para guardar en GitHub
+        git.guardar_respuesta_en_csv(
+            nombre=nombre,
+            email=email,
+            tipo_opc=tipo_opc,
+            mensaje=mensaje,
+        )
+        st.success("Notificación enviada con éxito y guardada en GitHub.")
     else:
         st.error("Por favor, cubra los campos obligatorios.")
     
