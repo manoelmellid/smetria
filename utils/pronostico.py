@@ -58,8 +58,8 @@ def pronostico(location_id, start_date, end_date):
         # En caso de error, mostrar mensaje de error
         print(f"Error: {response.status_code}")
 
-def procesar_ubicacion(input_text, concam):
-    max_km_value = concam.query_max_km_value()
+def procesar_ubicacion(input_text):
+    concam.max_km_value = concam.query_max_km_value()
     if not input_text:
         print("Por favor, introduce una distancia en kilómetros.")
         return None, None, None, None  # Valores predeterminados cuando no hay input
