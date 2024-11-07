@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 from utils import github as git
 
 df = git.cargar_datos(columnas_necesarias=['id', 'estado', 'fecha', 'ubicacion', 'tipo_incidencia'])
