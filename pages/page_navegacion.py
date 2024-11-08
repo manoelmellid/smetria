@@ -5,6 +5,7 @@ from shapely.geometry import Point
 from geopy.distance import geodesic
 import pydeck as pdk
 from utils import consultas_camino as concam, pronostico as prn
+import matplotlib.pyplot as plt
 
 # Variables de longitud y latitud inicializadas como None
 longitud = None
@@ -62,8 +63,17 @@ if submit_button:
         df_filtrado = df_filtrado[df_filtrado['distancia_km'] <= radio_km]
 
         # Crear datos para pydeck
-        data_ubicaciones = df_filtrado[['lat', 'lon']].to_dict(orient='records')
+        data_ubicaciones = df_filtrado[['lat', 'lon', 'tipo']].to_dict(orient='records')
         data_usuario = [{'lat': latitud, 'lon': longitud}]
+
+        # Crear el diccionario de colores para los tipos seleccionados
+        colores = {tipo: plt.cm.tab20(i / len(tipos)) for i, tipo in enumerate(tipos)}
+
+        # Asignar color basado en el tipo
+        for ubicacion in data_ubicaciones:
+            tipo_ubicacion = ubicacion['tipo']
+            color = colores.get(tipo_ubicacion, (0, 0, 0, 160))  # Predeterminado a color negro si no se encuentra
+            ubicacion['color'] = [int(c * 255) for c in color[:3]] + [160]  # Convertir a formato [R, G, B, A]
 
         # Configurar el mapa con pydeck
         view_state = pdk.ViewState(
@@ -78,7 +88,7 @@ if submit_button:
             'ScatterplotLayer',
             data=data_ubicaciones,
             get_position='[lon, lat]',
-            get_color='[0, 0, 255, 160]',  # Color azul
+            get_color='color',  # Usamos la columna 'color' con el color asignado
             get_radius=100,
         )
 
