@@ -3,7 +3,7 @@ import streamlit as st
 st.header("#### Sobre la web:")
 st.write("""SMETRIA cuenta con 4 funcionalidades para el usuario: un sistema de predicción meteorológica, una herramienta de consultas
 geospaciales, un apartado de notificación de incidencias y un modelo predictivo de ocupación.""")
-st.write.("""Además, el personal de gestión puede acceder al modelo predictivo de flujos y a los reportes de incidencias, activando y desactivando las incidencias comunicadadas.
+st.write("""Además, el personal de gestión puede acceder al modelo predictivo de flujos y a los reportes de incidencias, activando y desactivando las incidencias comunicadadas.
 """)
 st.header("#### Sobre el caso de uso")
 
