@@ -92,24 +92,19 @@ if submit_button:
             get_radius=150,
         )
 
-        # Renderizar el mapa con interacción
+        # Crear el mapa interactivo
         deck = pdk.Deck(
             map_style='mapbox://styles/mapbox/streets-v11',
             initial_view_state=view_state,
             layers=[ubicaciones_layer, usuario_layer]
         )
 
-        # Se utiliza la propiedad 'on_click' de pydeck para capturar el evento de clic
-        deck.on_click(lambda info: st.session_state.update({'info_punto': info}))
+        # Mostrar el mapa con interactividad (se captura la selección)
+        selected = st.pydeck_chart(deck)
 
-        # Mostrar el mapa interactivo
-        st.pydeck_chart(deck)
-
-        # Mostrar detalles del punto clickeado
-        if 'info_punto' in st.session_state:
-            info = st.session_state['info_punto']
-            # Recuperar el índice de la ubicación seleccionada
-            indice = info['index']
+        # Mostrar los detalles del punto seleccionado
+        if selected is not None and len(selected) > 0:
+            indice = selected[0]['index']
             punto_info = df_filtrado.iloc[indice]
             st.write(f"Información sobre el punto seleccionado:")
             st.write(f"Nombre: {punto_info['nome']}")
