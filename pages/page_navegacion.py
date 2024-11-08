@@ -5,7 +5,6 @@ from shapely.geometry import Point
 from geopy.distance import geodesic
 import pydeck as pdk
 from utils import consultas_camino as concam, pronostico as prn
-import matplotlib.pyplot as plt
 
 # Variables de longitud y latitud inicializadas como None
 longitud = None
@@ -62,18 +61,21 @@ if submit_button:
         )
         df_filtrado = df_filtrado[df_filtrado['distancia_km'] <= radio_km]
 
-        # Crear datos para pydeck
-        data_ubicaciones = df_filtrado[['lat', 'lon', 'tipo']].to_dict(orient='records')
+        # Definir un diccionario de colores para cada tipo de ubicación
+        color_por_tipo = {
+            'tipo1': [255, 0, 0],    # Rojo
+            'tipo2': [0, 255, 0],    # Verde
+            'tipo3': [0, 0, 255],    # Azul
+            'tipo4': [255, 255, 0],  # Amarillo
+            # Agrega más tipos y colores según sea necesario
+        }
+
+        # Añadir una columna de color al DataFrame según el tipo de ubicación
+        df_filtrado['color'] = df_filtrado['tipo'].map(color_por_tipo)
+
+        # Crear datos para pydeck, incluyendo el color
+        data_ubicaciones = df_filtrado[['lat', 'lon', 'color']].to_dict(orient='records')
         data_usuario = [{'lat': latitud, 'lon': longitud}]
-
-        # Crear el diccionario de colores para los tipos seleccionados
-        colores = {tipo: plt.cm.tab20(i / len(tipos)) for i, tipo in enumerate(tipos)}
-
-        # Asignar color basado en el tipo
-        for ubicacion in data_ubicaciones:
-            tipo_ubicacion = ubicacion['tipo']
-            color = colores.get(tipo_ubicacion, (0, 0, 0, 160))  # Predeterminado a color negro si no se encuentra
-            ubicacion['color'] = [int(c * 255) for c in color[:3]] + [160]  # Convertir a formato [R, G, B, A]
 
         # Configurar el mapa con pydeck
         view_state = pdk.ViewState(
@@ -83,12 +85,12 @@ if submit_button:
             pitch=0
         )
 
-        # Capa para las ubicaciones
+        # Capa para las ubicaciones con colores dinámicos
         ubicaciones_layer = pdk.Layer(
             'ScatterplotLayer',
             data=data_ubicaciones,
             get_position='[lon, lat]',
-            get_color='color',  # Usamos la columna 'color' con el color asignado
+            get_color='color',  # Usar la columna de color
             get_radius=100,
         )
 
@@ -97,7 +99,7 @@ if submit_button:
             'ScatterplotLayer',
             data=data_usuario,
             get_position='[lon, lat]',
-            get_color='[255, 0, 0, 200]',  # Color rojo
+            get_color='[255, 0, 0, 200]',  # Color rojo para el usuario
             get_radius=150,
         )
 
