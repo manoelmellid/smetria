@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.write("""SMETRIA cuenta con 4 funcionalidades para el usuario: un sistema de predicción meteorológica, una herramienta de consultas
-geospaciales, un apartado de notificación de incidencias y un modelo predictivo de ocupación. \nAdemás, el personal de gestión puede acceder 
+geospaciales, un apartado de notificación de incidencias y un modelo predictivo de ocupación. '\'nAdemás, el personal de gestión puede acceder 
 a los reportes de incidencias y al modelo predictivo de flujos.
 """)
 
