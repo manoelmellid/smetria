@@ -80,6 +80,7 @@ if submit_button:
             get_position='[lon, lat]',
             get_color='[0, 0, 255, 160]',  # Color azul
             get_radius=100,
+            pickable=True  # Hacer que los puntos sean seleccionables
         )
 
         # Capa para el punto de usuario
@@ -91,14 +92,28 @@ if submit_button:
             get_radius=150,
         )
 
-        # Renderizar el mapa
-        st.pydeck_chart(pdk.Deck(
+        # Renderizar el mapa con interacción
+        deck = pdk.Deck(
             map_style='mapbox://styles/mapbox/streets-v11',
             initial_view_state=view_state,
             layers=[ubicaciones_layer, usuario_layer]
-        ))
+        )
 
-        # Mostrar tabla con detalles
-        st.dataframe(df_filtrado[['enderezo', 'nome', 'distancia_km']].sort_values(by='distancia_km'), hide_index=True)
+        # Se utiliza la propiedad 'on_click' de pydeck para capturar el evento de clic
+        deck.on_click(lambda info: st.session_state.update({'info_punto': info}))
+
+        # Mostrar el mapa interactivo
+        st.pydeck_chart(deck)
+
+        # Mostrar detalles del punto clickeado
+        if 'info_punto' in st.session_state:
+            info = st.session_state['info_punto']
+            # Recuperar el índice de la ubicación seleccionada
+            indice = info['index']
+            punto_info = df_filtrado.iloc[indice]
+            st.write(f"Información sobre el punto seleccionado:")
+            st.write(f"Nombre: {punto_info['nome']}")
+            st.write(f"Dirección: {punto_info['enderezo']}")
+            st.write(f"Distancia desde tu ubicación: {punto_info['distancia_km']:.2f} km")
 else:
     st.warning("Por favor, introduce una distancia en kilómetros.")
