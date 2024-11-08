@@ -118,4 +118,6 @@ def tabla_tiempo(archivo_csv):
             st.metric(label="Temperatura Mínima", value=f"{minimo}º")
         with col3:
             st.metric(label="Estado medio del cielo", value=f"{estado_cielo_medio}")
-        st.dataframe(tabla_completa)
+        
+        # Mostrar la tabla en pantalla completa
+        st.dataframe(tabla_completa, use_container_width=True)
