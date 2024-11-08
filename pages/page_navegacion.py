@@ -99,12 +99,14 @@ if submit_button:
             layers=[ubicaciones_layer, usuario_layer]
         )
 
-        # Mostrar el mapa con interactividad (se captura la selección)
+        # Mostrar el mapa y capturar la selección del usuario
         selected = st.pydeck_chart(deck)
 
-        # Mostrar los detalles del punto seleccionado
-        if selected is not None and len(selected) > 0:
-            indice = selected[0]['index']
+        # Si hay una selección, guardar en session_state y mostrar los detalles
+        if selected:
+            st.session_state.selected_point = selected[0]  # Guardar el primer punto seleccionado
+            # Acceder a la fila correspondiente en el DataFrame usando el índice
+            indice = st.session_state.selected_point['index']
             punto_info = df_filtrado.iloc[indice]
             st.write(f"Información sobre el punto seleccionado:")
             st.write(f"Nombre: {punto_info['nome']}")
