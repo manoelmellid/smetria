@@ -31,7 +31,7 @@ gdf['lon'] = gdf['geometry'].x
 
 # Selección de tipo de ubicación
 tipos = df['tipo'].unique()
-tipo_seleccionado = st.multiselect("Selecciona el tipo de ubicación", tipos, default=tipos[3])
+tipo_seleccionado = st.multiselect("Selecciona el tipo de ubicación", tipos, default=tipos[0] if len(tipos) > 0 else [])
 
 # Campo de entrada para el km del Camino
 input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
@@ -63,15 +63,23 @@ if submit_button:
 
         # Definir un diccionario de colores para cada tipo de ubicación
         color_por_tipo = {
-            'tipo1': [255, 0, 0],    # Rojo
-            'tipo2': [0, 255, 0],    # Verde
-            'tipo3': [0, 0, 255],    # Azul
-            'tipo4': [255, 255, 0],  # Amarillo
-            # Agrega más tipos y colores según sea necesario
+            tipos[i]: color for i, color in enumerate([
+                [0, 255, 255],    # Cian
+                [0, 255, 0],      # Verde
+                [0, 0, 255],      # Azul
+                [255, 255, 0],    # Amarillo
+                [128, 0, 128],    # Púrpura
+                [0, 128, 128],    # Teal
+                [255, 165, 0],    # Naranja
+                [255, 105, 180],  # Rosa
+                [34, 139, 34],    # Verde oscuro
+                [75, 0, 130],     # Índigo
+                [240, 230, 140]   # Amarillo claro
+            ][:len(tipos)]  # Limitar colores a la cantidad de tipos disponibles
         }
 
         # Añadir una columna de color al DataFrame según el tipo de ubicación
-        df_filtrado['color'] = df_filtrado['tipo'].map(color_por_tipo)
+        df_filtrado['color'] = df_filtrado['tipo'].map(color_por_tipo).fillna([255, 255, 255])
 
         # Crear datos para pydeck, incluyendo el color
         data_ubicaciones = df_filtrado[['lat', 'lon', 'color']].to_dict(orient='records')
