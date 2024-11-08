@@ -1,10 +1,14 @@
 import streamlit as st
 
-st.write("#### Sobre la web:")
-st.write("""SMETRIA cuenta con 4 funcionalidades para el usuario: un sistema de predicción meteorológica, una herramienta de consultas
-geospaciales, un apartado de notificación de incidencias y un modelo predictivo de ocupación.""")
-st.write("""Además, el personal de gestión tiene acceso a un área privada, donde puede acceder al modelo predictivo de flujos y a los reportes de incidencias, activando y desactivando las incidencias comunicadadas.
-""")
+st.write("#### Descripción de la plataforma:")
+st.write("""SMETRIA ofrece a sus usuarios cuatro funcionalidades clave:
+
+Sistema de Predicción Meteorológica
+Herramienta de Consultas Geoespaciales
+Notificación de Incidencias
+Modelo Predictivo de Ocupación""")
+st.write("""Además, el personal de gestión dispone de acceso a un área privada que le permite consultar el modelo predictivo de flujos y 
+revisar los reportes de incidencias, con la capacidad de activar y desactivar las incidencias reportadas según sea necesario.""")
 st.write("#### Sobre el caso de uso")
 st.write("""Desde AMTEGA se nos propuso un caso de uso que integraría la mayoría de las funciones recogidas en esta web, en la App existente 
 del Camino de Santiago de la Xunta. Debido a la falta de tiempo, descartamos la integración en la App y AMTEGA aceptó la solución propuesta 
