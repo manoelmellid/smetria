@@ -81,7 +81,8 @@ if submit_button:
         }
 
         # Añadir una columna de color al DataFrame según el tipo de ubicación
-        df_filtrado['color'] = df_filtrado['tipo'].map(color_por_tipo).fillna([255, 255, 255])
+        df_filtrado['color'] = df_filtrado['tipo'].map(lambda tipo: color_por_tipo.get(tipo, [255, 255, 255]))
+
 
         # Crear datos para pydeck, incluyendo el color
         data_ubicaciones = df_filtrado[['lat', 'lon', 'color']].to_dict(orient='records')
