@@ -6,3 +6,4 @@ geopy
 pydeck
 openrouteservice
 requests
+matplotlib
