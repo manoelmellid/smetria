@@ -21,6 +21,7 @@ def login():
                 st.session_state.logged_in = True
                 st.session_state.role = 'admin'
             else:
+                st.error("Contraseña o usuario incorrectos")
                 st.session_state.logged_in = False
     return st.session_state.logged_in
 
