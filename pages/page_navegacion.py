@@ -62,20 +62,22 @@ if submit_button:
         df_filtrado = df_filtrado[df_filtrado['distancia_km'] <= radio_km]
 
         # Definir un diccionario de colores para cada tipo de ubicación
+        colores_limitados = [
+            [0, 255, 255],    # Cian
+            [0, 255, 0],      # Verde
+            [0, 0, 255],      # Azul
+            [255, 255, 0],    # Amarillo
+            [128, 0, 128],    # Púrpura
+            [0, 128, 128],    # Teal
+            [255, 165, 0],    # Naranja
+            [255, 105, 180],  # Rosa
+            [34, 139, 34],    # Verde oscuro
+            [75, 0, 130],     # Índigo
+            [240, 230, 140]   # Amarillo claro
+        ]
+        
         color_por_tipo = {
-            tipos[i]: color for i, color in enumerate([
-                [0, 255, 255],    # Cian
-                [0, 255, 0],      # Verde
-                [0, 0, 255],      # Azul
-                [255, 255, 0],    # Amarillo
-                [128, 0, 128],    # Púrpura
-                [0, 128, 128],    # Teal
-                [255, 165, 0],    # Naranja
-                [255, 105, 180],  # Rosa
-                [34, 139, 34],    # Verde oscuro
-                [75, 0, 130],     # Índigo
-                [240, 230, 140]   # Amarillo claro
-            ][:len(tipos)]  # Limitar colores a la cantidad de tipos disponibles
+            tipos[i]: color for i, color in enumerate(colores_limitados[:len(tipos)])
         }
 
         # Añadir una columna de color al DataFrame según el tipo de ubicación
