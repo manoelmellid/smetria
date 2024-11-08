@@ -36,6 +36,7 @@ with b4:
         st.switch_page("pages/page_notificacion.py")
         
 st.divider()
+st.write("#### Contexto de desarrollo:")
 st.write("""
 Esta web se ha desarrollado en el marco de la asignatura Proxecto Integrador I, del Grao de Intelixencia Artificial 
 de la Universidade de Santiago de Compostela.
