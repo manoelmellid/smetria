@@ -122,6 +122,6 @@ if submit_button:
         ))
 
         # Mostrar tabla con detalles
-        st.dataframe(df_filtrado[['enderezo', 'nome', 'distancia_km']].sort_values(by='distancia_km'), hide_index=True)
+        st.dataframe(df_filtrado[['enderezo', 'nome', 'distancia_km', 'lon','lat','color']].sort_values(by='distancia_km'), hide_index=True)
 else:
     st.warning("Por favor, introduce una distancia en kilómetros.")
