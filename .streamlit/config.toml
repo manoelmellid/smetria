@@ -1,10 +1,6 @@
 [server]
 headless=true
 
-[layout]
-wide=true
-
-[runner]
 script = "SMETRIA.py"
 
 [client]
