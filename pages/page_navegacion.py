@@ -129,35 +129,56 @@ if submit_button:
             get_radius=150,
         )
 
-        col1, col2 = st.columns([4, 2])
-        with col1:
-            # Renderizar el mapa
-            st.pydeck_chart(pdk.Deck(
-                map_style='mapbox://styles/mapbox/streets-v11',
-                initial_view_state=view_state,
-                layers=[ubicaciones_layer, usuario_layer]
-            ))        
-        with col2:
-            # Crear una columna HTML para las muestras de color
-            df_filtrado['color_muestra_html'] = df_filtrado['color'].apply(
-                lambda color: f'<div style="background-color: rgb({color[0]}, {color[1]}, {color[2]}); width: 30px; height: 30px;"></div>'
-            )
-            
-            # Mostrar el DataFrame con las muestras de color usando st.markdown
-            for _, row in df_filtrado[['enderezo', 'nome', 'distancia_km', 'lon', 'lat', 'color_muestra_html']].iterrows():
-                st.markdown(f"""
-                    <div style="display: flex; align-items: center; border-bottom: 1px solid #ccc; padding-bottom: 10px; margin-bottom: 10px;">
-                        <div style="width: 100px;">{row['nome']}</div>
-                        <div style="width: 100px;">{row['distancia_km']:.2f} km</div>
-                        <div>{row['color_muestra_html']}</div>
-                    </div>
-                """, unsafe_allow_html=True)
+        # Almacenar el mapa y los datos de la columna HTML en session_state
+        st.session_state.view_state = view_state
+        st.session_state.ubicaciones_layer = ubicaciones_layer
+        st.session_state.usuario_layer = usuario_layer
+
+        # Crear la columna HTML con las muestras de color
+        df_filtrado['color_muestra_html'] = df_filtrado['color'].apply(
+            lambda color: f'<div style="background-color: rgb({color[0]}, {color[1]}, {color[2]}); width: 30px; height: 30px;"></div>'
+        )
+
+        # Almacenar la columna HTML en session_state
+        st.session_state.df_filtrado_html = df_filtrado[['enderezo', 'nome', 'distancia_km', 'lon', 'lat', 'color_muestra_html']]
 
 else:
     st.warning("Por favor, introduce una distancia en kilómetros.")
 
-# Recuperar df_filtrado de session_state, si está disponible
+# Recuperar datos de session_state
 df_filtrado = st.session_state.get('df_filtrado', None)
+view_state = st.session_state.get('view_state', None)
+ubicaciones_layer = st.session_state.get('ubicaciones_layer', None)
+usuario_layer = st.session_state.get('usuario_layer', None)
+df_filtrado_html = st.session_state.get('df_filtrado_html', None)
 
+if df_filtrado is not None and view_state is not None and ubicaciones_layer is not None and usuario_layer is not None:
+    col1, col2 = st.columns([4, 2])
+    with col1:
+        # Renderizar el mapa
+        st.pydeck_chart(pdk.Deck(
+            map_style='mapbox://styles/mapbox/streets-v11',
+            initial_view_state=view_state,
+            layers=[ubicaciones_layer, usuario_layer]
+        ))
+
+    with col2:
+        # Mostrar la columna HTML con las muestras de color
+        for _, row in df_filtrado_html.iterrows():
+            st.markdown(f"""
+                <div style="display: flex; align-items: center; border-bottom: 1px solid #ccc; padding-bottom: 10px; margin-bottom: 10px;">
+                    <div style="width: 100px;">{row['nome']}</div>
+                    <div style="width: 100px;">{row['distancia_km']:.2f} km</div>
+                    <div>{row['color_muestra_html']}</div>
+                </div>
+            """, unsafe_allow_html=True)
+
+# Opciones para el desplegable
 if df_filtrado is not None:
-    rut.mostrar_seleccion(df_filtrado)
+    opciones = [
+        f"{row['nome']} - {row['lat']}, {row['lon']}" 
+        for _, row in df_filtrado[['enderezo', 'nome', 'distancia_km', 'lat', 'lon']].iterrows()
+    ]
+    st.write(df_filtrado)
+    # Desplegable
+    rut.mostrar_desplegable(opciones)
