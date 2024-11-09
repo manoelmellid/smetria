@@ -5,7 +5,7 @@ import json
 
 def mostrar_seleccion(df):
     # Crear una nueva columna combinando 'nome' y 'distancia_km' para mostrar en el desplegable
-    df['nombre_con_distancia'] = df['nome'] + ' - ' + df['distancia_km'].astype(str) + ' km'
+    df['nombre_con_distancia'] = df['nome'] + ' - ' + df['distancia_km'].round(3).astype(str) + ' km'
     
     # Mostrar un desplegable con los valores de 'nombre_con_distancia'
     opcion_seleccionada = st.selectbox('Selecciona un lugar', df['nombre_con_distancia'])
