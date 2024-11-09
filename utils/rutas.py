@@ -27,6 +27,11 @@ def mostrar_seleccion(df):
             st.write(f'Has seleccionado: {nombre_seleccionado}')
             st.write(f'La latitud es: {lat}')
             st.write(f'La longitud es: {lon}')
+            longitud = -8.544889 # origen
+            latitud = 42.87797 # origen
+            
+            # Definir las coordenadas de origen y destino
+            origen = [longitud, latitud]
 
 # Función para obtener la ruta a pie entre dos puntos
 def obtener_ruta_a_pie(api_key, origen, destino):
