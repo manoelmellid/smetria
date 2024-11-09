@@ -128,7 +128,6 @@ if submit_button:
             )
         
             # Display the DataFrame with color samples using st.markdown
-            st.markdown("<h3>Resultados de Ubicaciones</h3>", unsafe_allow_html=True)
             for _, row in df_filtrado[['enderezo', 'nome', 'distancia_km', 'lon', 'lat', 'color_muestra_html']].iterrows():
                 st.markdown(f"""
                     <div style="display: flex; align-items: center;">
