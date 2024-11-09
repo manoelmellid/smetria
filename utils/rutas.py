@@ -4,15 +4,25 @@ import pydeck as pdk
 import json
 
 def mostrar_seleccion(df):
-    # Mostrar un desplegable con los valores de 'nome'
-    opcion_seleccionada = st.selectbox('Selecciona un nombre', df['nome'].unique())
+    # Crear una nueva columna combinando 'nome' y 'distancia_km' para mostrar en el desplegable
+    df['nombre_con_distancia'] = df['nome'] + ' - ' + df['distancia_km'].astype(str) + ' km'
     
-    # Extraer lat y lon correspondientes al nombre seleccionado
-    fila_seleccionada = df[df['nome'] == opcion_seleccionada].iloc[0]
+    # Mostrar un desplegable con los valores de 'nombre_con_distancia'
+    opcion_seleccionada = st.selectbox('Selecciona un lugar', df['nombre_con_distancia'].unique())
+    
+    # Extraer el nombre de la opción seleccionada (antes del "-")
+    nombre_seleccionado = opcion_seleccionada.split(' - ')[0]
+    
+    # Filtrar la fila correspondiente al nombre seleccionado
+    fila_seleccionada = df[df['nome'] == nombre_seleccionado].iloc[0]
+    
+    # Extraer latitud, longitud y distancia
     lat = fila_seleccionada['lat']
     lon = fila_seleccionada['lon']
+    distancia = fila_seleccionada['distancia_km']
     
-    # Mostrar los valores de lat y lon
+    # Mostrar los valores
+    st.write(f'Has seleccionado: {nombre_seleccionado}')
     st.write(f'La latitud es: {lat}')
     st.write(f'La longitud es: {lon}')
 
