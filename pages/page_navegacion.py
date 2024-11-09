@@ -123,49 +123,50 @@ if submit_button:
 
         # Create the HTML table for results
         table_html = """
-            <style>
-                .result-table {
-                    width: 100%;
-                    border-collapse: collapse;
-                }
-                .result-table th, .result-table td {
-                    border: 1px solid #ddd;
-                    padding: 8px;
-                    text-align: left;
-                }
-                .result-table th {
-                    background-color: #f2f2f2;
-                    font-weight: bold;
-                }
-                .color-box {
-                    width: 30px;
-                    height: 30px;
-                    display: inline-block;
-                }
-            </style>
-            <table class="result-table">
-                <tr>
-                    <th>Nombre</th>
-                    <th>Distancia</th>
-                    <th>Color</th>
-                </tr>
+        <style>
+            .result-table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            .result-table th, .result-table td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+            .result-table th {
+                background-color: #f2f2f2;
+                font-weight: bold;
+            }
+            .color-box {
+                width: 30px;
+                height: 30px;
+                display: inline-block;
+            }
+        </style>
+        <table class="result-table">
+            <tr>
+                <th>Nombre</th>
+                <th>Distancia</th>
+                <th>Color</th>
+            </tr>
         """
         
         # Generate table rows from filtered DataFrame
         for _, row in df_filtrado[['nome', 'distancia_km', 'color']].iterrows():
             color_html = f'rgb({row["color"][0]}, {row["color"][1]}, {row["color"][2]})'
             table_html += f"""
-                <tr>
-                    <td>{row['nome']}</td>
-                    <td>{row['distancia_km']:.2f} km</td>
-                    <td><div class="color-box" style="background-color: {color_html};"></div></td>
-                </tr>
+            <tr>
+                <td>{row['nome']}</td>
+                <td>{row['distancia_km']:.2f} km</td>
+                <td><div class="color-box" style="background-color: {color_html};"></div></td>
+            </tr>
             """
         
         # Close the table HTML
         table_html += "</table>"
         
-        # Display the table
+        # Display the table with HTML rendering enabled
         st.markdown(table_html, unsafe_allow_html=True)
+
 else:
     st.warning("Por favor, introduce una distancia en kilómetros.")
