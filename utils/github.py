@@ -6,7 +6,7 @@ import base64
 import uuid
 import datetime
 import pandas as pd
-from utils import pronostico as prn
+from utils import consultas_camino as concam
 
 # Configuración de GitHub desde los secretos de Streamlit
 github_token = st.secrets["github"]["github_token"]
@@ -49,7 +49,7 @@ def cargar_datos(columnas_necesarias=None):
 
 def guardar_respuesta_en_csv(nombre, telefono, email, input_text, tipo_opc, mensaje):
     fecha = datetime.datetime.now()
-    longitud, latitud, concello_id, ubicacion = prn.procesar_ubicacion(input_text)
+    longitud, latitud, concello_id, ubicacion = concam.procesar_ubicacion(input_text)
     estado="Activo"
     # Generar un ID único para cada respuesta
     respuesta_id = str(uuid.uuid4())
