@@ -149,13 +149,13 @@ if submit_button:
                     </div>
                 """, unsafe_allow_html=True)
 
-    opciones = [
-        f"{row['nome']} - {row['lat']}, {row['lon']}" 
-        for _, row in df_filtrado[['enderezo', 'nome', 'distancia_km', 'lat', 'lon']].iterrows()
-    ]
-    st.write(df_filtrado)
-    # Desplegable
-    #rut.mostrar_desplegable(opciones)
+opciones = [
+    f"{row['nome']} - {row['lat']}, {row['lon']}" 
+    for _, row in df_filtrado[['enderezo', 'nome', 'distancia_km', 'lat', 'lon']].iterrows()
+]
+st.write(df_filtrado)
+# Desplegable
+#rut.mostrar_desplegable(opciones)
 
 
 else:
