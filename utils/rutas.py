@@ -3,7 +3,19 @@ import streamlit as st
 import pydeck as pdk
 import json
 
-# rut.mostrar_desplegable(opciones)
+def mostrar_seleccion(df):
+    # Mostrar un desplegable con los valores de 'nome'
+    opcion_seleccionada = st.selectbox('Selecciona un nombre', df['nome'].unique())
+    
+    # Extraer lat y lon correspondientes al nombre seleccionado
+    fila_seleccionada = df[df['nome'] == opcion_seleccionada].iloc[0]
+    lat = fila_seleccionada['lat']
+    lon = fila_seleccionada['lon']
+    
+    # Mostrar los valores de lat y lon
+    st.write(f'La latitud es: {lat}')
+    st.write(f'La longitud es: {lon}')
+
 def mostrar_desplegable(opciones):
     # Mostrar el desplegable con las opciones
     opcion_seleccionada = st.selectbox(
