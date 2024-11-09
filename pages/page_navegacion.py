@@ -46,8 +46,19 @@ max_km_value = concam.query_max_km_value()
 with st.form(key='my_form'):
     submit_button = st.form_submit_button(label='Enviar')
 
+# Usamos st.session_state para controlar el estado entre ejecuciones
+if 'longitud' in st.session_state and 'latitud' in st.session_state:
+    longitud = st.session_state.longitud
+    latitud = st.session_state.latitud
+
 if submit_button:
+    # Procesar la ubicación solo si el botón es presionado
     longitud, latitud, concello_id, ubicacion = concam.procesar_ubicacion(input_text)
+
+    # Guardar en session_state para mantener el estado entre interacciones
+    st.session_state.longitud = longitud
+    st.session_state.latitud = latitud
+
     if longitud is None and latitud is None:
         st.write("No se encontraron resultados para el valor de Km proporcionado.")
     else:
@@ -113,7 +124,8 @@ if submit_button:
             get_color='[255, 0, 0, 200]',  # Color rojo para el usuario
             get_radius=150,
         )
-        col1, col2 = st.columns([4,2])
+
+        col1, col2 = st.columns([4, 2])
         with col1:
             # Renderizar el mapa
             st.pydeck_chart(pdk.Deck(
@@ -136,6 +148,7 @@ if submit_button:
                         <div>{row['color_muestra_html']}</div>
                     </div>
                 """, unsafe_allow_html=True)
+
     opciones = [
         f"{row['nome']}" for _, row in df_filtrado[['enderezo', 'nome', 'distancia_km']].iterrows()
     ]
