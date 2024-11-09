@@ -10,7 +10,7 @@ def obtener_ruta_a_pie(api_key, origen, destino):
     try:
         ruta = client.directions(
             coordinates=[origen, destino],
-            profile='foot-walking',
+            profile='driving-car',
             format='geojson',
             radiuses=[1000, 1000]  # Intentar aumentar el radio
         )
