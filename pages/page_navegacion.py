@@ -150,16 +150,13 @@ if submit_button:
                 """, unsafe_allow_html=True)
 
     opciones = [
-        f"{row['nome']}" for _, row in df_filtrado[['enderezo', 'nome', 'distancia_km']].iterrows()
+        f"{row['nome']} - {row['lat']}, {row['lon']}" 
+        for _, row in df_filtrado[['enderezo', 'nome', 'distancia_km', 'lat', 'lon']].iterrows()
     ]
+    st.write(opciones)
     # Desplegable
-    opcion_seleccionada = st.selectbox(
-        'Selecciona una opción:',  # Título que aparece sobre el desplegable
-        opciones  # Las opciones que se muestran en el desplegable
-    )
-    
-    # Mostrar la opción seleccionada
-    st.write('Has seleccionado:', opcion_seleccionada)
+    #rut.mostrar_desplegable(opciones)
+
 
 else:
     st.warning("Por favor, introduce una distancia en kilómetros.")
