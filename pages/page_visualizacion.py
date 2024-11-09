@@ -16,11 +16,6 @@ df_activo = df[df['estado'] == 'Activo']
 df_activo['latitude'] = pd.to_numeric(df_activo['latitud'], errors='coerce')
 df_activo['longitude'] = pd.to_numeric(df_activo['longitud'], errors='coerce')
 
-#st.map(df_activo[['latitude', 'longitude']])
-
-# Renombrar las columnas para que Streamlit las reconozca como coordenadas
-# Ya lo hicimos con pd.to_numeric, no necesitamos renombrar de nuevo
-
 # Crea la capa para el mapa
 layer = pdk.Layer(
     'ScatterplotLayer',
@@ -47,11 +42,12 @@ view_state = pdk.ViewState(
     bearing=0  # Sin rotación
 )
 
-# Renderizar el mapa con pydeck
+# Crear el deck con un estilo de mapa claro
 deck = pdk.Deck(
     layers=[layer],
     initial_view_state=view_state,
-    tooltip=tooltip
+    tooltip=tooltip,
+    map_style="mapbox://styles/mapbox/streets-v11"  # Estilo de mapa claro
 )
 
 # Mostrar el mapa en Streamlit
