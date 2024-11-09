@@ -8,7 +8,7 @@ def mostrar_seleccion(df):
     df['nombre_con_distancia'] = df['nome'] + ' - ' + df['distancia_km'].astype(str) + ' km'
     
     # Mostrar un desplegable con los valores de 'nombre_con_distancia'
-    opcion_seleccionada = st.selectbox('Selecciona un lugar', df['nombre_con_distancia'].unique())
+    opcion_seleccionada = st.selectbox('Selecciona un lugar', df['nombre_con_distancia'])
     
     # Extraer el nombre de la opción seleccionada (antes del "-")
     nombre_seleccionado = opcion_seleccionada.split(' - ')[0]
