@@ -7,14 +7,17 @@ import json
 def obtener_ruta_a_pie(api_key, origen, destino):
     client = openrouteservice.Client(key=api_key)
     
-    # Solicitar la ruta a pie entre los dos puntos
-    ruta = client.directions(
-        coordinates=[origen, destino],
-        profile='foot-walking',  # Para ruta a pie
-        format='geojson',
-        radiuses=[1000, 1000]  # Aumentar radio de búsqueda a 1000 metros
-    )
-    return ruta
+    try:
+        ruta = client.directions(
+            coordinates=[origen, destino],
+            profile='foot-walking',
+            format='geojson',
+            radiuses=[1000, 1000]  # Intentar aumentar el radio
+        )
+        return ruta
+    except openrouteservice.exceptions.ApiError as e:
+        st.error("Error al obtener la ruta: " + str(e))
+        return None
 
 # Función para mostrar el mapa con la ruta
 def mostrar_mapa(origen, destino):
