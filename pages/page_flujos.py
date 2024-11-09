@@ -11,11 +11,11 @@ if st.session_state.logged_in == False:
 
 
 st.title("Ruta a Pie entre dos Puntos")
+longitud = -8.544889 # origen
+latitud = 42.87797 # origen
 
 # Definir las coordenadas de origen y destino
-#origen = [42.87437814285766, -8.549401826001816]
-#destino = [42.88046663836321, -8.545759761367778]
-origen = [-8.5494018, 42.8743781]  # longitud, latitud
+origen = [longitud, latitud]
 destino = [-8.5457598, 42.8804666]  # longitud, latitud
 
 
