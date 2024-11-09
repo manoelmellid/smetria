@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import openrouteservice
 
 def query_csv_data(km_value):
     # Cargar el archivo CSV
