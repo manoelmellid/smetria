@@ -44,7 +44,7 @@ def mostrar_mapa(origen, destino):
         data=[{
             'coordinates': coords,
             'color': [255, 0, 0],  # Color rojo para la ruta
-            'width': 5  # Grosor inicial de la línea (esto se ajustará según el zoom)
+            'width': 15  # Grosor inicial de la línea (esto se ajustará según el zoom)
         }],
         get_path='coordinates',
         get_color='color',
