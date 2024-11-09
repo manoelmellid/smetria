@@ -28,16 +28,6 @@ def mostrar_seleccion(df):
             st.write(f'La latitud es: {lat}')
             st.write(f'La longitud es: {lon}')
 
-def mostrar_desplegable(opciones):
-    # Mostrar el desplegable con las opciones
-    opcion_seleccionada = st.selectbox(
-        'Selecciona una opción:',  # Título que aparece sobre el desplegable
-        opciones  # Las opciones que se muestran en el desplegable
-    )
-    
-    # Mostrar la opción seleccionada
-    st.write('Has seleccionado:', opcion_seleccionada)
-
 # Función para obtener la ruta a pie entre dos puntos
 def obtener_ruta_a_pie(api_key, origen, destino):
     client = openrouteservice.Client(key=api_key)
