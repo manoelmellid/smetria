@@ -141,8 +141,15 @@ if submit_button:
         f"{row['nome']} - Dirección: {row['enderezo']}" for _, row in df_filtrado[['enderezo', 'nome', 'distancia_km']].iterrows()
     ]
     
+    # Aquí guardamos el valor seleccionado en st.session_state
+    if 'opcion_seleccionada' not in st.session_state:
+        st.session_state['opcion_seleccionada'] = None
+
     # Creamos el desplegable con la lista de opciones
-    opcion_seleccionada = st.selectbox("Selecciona una opción", opciones)
+    opcion_seleccionada = st.selectbox("Selecciona una opción", opciones, index=opciones.index(st.session_state['opcion_seleccionada']) if st.session_state['opcion_seleccionada'] in opciones else 0)
+
+    # Guardamos la opción seleccionada en la sesión
+    st.session_state['opcion_seleccionada'] = opcion_seleccionada
     
     # Mostrar la opción seleccionada
     st.write(f"Has seleccionado: {opcion_seleccionada}")
