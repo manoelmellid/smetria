@@ -7,17 +7,16 @@ st.header("Sistema de notificación de incidencias")
 # Campos del formulario
 nombre = st.text_input("Nombre y apellidos")
 telefono = st.text_input("Teléfono")
+
+if telefono:
+    if not gen.validar_telefono(telefono):
+        st.error("Por favor, ingrese un número de teléfono válido.")
+        
 email = st.text_input("Correo electrónico")
 input_text = st.text_input("Indique el Km del Camino dónde se encuentra")
 opciones = ['Crecida de río', 'Incendio', 'Desprendimiento de tierra', 'Tramo colapsado/cerrado', 'Mobiliario deteriorado', 'Accidente en el camino', 'Animales sueltos', 'Fuente sin agua']
 tipo_opc = st.selectbox('Selecciona el tipo de incidencia:', opciones)
 mensaje = st.text_area("Añada más detalles si lo considera necesario:")
-
-if telefono:
-    if not gen.validar_telefono(telefono):
-        st.error("Por favor, ingrese un número de teléfono válido.")
-    else:
-        st.success("Número de teléfono válido.")
 
 if st.button("Enviar"):
     if nombre and email:
