@@ -24,7 +24,7 @@ if st.button("Enviar"):
             tipo_opc=tipo_opc,
             mensaje=mensaje,
         )
-        st.success("Notificación enviada con éxito y guardada en GitHub.")
+        st.success("Notificación enviada con éxito.")
     else:
         st.error("Por favor, cubra los campos obligatorios.")
     
