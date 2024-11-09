@@ -11,7 +11,8 @@ def obtener_ruta_a_pie(api_key, origen, destino):
     ruta = client.directions(
         coordinates=[origen, destino],
         profile='foot-walking',  # Para ruta a pie
-        format='geojson'
+        format='geojson',
+        radiuses=[1000, 1000]  # Aumentar radio de búsqueda a 1000 metros
     )
     return ruta
 
