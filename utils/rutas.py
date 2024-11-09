@@ -30,18 +30,26 @@ def mostrar_mapa(origen, destino):
     # Extraer las coordenadas de la ruta
     coords = ruta['features'][0]['geometry']['coordinates']
     
-    # Crear una capa de ruta (polyline)
+    # Definir la vista inicial del mapa centrada entre los dos puntos
+    centro = [(origen[1] + destino[1]) / 2, (origen[0] + destino[0]) / 2]
+    vista = pdk.ViewState(
+        latitude=centro[0],
+        longitude=centro[1],
+        zoom=14  # Nivel de zoom inicial
+    )
+    
+    # Crear la capa de ruta (polyline)
     ruta_capa = pdk.Layer(
         "PathLayer",
         data=[{
             'coordinates': coords,
             'color': [255, 0, 0],  # Color rojo para la ruta
-            'width': 2
+            'width': 5  # Grosor inicial de la línea (esto se ajustará según el zoom)
         }],
         get_path='coordinates',
         get_color='color',
         get_width='width',
-        width_scale=20
+        width_scale=0.5  # Este valor ajusta cómo cambia el grosor con el zoom
     )
     
     # Crear una capa de marcadores para el origen y destino
@@ -50,26 +58,18 @@ def mostrar_mapa(origen, destino):
         data=[{
             'position': origen,
             'color': [0, 255, 0],  # Verde para el origen
-            'radius': 50
+            'radius': 50  # Tamaño del marcador de origen
         }, {
             'position': destino,
             'color': [0, 0, 255],  # Azul para el destino
-            'radius': 50
+            'radius': 50  # Tamaño del marcador de destino
         }],
         get_position='position',
         get_color='color',
         get_radius='radius'
     )
-
-    # Definir la vista inicial del mapa centrada entre los dos puntos
-    centro = [(origen[1] + destino[1]) / 2, (origen[0] + destino[0]) / 2]
-    vista = pdk.ViewState(
-        latitude=centro[0],
-        longitude=centro[1],
-        zoom=14
-    )
     
-    # Crear el mapa con las capas
+    # Crear el mapa con las capas y el zoom adaptativo
     deck = pdk.Deck(
         layers=[ruta_capa, puntos_capa],
         initial_view_state=vista,
