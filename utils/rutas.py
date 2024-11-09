@@ -36,7 +36,7 @@ def mostrar_mapa(origen, destino):
         data=[{
             'coordinates': coords,
             'color': [255, 0, 0],  # Color rojo para la ruta
-            'width': 5
+            'width': 2
         }],
         get_path='coordinates',
         get_color='color',
@@ -50,11 +50,11 @@ def mostrar_mapa(origen, destino):
         data=[{
             'position': origen,
             'color': [0, 255, 0],  # Verde para el origen
-            'radius': 200
+            'radius': 50
         }, {
             'position': destino,
             'color': [0, 0, 255],  # Azul para el destino
-            'radius': 200
+            'radius': 50
         }],
         get_position='position',
         get_color='color',
