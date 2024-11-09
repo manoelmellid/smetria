@@ -1,5 +1,6 @@
 import streamlit as st
 import pydeck as pdk
+import re
 
 def login():
     if 'logged_in' not in st.session_state:
@@ -24,6 +25,14 @@ def login():
                 st.error("Contraseña o usuario incorrectos")
                 st.session_state.logged_in = False
     return st.session_state.logged_in
+    
+# Función para validar el número de teléfono
+def validar_telefono(telefono):
+    # Expresión regular para un formato de número de teléfono (ej. +34 612 345 678)
+    patron = r"^\+?[0-9]{1,3}?[-.\s]?[0-9]{1,4}[-.\s]?[0-9]{1,4}[-.\s]?[0-9]{1,4}$"
+    if re.match(patron, telefono):
+        return True
+    return False
 
 # Función para crear el mapa
 def mostrar_puntos_con_arcos(latitud, longitud, altura_columna=500):
