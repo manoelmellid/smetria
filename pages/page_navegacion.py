@@ -73,6 +73,9 @@ if submit_button:
         )
         df_filtrado = df_filtrado[df_filtrado['distancia_km'] <= radio_km]
 
+        # Almacenar df_filtrado en session_state para mantenerlo entre interacciones
+        st.session_state.df_filtrado = df_filtrado
+
         # Definir un diccionario de colores para cada tipo de ubicación
         colores_limitados = [
             [0, 255, 255],    # Cian
@@ -152,6 +155,9 @@ if submit_button:
 
 else:
     st.warning("Por favor, introduce una distancia en kilómetros.")
+
+# Recuperar df_filtrado de session_state, si está disponible
+df_filtrado = st.session_state.get('df_filtrado', None)
 
 if df_filtrado is not None:
     opciones = [
