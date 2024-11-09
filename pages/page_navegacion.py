@@ -149,6 +149,9 @@ if submit_button:
                     </div>
                 """, unsafe_allow_html=True)
 
+else:
+    st.warning("Por favor, introduce una distancia en kilómetros.")
+
 opciones = [
     f"{row['nome']} - {row['lat']}, {row['lon']}" 
     for _, row in df_filtrado[['enderezo', 'nome', 'distancia_km', 'lat', 'lon']].iterrows()
@@ -156,7 +159,3 @@ opciones = [
 st.write(df_filtrado)
 # Desplegable
 #rut.mostrar_desplegable(opciones)
-
-
-else:
-    st.warning("Por favor, introduce una distancia en kilómetros.")
