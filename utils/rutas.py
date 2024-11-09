@@ -3,7 +3,7 @@ import streamlit as st
 import pydeck as pdk
 import json
 
-def mostrar_seleccion(df):
+def mostrar_seleccion(df, latitud_ori, longitud_ori):
     # Crear una nueva columna combinando 'nome' y 'distancia_km' para mostrar en el desplegable
     df['nombre_con_distancia'] = df['nome'] + ' - ' + df['distancia_km'].round(3).astype(str) + ' km'
     
@@ -27,11 +27,10 @@ def mostrar_seleccion(df):
             st.write(f'Has seleccionado: {nombre_seleccionado}')
             st.write(f'La latitud es: {lat}')
             st.write(f'La longitud es: {lon}')
-            longitud = -8.544889 # origen
-            latitud = 42.87797 # origen
-            
             # Definir las coordenadas de origen y destino
-            origen = [longitud, latitud]
+            origen = [longitud_ori, latitud_ori]
+            destino = [lon, lat]
+            mostrar_mapa(origen, destino)
 
 # Función para obtener la ruta a pie entre dos puntos
 def obtener_ruta_a_pie(api_key, origen, destino):
