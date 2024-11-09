@@ -61,7 +61,7 @@ if submit_button:
     st.session_state.latitud = latitud
 
     if longitud is None and latitud is None:
-        st.write("No se encontraron resultados para el valor de Km proporcionado.")
+        st.error("No se encontraron resultados para el valor de Km proporcionado.")
     else:
         # Filtrar el dataframe por tipo de ubicación seleccionado
         df_filtrado = gdf[gdf['tipo'].isin(tipo_seleccionado)]
