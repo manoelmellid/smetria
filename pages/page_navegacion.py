@@ -160,4 +160,4 @@ if df_filtrado is not None:
     ]
     st.write(df_filtrado)
     # Desplegable
-    #rut.mostrar_desplegable(opciones)
+    rut.mostrar_desplegable(opciones)
