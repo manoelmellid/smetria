@@ -4,7 +4,7 @@ import geopandas as gpd
 from shapely.geometry import Point
 from geopy.distance import geodesic
 import pydeck as pdk
-from utils import consultas_camino as concam
+from utils import consultas_camino as concam, rutas as rut
 
 # Variables de longitud y latitud inicializadas como None
 longitud = None
@@ -137,16 +137,7 @@ if submit_button:
                     </div>
                 """, unsafe_allow_html=True)
     # Desplegable
-    opciones = [
-        f"{row['nome']}" for _, row in df_filtrado[['enderezo', 'nome', 'distancia_km']].iterrows()
-    ]
-    st.write(opciones)
-    opcion_seleccionada = st.selectbox(
-        'Selecciona una opción:',  # Título que aparece sobre el desplegable
-        opciones  # Las opciones que se muestran en el desplegable
-    )
-    # Mostrar la opción seleccionada
-    st.write('Has seleccionado:', opcion_seleccionada)
+    rut.mostrar_desplegable(opciones)
 
 else:
     st.warning("Por favor, introduce una distancia en kilómetros.")
