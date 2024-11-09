@@ -29,7 +29,7 @@ def adjust_point_size(zoom_level):
 # Establece un valor de zoom por defecto
 default_zoom = 12
 
-# Crear la vista del mapa con el zoom inicial
+# Crear la vista inicial del mapa con el zoom predeterminado
 view_state = pdk.ViewState(
     latitude=df_activo['latitude'].mean(),
     longitude=df_activo['longitude'].mean(),
@@ -38,10 +38,10 @@ view_state = pdk.ViewState(
     bearing=0
 )
 
-# Ajustar el tamaño del punto según el nivel de zoom inicial
+# Capturar el tamaño del punto basado en el nivel de zoom actual
 point_size = adjust_point_size(view_state.zoom)
 
-# Crea la capa para el mapa con el tamaño de punto dinámico
+# Crear la capa para el mapa con el tamaño de punto dinámico
 layer = pdk.Layer(
     'ScatterplotLayer',
     df_activo,
@@ -68,10 +68,3 @@ deck = pdk.Deck(
 
 # Mostrar el mapa en Streamlit
 st.pydeck_chart(deck)
-
-# Slider para ajustar el zoom manualmente
-zoom_slider = st.slider("Ajusta el nivel de zoom", 0, 15, default_zoom)
-view_state.zoom = zoom_slider
-
-# Recalcular el tamaño del punto según el nuevo nivel de zoom
-layer.data['size'] = adjust_point_size(view_state.zoom)
