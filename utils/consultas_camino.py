@@ -68,7 +68,7 @@ def procesar_ubicacion(input_text):
         resultado = km_camino
 
     # Consulta el CSV usando el resultado ajustado
-    longitud, latitud, concello_id, ubicacion = concam.query_csv_data(resultado)
+    longitud, latitud, concello_id, ubicacion = query_csv_data(resultado)
 
     # Si no se encontraron resultados, devuelve una advertencia
     if longitud is None and latitud is None:
