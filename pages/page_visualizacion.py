@@ -16,12 +16,37 @@ df_activo = df[df['estado'] == 'Activo']
 df_activo['latitude'] = pd.to_numeric(df_activo['latitud'], errors='coerce')
 df_activo['longitude'] = pd.to_numeric(df_activo['longitud'], errors='coerce')
 
-# Crea la capa para el mapa
+# Función para ajustar el tamaño del punto en función del zoom
+def adjust_point_size(zoom_level):
+    # Define un rango de tamaño de los puntos
+    min_size = 5
+    max_size = 50
+    
+    # Ajusta el tamaño en función del zoom (nivel máximo de zoom en Mapbox es 15)
+    size = min_size + (max_size - min_size) * (zoom_level / 15)
+    return size
+
+# Establece un valor de zoom por defecto
+default_zoom = 12
+
+# Crear la vista del mapa con el zoom inicial
+view_state = pdk.ViewState(
+    latitude=df_activo['latitude'].mean(),
+    longitude=df_activo['longitude'].mean(),
+    zoom=default_zoom,
+    pitch=0,
+    bearing=0
+)
+
+# Ajustar el tamaño del punto según el nivel de zoom inicial
+point_size = adjust_point_size(view_state.zoom)
+
+# Crea la capa para el mapa con el tamaño de punto dinámico
 layer = pdk.Layer(
     'ScatterplotLayer',
     df_activo,
     get_position='[longitude, latitude]',
-    get_radius=50,  # Tamaño del punto
+    get_radius=point_size,  # Tamaño dinámico del punto
     get_fill_color=[255, 0, 0, 160],  # Color del punto (rojo)
     pickable=True,
     auto_highlight=True
@@ -33,15 +58,6 @@ tooltip = {
     "style": {"color": "white", "backgroundColor": "rgba(0,0,0,0.7)", "padding": "5px"}
 }
 
-# Crear la vista del mapa
-view_state = pdk.ViewState(
-    latitude=df_activo['latitude'].mean(),
-    longitude=df_activo['longitude'].mean(),
-    zoom=12,  # Puedes ajustar el zoom según el alcance de las coordenadas
-    pitch=0,  # Sin inclinación
-    bearing=0  # Sin rotación
-)
-
 # Crear el deck con un estilo de mapa claro
 deck = pdk.Deck(
     layers=[layer],
@@ -52,3 +68,10 @@ deck = pdk.Deck(
 
 # Mostrar el mapa en Streamlit
 st.pydeck_chart(deck)
+
+# Slider para ajustar el zoom manualmente
+zoom_slider = st.slider("Ajusta el nivel de zoom", 0, 15, default_zoom)
+view_state.zoom = zoom_slider
+
+# Recalcular el tamaño del punto según el nuevo nivel de zoom
+layer.data['size'] = adjust_point_size(view_state.zoom)
