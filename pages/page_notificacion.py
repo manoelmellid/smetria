@@ -19,7 +19,7 @@ tipo_opc = st.selectbox('Selecciona el tipo de incidencia:', opciones)
 mensaje = st.text_area("Añada más detalles si lo considera necesario:")
 
 if st.button("Enviar"):
-    if nombre and email:
+    if nombre and email and telefono and input_text:
         # Llamar a la función para guardar en GitHub
         git.guardar_respuesta_en_csv(
             nombre=nombre,
