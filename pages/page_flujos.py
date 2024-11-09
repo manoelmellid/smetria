@@ -13,8 +13,8 @@ if st.session_state.logged_in == False:
 st.title("Ruta a Pie entre dos Puntos")
 
 # Definir las coordenadas de origen y destino
-origen = [-33.4489, -70.6693]  # Santiago, Chile (Lat, Long)
-destino = [-33.4637, -70.6483]  # Barrio Lastarria, Santiago, Chile (Lat, Long)
+origen = [42.87437814285766, -8.549401826001816]  # Santiago, Chile (Lat, Long)
+destino = [42.88046663836321, -8.545759761367778]  # Barrio Lastarria, Santiago, Chile (Lat, Long)
 
 # Mostrar el mapa con la ruta
 rut.mostrar_mapa(origen, destino)
