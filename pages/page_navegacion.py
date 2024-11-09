@@ -122,20 +122,20 @@ if submit_button:
                 layers=[ubicaciones_layer, usuario_layer]
             ))        
         with col2:
-            # Create an HTML column for color sample
+            # Crear una columna HTML para las muestras de color
             df_filtrado['color_muestra_html'] = df_filtrado['color'].apply(
                 lambda color: f'<div style="background-color: rgb({color[0]}, {color[1]}, {color[2]}); width: 30px; height: 30px;"></div>'
             )
-        
-            # Display the DataFrame with color samples using st.markdown
+            
+            # Mostrar el DataFrame con las muestras de color usando st.markdown
             for _, row in df_filtrado[['enderezo', 'nome', 'distancia_km', 'lon', 'lat', 'color_muestra_html']].iterrows():
                 st.markdown(f"""
-                    <div style="display: flex; align-items: center;">
+                    <div style="display: flex; align-items: center; border-bottom: 1px solid #ccc; padding-bottom: 10px; margin-bottom: 10px;">
                         <div style="width: 100px;">{row['nome']}</div>
                         <div style="width: 100px;">{row['distancia_km']:.2f} km</div>
                         <div>{row['color_muestra_html']}</div>
                     </div>
-                    """, unsafe_allow_html=True)
+                """, unsafe_allow_html=True)
 
 else:
     st.warning("Por favor, introduce una distancia en kilómetros.")
