@@ -38,7 +38,7 @@ tooltip = {
 view_state = pdk.ViewState(
     latitude=df_activo['latitude'].mean(),
     longitude=df_activo['longitude'].mean(),
-    zoom=5
+    zoom=12
 )
 
 # Renderizar el mapa con pydeck
