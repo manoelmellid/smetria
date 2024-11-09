@@ -113,7 +113,7 @@ if submit_button:
             get_color='[255, 0, 0, 200]',  # Color rojo para el usuario
             get_radius=150,
         )
-        col1, col2 = st.columns([3,2])
+        col1, col2 = st.columns([4,2])
         with col1:
             # Renderizar el mapa
             st.pydeck_chart(pdk.Deck(
