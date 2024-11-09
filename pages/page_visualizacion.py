@@ -22,7 +22,7 @@ layer = pdk.Layer(
     'ScatterplotLayer',
     df_activo,
     get_position='[longitude, latitude]',
-    get_radius=50000,  # Tamaño del punto
+    get_radius=50,  # Tamaño del punto
     get_fill_color=[255, 0, 0, 160],  # Color del punto (rojo)
     pickable=True,
     auto_highlight=True
