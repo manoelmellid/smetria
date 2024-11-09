@@ -138,7 +138,7 @@ if submit_button:
                 """, unsafe_allow_html=True)
     # Desplegable
     opciones = [
-        f"{row['nome']} - Dirección: {row['enderezo']}" for _, row in df_filtrado[['enderezo', 'nome', 'distancia_km']].iterrows()
+        f"{row['nome']}" for _, row in df_filtrado[['enderezo', 'nome', 'distancia_km']].iterrows()
     ]
     st.write(opciones)
 
