@@ -9,6 +9,7 @@ from utils import consultas_camino as concam, rutas as rut
 # Variables de longitud y latitud inicializadas como None
 longitud = None
 latitud = None
+df_filtrado = None
 
 st.header("Herramientas de navegación")
 st.write("### Parámetros de Filtro")
