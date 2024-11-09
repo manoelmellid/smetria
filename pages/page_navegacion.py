@@ -141,6 +141,12 @@ if submit_button:
         f"{row['nome']}" for _, row in df_filtrado[['enderezo', 'nome', 'distancia_km']].iterrows()
     ]
     st.write(opciones)
+    opcion_seleccionada = st.selectbox(
+        'Selecciona una opción:',  # Título que aparece sobre el desplegable
+        opciones  # Las opciones que se muestran en el desplegable
+    )
+    # Mostrar la opción seleccionada
+    st.write('Has seleccionado:', opcion_seleccionada)
 
 else:
     st.warning("Por favor, introduce una distancia en kilómetros.")
