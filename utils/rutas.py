@@ -10,21 +10,23 @@ def mostrar_seleccion(df):
     # Mostrar un desplegable con los valores de 'nombre_con_distancia'
     opcion_seleccionada = st.selectbox('Selecciona un lugar', df['nombre_con_distancia'])
     
-    # Extraer el nombre de la opción seleccionada (antes del "-")
-    nombre_seleccionado = opcion_seleccionada.split(' - ')[0]
-    
-    # Filtrar la fila correspondiente al nombre seleccionado
-    fila_seleccionada = df[df['nome'] == nombre_seleccionado].iloc[0]
-    
-    # Extraer latitud, longitud y distancia
-    lat = fila_seleccionada['lat']
-    lon = fila_seleccionada['lon']
-    distancia = fila_seleccionada['distancia_km']
-    
-    # Mostrar los valores
-    st.write(f'Has seleccionado: {nombre_seleccionado}')
-    st.write(f'La latitud es: {lat}')
-    st.write(f'La longitud es: {lon}')
+    if st.button("Calcular ruta"):
+        if opcion_seleccionada:
+            # Extraer el nombre de la opción seleccionada (antes del "-")
+            nombre_seleccionado = opcion_seleccionada.split(' - ')[0]
+            
+            # Filtrar la fila correspondiente al nombre seleccionado
+            fila_seleccionada = df[df['nome'] == nombre_seleccionado].iloc[0]
+            
+            # Extraer latitud, longitud y distancia
+            lat = fila_seleccionada['lat']
+            lon = fila_seleccionada['lon']
+            distancia = fila_seleccionada['distancia_km']
+            
+            # Mostrar los valores
+            st.write(f'Has seleccionado: {nombre_seleccionado}')
+            st.write(f'La latitud es: {lat}')
+            st.write(f'La longitud es: {lon}')
 
 def mostrar_desplegable(opciones):
     # Mostrar el desplegable con las opciones
