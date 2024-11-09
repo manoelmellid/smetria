@@ -153,7 +153,7 @@ if submit_button:
         f"{row['nome']} - {row['lat']}, {row['lon']}" 
         for _, row in df_filtrado[['enderezo', 'nome', 'distancia_km', 'lat', 'lon']].iterrows()
     ]
-    st.write(opciones)
+    st.write(df_filtrado)
     # Desplegable
     #rut.mostrar_desplegable(opciones)
 
