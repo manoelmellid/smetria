@@ -33,3 +33,47 @@ def query_max_km_value():
     else:
         # Si el DataFrame está vacío, retornar None
         return None
+
+def procesar_ubicacion(input_text):
+    max_km_value = query_max_km_value()
+    if not input_text:
+        print("Por favor, introduce una distancia en kilómetros.")
+        return None, None, None, None  # Valores predeterminados cuando no hay input
+
+    try:
+        input_km = float(input_text.replace(',', '.'))  # Convierte el input a un número flotante
+    except ValueError:
+        print("Por favor, ingresa un número válido.")
+        return None, None, None, None
+
+    # Verifica si el valor de km excede el máximo permitido
+    if input_km > max_km_value:
+        print(f"El valor {input_km} es mayor que el máximo permitido: {max_km_value}.")
+        return None, None, None, None
+
+    # Ajusta el valor de `km_camino` según las reglas dadas
+    km_camino = input_km
+    n = int(km_camino)
+
+    if km_camino == max_km_value:
+        resultado = km_camino
+    elif n < km_camino < n + 0.25:
+        resultado = n + 0.25
+    elif n + 0.25 < km_camino < n + 0.5:
+        resultado = n + 0.5
+    elif n + 0.5 < km_camino < n + 0.75:
+        resultado = n + 0.75
+    elif n + 0.75 < km_camino < n + 1:
+        resultado = n + 1
+    else:
+        resultado = km_camino
+
+    # Consulta el CSV usando el resultado ajustado
+    longitud, latitud, concello_id, ubicacion = concam.query_csv_data(resultado)
+
+    # Si no se encontraron resultados, devuelve una advertencia
+    if longitud is None and latitud is None:
+        print("No se encontraron resultados para el valor de Km proporcionado.")
+        return None, None, None, None
+
+    return longitud, latitud, concello_id, ubicacion
