@@ -126,14 +126,7 @@ if submit_button:
             lambda color: f'<div style="background-color: rgb({color[0]}, {color[1]}, {color[2]}); width: 30px; height: 30px;"></div>'
         )
         
-        # También podemos agregar la columna con el nombre del color si quieres que se vea el texto del color
-        # Para esto, puedes usar la variable "color_por_tipo" que contiene el color para cada tipo
-        df_filtrado['color_nombre'] = df_filtrado['tipo'].map(lambda tipo: color_por_tipo.get(tipo, [255, 255, 255]))
-        df_filtrado['color_nombre'] = df_filtrado['color_nombre'].apply(
-            lambda color: f'<span style="color: rgb({color[0]}, {color[1]}, {color[2]});">{tipo}</span>'
-        )
-        
         # Mostrar el DataFrame con la muestra de color y el nombre del color
-        st.dataframe(df_filtrado[['enderezo', 'nome', 'distancia_km', 'lon', 'lat', 'color_muestra', 'color_nombre']].sort_values(by='distancia_km'), hide_index=True)
+        st.dataframe(df_filtrado[['enderezo', 'nome', 'distancia_km', 'lon', 'lat', 'color_muestra']].sort_values(by='distancia_km'), hide_index=True)
 else:
     st.warning("Por favor, introduce una distancia en kilómetros.")
