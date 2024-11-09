@@ -24,9 +24,7 @@ def mostrar_seleccion(df, latitud_ori, longitud_ori):
             distancia = fila_seleccionada['distancia_km']
             
             # Mostrar los valores
-            st.write(f'Has seleccionado: {nombre_seleccionado}')
-            st.write(f'La latitud es: {lat}')
-            st.write(f'La longitud es: {lon}')
+            st.write(f'#### Mostrando ruta hasta {nombre_seleccionado}')
             # Definir las coordenadas de origen y destino
             origen = [longitud_ori, latitud_ori]
             destino = [lon, lat]
