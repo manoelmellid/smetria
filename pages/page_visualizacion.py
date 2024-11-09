@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import pydeck as pdk
 from utils import github as git
 
 st.header("Mapa de visualización de incidencias")
