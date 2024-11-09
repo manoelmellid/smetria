@@ -136,6 +136,9 @@ if submit_button:
                         <div>{row['color_muestra_html']}</div>
                     </div>
                 """, unsafe_allow_html=True)
+    opciones = [
+        f"{row['nome']}" for _, row in df_filtrado[['enderezo', 'nome', 'distancia_km']].iterrows()
+    ]
     # Desplegable
     rut.mostrar_desplegable(opciones)
 
