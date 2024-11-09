@@ -3,6 +3,7 @@ import streamlit as st
 import pydeck as pdk
 import json
 
+# rut.mostrar_desplegable(opciones)
 def mostrar_desplegable(opciones):
     # Mostrar el desplegable con las opciones
     opcion_seleccionada = st.selectbox(
