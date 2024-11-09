@@ -160,4 +160,4 @@ else:
 df_filtrado = st.session_state.get('df_filtrado', None)
 
 if df_filtrado is not None:
-    rut.mostrar_seleccion(df_filtrado)
+    rut.mostrar_seleccion(df_filtrado, latitud, longitud)
