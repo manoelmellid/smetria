@@ -58,11 +58,11 @@ def mostrar_mapa(origen, destino):
         data=[{
             'position': origen,
             'color': [0, 255, 0],  # Verde para el origen
-            'radius': 50  # Tamaño del marcador de origen
+            'radius': 30  # Tamaño del marcador de origen
         }, {
             'position': destino,
             'color': [0, 0, 255],  # Azul para el destino
-            'radius': 50  # Tamaño del marcador de destino
+            'radius': 30  # Tamaño del marcador de destino
         }],
         get_position='position',
         get_color='color',
