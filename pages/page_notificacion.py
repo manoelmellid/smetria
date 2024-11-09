@@ -13,6 +13,12 @@ opciones = ['Crecida de río', 'Incendio', 'Desprendimiento de tierra', 'Tramo c
 tipo_opc = st.selectbox('Selecciona el tipo de incidencia:', opciones)
 mensaje = st.text_area("Añada más detalles si lo considera necesario:")
 
+if telefono:
+    if not gen.validar_telefono(telefono):
+        st.error("Por favor, ingrese un número de teléfono válido.")
+    else:
+        st.success("Número de teléfono válido.")
+
 if st.button("Enviar"):
     if nombre and email:
         # Llamar a la función para guardar en GitHub
