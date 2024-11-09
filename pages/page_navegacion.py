@@ -12,7 +12,7 @@ latitud = None
 df_filtrado = None
 
 st.header("Herramientas de navegación")
-st.write("### Parámetros de Filtro")
+st.write("### Parámetros de filtro")
 
 # Función para cargar el archivo CSV de ubicaciones
 @st.cache_data
