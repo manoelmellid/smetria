@@ -160,11 +160,4 @@ else:
 df_filtrado = st.session_state.get('df_filtrado', None)
 
 if df_filtrado is not None:
-    opciones = [
-        f"{row['nome']} - {row['lat']}, {row['lon']}" 
-        for _, row in df_filtrado[['enderezo', 'nome', 'distancia_km', 'lat', 'lon']].iterrows()
-    ]
-    st.write(df_filtrado)
-    # Desplegable
-    rut.mostrar_desplegable(opciones)
     rut.mostrar_seleccion(df_filtrado)
