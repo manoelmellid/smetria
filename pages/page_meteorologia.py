@@ -52,9 +52,9 @@ if latitud is not None and longitud is not None:
     }, index=[0])  # Proporciona un índice
 
     col1, col2 = st.columns([2,2])
-    with col1:
+    #with col1:
         #gen.mostrar_puntos_con_arcos(latitud, longitud, altura_columna=500)
-    with col2:
+    #with col2:
         #st.map(data) # Mostrar el mapa solo si los datos son válidos
 
 if adelante is not None and longitud is not None:
