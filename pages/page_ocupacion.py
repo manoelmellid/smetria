@@ -3,7 +3,7 @@ import streamlit as st
 st.header("Modelo predictivo de ocupacion")
 
 # ---------------------------------------------------------------------
-
+st.error("Esta sección de SMETRIA está en desarrollo todavía")
 # Diccionario de albergues por concello
 albergues_por_concello = {
     "O Saviñao": ["Albergue Xacobeo Diamondi"],
