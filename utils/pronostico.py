@@ -11,6 +11,7 @@ def pronostico(location_id, start_date, end_date):
     # Obtén la hora actual correctamente
     fecha_actual = datetime.now().date()
 
+    # Verifica si el rango es de un solo día
     if start_date == end_date:
         if start_date == fecha_actual:
             # Si el día es hoy, el tiempo empieza desde ahora + 1 hora hasta las 23:59
@@ -20,6 +21,10 @@ def pronostico(location_id, start_date, end_date):
             # Si es cualquier otro día, empieza desde las 0:00 hasta las 23:59 del día seleccionado
             start_date = datetime(start_date.year, start_date.month, start_date.day, 0, 0, 0)
             end_date = datetime(end_date.year, end_date.month, end_date.day, 23, 59, 59)
+    else:
+        # Para intervalos de varios días, establece las horas correctas para cubrir ambos días
+        start_date = datetime(start_date.year, start_date.month, start_date.day, 0, 0, 0)
+        end_date = datetime(end_date.year, end_date.month, end_date.day, 23, 59, 59)
 
     params = {
         'API_KEY': API_KEY,
