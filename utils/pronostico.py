@@ -8,15 +8,21 @@ API_KEY = st.secrets["API_KEY"]
 base_url = 'https://servizos.meteogalicia.gal/apiv4/getNumericForecastInfo'
 
 def pronostico(location_id, start_date, end_date):
-    # Obtén la hora actual correctamente
     fecha_actual = datetime.now().date()
 
+    # Verifica si el rango es de un solo día
     if start_date == fecha_actual:
-        start_date = datetime.now()  # Si el día es hoy, el tiempo empieza desde ahora
-        if start_date.date() == end_date.date():  # Si es el mismo día
+        start_date = datetime.now()
+        if start_date == end_date:
+            # Si el día es hoy, el tiempo empieza desde ahora
             end_date = datetime(start_date.year, start_date.month, start_date.day, 23, 59, 59)
+        else:
+            # Si es cualquier otro día, empieza desde las 0:00 hasta las 23:59 del día seleccionado
+            end_date = datetime(end_date.year, end_date.month, end_date.day, 23, 59, 59)
     else:
+        # Para intervalos de varios días, establece las horas correctas para cubrir ambos días
         start_date = datetime(start_date.year, start_date.month, start_date.day, 0, 0, 0)
+        # Ahora establece el `end_date` a las 23:59:59 del último día en lugar de sumar un día completo
         end_date = datetime(end_date.year, end_date.month, end_date.day, 23, 59, 59)
 
 
