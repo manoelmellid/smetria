@@ -12,7 +12,7 @@ def pronostico(location_id, start_date, end_date):
     fecha_actual = datetime.now().date()
 
     if start_date == fecha_actual:
-    start_date = datetime.now()  # Si el día es hoy, el tiempo empieza desde ahora
+        start_date = datetime.now()  # Si el día es hoy, el tiempo empieza desde ahora
         if start_date.date() == end_date.date():  # Si es el mismo día
             end_date = datetime(start_date.year, start_date.month, start_date.day, 23, 59, 59)
     else:
