@@ -29,7 +29,7 @@ layer = pdk.Layer(
 
 # Agregar etiquetas de texto (Tipo de incidencia) sobre los puntos
 tooltip = {
-    "html": "<b>Tipo:</b> {tipo_incidencia}",  # Mostrar el tipo de cada ubicación
+    "html": "<b>PELIGRO - </b> {tipo_incidencia}",  # Mostrar el tipo de cada ubicación
     "style": {"color": "white", "backgroundColor": "rgba(0,0,0,0.7)", "padding": "5px"}
 }
 
