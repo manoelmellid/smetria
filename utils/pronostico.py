@@ -25,8 +25,8 @@ def pronostico(location_id, start_date, end_date):
         # Para intervalos de varios días, establece las horas correctas para cubrir ambos días
         start_date = datetime(start_date.year, start_date.month, start_date.day, 0, 0, 0)
         
-        # Incrementa el `end_date` al siguiente día para incluir todo el día solicitado
-        end_date = datetime(end_date.year, end_date.month, end_date.day, 23, 59, 59) + timedelta(days=1)
+        # Ahora establece el `end_date` a las 23:59:59 del último día en lugar de sumar un día completo
+        end_date = datetime(end_date.year, end_date.month, end_date.day, 23, 59, 59)
 
     params = {
         'API_KEY': API_KEY,
