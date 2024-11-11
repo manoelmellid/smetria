@@ -20,9 +20,9 @@ today = datetime.datetime.now()
 # Selección de fechas
 d = st.date_input(
     "Selecciona el periodo de tiempo",
-    (today, today + datetime.timedelta(days=4)),  # Por defecto
+    (today, today + datetime.timedelta(days=3)),  # Por defecto
     today,
-    today + datetime.timedelta(days=4),  # Fecha máxima
+    today + datetime.timedelta(days=3),  # Fecha máxima
     format="DD/MM/YYYY",
 )
 
