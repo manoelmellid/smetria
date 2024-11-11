@@ -4,7 +4,7 @@ import pydeck as pdk
 from utils import github as git
 
 st.header("Mapa de visualización de incidencias")
-
+st.error("Esta sección de SMETRIA está en desarrollo todavía")
 # ---------------------------------------------------------------------------------
 # Cargar los datos con solo las columnas necesarias
 df = git.cargar_datos(columnas_necesarias=['id', 'estado', 'fecha', 'latitud', 'longitud', 'tipo_incidencia'])
