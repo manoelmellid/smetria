@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import datetime
 
 st.header("Modelo predictivo de ocupación")
 
@@ -28,9 +29,6 @@ tipo_opc = st.selectbox('Selecciona el concello:', concellos)
 if tipo_opc in albergues_por_concello:
     albergues = albergues_por_concello[tipo_opc]
     albergue_selec = st.selectbox('Selecciona el albergue:', albergues)
-
-import streamlit as st
-import datetime
 
 # Fecha de hoy
 today = datetime.date.today()
