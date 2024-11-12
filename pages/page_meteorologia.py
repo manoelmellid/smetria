@@ -15,14 +15,14 @@ end_date = None
 days=None
 # Entradas del formulario
 input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
-today = datetime.datetime.now()
 
-# Selección de fechas
-d = st.date_input(
-    "Selecciona el periodo de tiempo",
-    (today, today + datetime.timedelta(days=3)),  # Por defecto
-    today,
-    today + datetime.timedelta(days=3),  # Fecha máxima
+today = datetime.date.today()
+# Selección de solo un día
+día = st.date_input(
+    "Selecciona el día",
+    today,  # Por defecto selecciona el día de hoy
+    min_value=today,  # Fecha mínima (hoy)
+    max_value=today,  # Fecha máxima (hoy)
     format="DD/MM/YYYY",
 )
 
