@@ -28,3 +28,18 @@ tipo_opc = st.selectbox('Selecciona el concello:', concellos)
 if tipo_opc in albergues_por_concello:
     albergues = albergues_por_concello[tipo_opc]
     albergue_selec = st.selectbox('Selecciona el albergue:', albergues)
+
+import streamlit as st
+import datetime
+
+# Fecha de hoy
+today = datetime.date.today()
+
+# Selección de solo un día
+dia = st.date_input(
+    "Selecciona el día",
+    today,  # Por defecto selecciona el día de hoy
+    min_value=today,  # Fecha mínima (hoy)
+    max_value=today,  # Fecha máxima (hoy)
+    format="DD/MM/YYYY",
+)
