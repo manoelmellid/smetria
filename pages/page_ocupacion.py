@@ -40,10 +40,7 @@ dia = st.date_input(
     min_value=today,  # Fecha mínima (hoy)
     format="DD/MM/YYYY",
 )
-# Botón para enviar el formulario
-with st.form(key='my_form'):
-    submit_button = st.form_submit_button(label='Enviar')
 
-if st.button("my_form"):
+if st.button("Enviar"):
     st.write(dia)
     st.write(tipo_opc)
