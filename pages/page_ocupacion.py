@@ -40,6 +40,5 @@ dia = st.date_input(
     "Selecciona el día",
     today,  # Por defecto selecciona el día de hoy
     min_value=today,  # Fecha mínima (hoy)
-    max_value=today,  # Fecha máxima (hoy)
     format="DD/MM/YYYY",
 )
