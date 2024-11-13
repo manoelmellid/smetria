@@ -38,7 +38,7 @@ def add_marker_with_dynamic_size(map, df):
         tipo_incidencia = row['tipo_incidencia']
         tipo_alerta = row['tipo_alerta']
       
-        if tipo_alerta == "Alta":
+        if tipo_alerta == "Baja":
           color='yellow'
         elif tipo_alerta == "Media":
           color='orange'
