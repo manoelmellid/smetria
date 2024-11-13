@@ -1,6 +1,6 @@
 id,estado,fecha,nombre,telefono,email,latitud,longitud,tipo_incidencia,tipo_alerta,comentario
 0b292bb7-52bc-4209-87ef-1ce9de9f2cb3,Activo,2024-11-07 11:19:50.632462,jose,612345678,jose@hotmail.com,42.34350830145231,-8.608776537319756,Fuente sin agua,Baja,"Hola soy Jose"
-afabfdd6-ad52-4ced-964c-2d9da490271b,Inactivo,2024-11-07 11:49:49.849462,borja,612345678,borja@gmail.com,42.437313060926925,-8.643336881491107,Accidente en el camino,"hola esto es la millonésima prueba"
+afabfdd6-ad52-4ced-964c-2d9da490271b,Inactivo,2024-11-07 11:49:49.849462,borja,612345678,borja@gmail.com,42.437313060926925,-8.643336881491107,Accidente en el camino,Alta,"hola esto es la millonésima prueba"
 e0c1d683-e2b6-4ae0-b9aa-a7670328108c,Solucionado,2024-11-07 16:37:55.705025,carol,123456789,carol@yahoo.com,42.16967433849035,-8.618763351909553,Desprendimiento de tierra,Media,"Hoy es jueves me voy a casa"
 811ca53b-247b-4a03-83bf-eb3dea66bd9b,Activo,2024-11-07 18:49:38.531398,Carolina Rey Conesa,722345666,carolina@gmail.com,42.539479603365216,-8.643950412648582,Incendio,Alta,"Se incendió el bosque"
 100b491b-b175-44d8-a84f-b2da9362edc2,Activo,2024-11-09 16:38:38.053853,pepe,612345678,pepe@yahoo.com,42.829498721652094,-8.605827142066591,Crecida de río,Alta,"crece el río, me mojo"
