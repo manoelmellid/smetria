@@ -10,6 +10,22 @@ if st.session_state.logged_in == False:
   st.success("Bienvenido al área privada de Flujos - SMETRIA")
   input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
 
+import streamlit as st
+import pandas as pd
+
+# Leer el archivo CSV
+opciones_df = pd.read_csv('opciones_incidentes.csv')
+
+# Crear el selectbox con las opciones del CSV (suponiendo que las columnas se llaman 'tipo' y 'alerta')
+tipo_opc = st.selectbox('Selecciona el tipo de incidencia:', opciones_df['tipo'].tolist())
+
+# Encontrar la alerta correspondiente al tipo seleccionado
+alerta_opc = opciones_df.loc[opciones_df['tipo'] == tipo_opc, 'alerta'].iloc[0]
+
+# Mostrar la opción seleccionada y la alerta
+st.write(f'Has seleccionado: {tipo_opc}')
+st.write(f'Alerta: {alerta_opc}')
+
 import pandas as pd
 import folium
 import streamlit as st
