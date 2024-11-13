@@ -7,3 +7,5 @@ tipo,alerta
 "Accidente en el camino",Alta
 "Animales sueltos",Media
 "Fuente sin agua",Baja
+"Condiciones meteorológicas extremas",Alta
+"Rutas mal señalizadas",Media
