@@ -14,7 +14,6 @@ import pandas as pd
 import folium
 import streamlit as st
 from folium.plugins import MarkerCluster
-from geopy.distance import geodesic
 
 # Cargar el archivo CSV
 df = pd.read_csv("respuestas.csv")
@@ -22,27 +21,28 @@ df = pd.read_csv("respuestas.csv")
 # Filtrar solo los registros donde el estado es "Activo"
 df_activo = df[df['estado'] == 'Activo']
 
+# Calcular los límites geográficos de las ubicaciones (min y max de latitud y longitud)
+min_lat = df_activo['latitud'].min()
+max_lat = df_activo['latitud'].max()
+min_lon = df_activo['longitud'].min()
+max_lon = df_activo['longitud'].max()
+
 # Calcular el centro del mapa (promedio de latitudes y longitudes)
-mean_lat = df_activo['latitud'].mean()
-mean_lon = df_activo['longitud'].mean()
+center_lat = (min_lat + max_lat) / 2
+center_lon = (min_lon + max_lon) / 2
 
-# Calcular el zoom adecuado basado en la dispersión de los puntos
-# Vamos a medir la distancia máxima entre los puntos para determinar el zoom
-max_distance = 0
-for _, row1 in df_activo.iterrows():
-    for _, row2 in df_activo.iterrows():
-        point1 = (row1['latitud'], row1['longitud'])
-        point2 = (row2['latitud'], row2['longitud'])
-        distance = geodesic(point1, point2).km  # Distancia en kilómetros
-        if distance > max_distance:
-            max_distance = distance
+# Calcular el zoom inicial basado en la distancia entre los puntos
+# Vamos a calcular un zoom que garantice que todos los puntos estén visibles
+# Este es un truco para ajustarlo dinámicamente. Podríamos calcular el zoom de manera manual
+# pero folium no ofrece una función automática para ello.
+map_zoom = 10  # Establecer un zoom básico
+if (max_lat - min_lat) > 10 or (max_lon - min_lon) > 10:
+    map_zoom = 5  # Si el rango geográfico es muy grande, usar un zoom menor
+elif (max_lat - min_lat) < 2 and (max_lon - min_lon) < 2:
+    map_zoom = 12  # Si el rango geográfico es pequeño, usar un zoom mayor
 
-# Usar la distancia máxima para calcular un nivel de zoom
-# Cuanto mayor sea la distancia, menor será el zoom
-zoom_level = 10 if max_distance < 50 else (12 if max_distance < 100 else 8)
-
-# Crear el mapa base con el centro calculado y el zoom ajustado
-m = folium.Map(location=[mean_lat, mean_lon], zoom_start=zoom_level)
+# Crear un mapa base centrado en el centro calculado
+m = folium.Map(location=[center_lat, center_lon], zoom_start=map_zoom)
 
 # Crear un grupo de marcadores
 marker_cluster = MarkerCluster().add_to(m)
@@ -79,6 +79,7 @@ add_marker_with_dynamic_size(m, df_activo)
 
 # Mostrar el mapa en Streamlit
 st.components.v1.html(m._repr_html_(), height=500)
+
 
 
 
