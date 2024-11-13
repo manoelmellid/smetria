@@ -20,7 +20,7 @@ if tipo_opc == 'Cambio de estado':
     if st.button("Marcar como Solucionado"):
         if id_input:
             if id_input in df['id'].values:
-                git.actualizar(id_input, estado, "Solucionado")
+                git.actualizar(id_input, 'estado', "Solucionado")
             else:
                 st.error(f"No se encontró una incidencia con el ID {id_input}.")
         else:
