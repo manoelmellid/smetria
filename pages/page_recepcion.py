@@ -22,3 +22,17 @@ if st.session_state.logged_in == False:
                 st.error(f"No se encontró una incidencia con el ID {id_input}.")
         else:
             st.error("Por favor, ingrese un ID para la incidencia.")
+
+tipo_opc = st.selectbox('Selecciona la opción:', ['Cambio de estado', 'Cambio del nivel de alerta', 'Cambio de tipo'])
+
+if tipo_opc == 'Cambio de estado':
+    if st.button("Marcar como Solucionado"):
+        if id_input:
+            if id_input in df['id'].values:
+                git.actualizar_estado(id_input)
+            else:
+                st.error(f"No se encontró una incidencia con el ID {id_input}.")
+        else:
+            st.error("Por favor, ingrese un ID para la incidencia.")
+elif tipo_opc == 'Cambio del nivel de alerta':
+    st.warning("Gracias por colaborar")
