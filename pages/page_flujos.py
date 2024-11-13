@@ -22,7 +22,7 @@ df = pd.read_csv("respuestas.csv")
 # Filtrar solo los registros donde el estado es "Activo"
 df_activo = df[df['estado'] == 'Activo']
 
-# Crear un mapa base
+# Crear un mapa base (cualquier coordenada inicial, luego ajustamos el zoom)
 m = folium.Map(location=[20.0, 0.0], zoom_start=10)
 
 # Crear un grupo de marcadores
@@ -30,6 +30,9 @@ marker_cluster = MarkerCluster().add_to(m)
 
 # Función para añadir marcadores con Tooltips y Popups
 def add_marker_with_dynamic_size(map, df):
+    # Lista para almacenar las coordenadas de todos los puntos
+    bounds = []
+    
     for _, row in df.iterrows():
         lat, lon = row['latitud'], row['longitud']
         fecha = row['fecha']
@@ -54,12 +57,20 @@ def add_marker_with_dynamic_size(map, df):
         
         # Añadir el marcador al mapa
         marker.add_to(map)
+        
+        # Añadir las coordenadas del punto a la lista de bounds
+        bounds.append([lat, lon])
+    
+    # Ajustar el zoom y el centro para que se ajusten a todos los puntos
+    if bounds:
+        map.fit_bounds(bounds)
 
 # Añadir los marcadores solo para los registros activos
 add_marker_with_dynamic_size(m, df_activo)
 
 # Mostrar el mapa en Streamlit
 st.components.v1.html(m._repr_html_(), height=500)
+
 
 
 
