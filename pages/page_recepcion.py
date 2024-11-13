@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 from utils import general as gen, github as git
 
 st.header("Sistema de recepción de incidencias")
