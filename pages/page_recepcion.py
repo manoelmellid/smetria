@@ -13,17 +13,17 @@ if st.session_state.logged_in == False:
     # Mostrar la tabla en Streamlit
     st.write(df)
     
-tipo_opc = st.selectbox('Selecciona la opción:', ['Cambio de estado', 'Cambio del nivel de alerta', 'Cambio de tipo'])
-
-if tipo_opc == 'Cambio de estado':
-    id_input = st.text_input("Ingrese el ID de la incidencia a solucionar:")
-    if st.button("Marcar como Solucionado"):
-        if id_input:
-            if id_input in df['id'].values:
-                git.actualizar(id_input, 'estado', "Solucionado")
+    tipo_opc = st.selectbox('Selecciona la opción:', ['Cambio de estado', 'Cambio del nivel de alerta', 'Cambio de tipo'])
+    
+    if tipo_opc == 'Cambio de estado':
+        id_input = st.text_input("Ingrese el ID de la incidencia a solucionar:")
+        if st.button("Marcar como Solucionado"):
+            if id_input:
+                if id_input in df['id'].values:
+                    git.actualizar(id_input, 'estado', "Solucionado")
+                else:
+                    st.error(f"No se encontró una incidencia con el ID {id_input}.")
             else:
-                st.error(f"No se encontró una incidencia con el ID {id_input}.")
-        else:
-            st.error("Por favor, ingrese un ID para la incidencia.")
-elif tipo_opc == 'Cambio del nivel de alerta':
-    st.warning("Gracias por colaborar")
+                st.error("Por favor, ingrese un ID para la incidencia.")
+    elif tipo_opc == 'Cambio del nivel de alerta':
+        st.warning("Gracias por colaborar")
