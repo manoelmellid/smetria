@@ -46,7 +46,7 @@ if st.session_state.logged_in == False:
         opciones_df = pd.read_csv('opciones_incidencias.csv')
         id_input = st.text_input("Ingrese el ID de la incidencia a modificar:")
         cambio_tipo = st.selectbox('Cambio a realizar:', opciones_df['tipo'].tolist())
-        cambio_alerta = opciones_df.loc[opciones_df['tipo'] == tipo_opc, 'alerta'].iloc[0]
+        cambio_alerta = opciones_df.loc[opciones_df['tipo'] == cambio_tipo, 'alerta'].iloc[0]
         if st.button("Cambiar tipo de incidencia"):
             if id_input:
                 if id_input in df['id'].values:
