@@ -105,33 +105,46 @@ def guardar_respuesta_en_csv(nombre, telefono, email, input_text, tipo_opc, mens
     else:
         print(f"Error al actualizar el archivo en GitHub: {response.status_code} - {response.text}")
 
-def actualizar_estado(respuesta_id):
-    # Cargar los datos del CSV
+def actualizar(id_input, columna, valor):
+    # Configurar los encabezados de autenticación
     headers = {
         "Authorization": f"token {github_token}",
         "Accept": "application/vnd.github.v3+json"
     }
+    
+    # Obtener el contenido del archivo desde GitHub
     response = requests.get(url, headers=headers)
     
     # Verificar si la solicitud fue exitosa
     if response.status_code == 200:
-        # Decodificar el contenido base64
         file_info = response.json()
+        
+        # Decodificar el contenido base64
         content = io.StringIO(base64.b64decode(file_info['content']).decode('utf-8'))
         
-        # Leer las filas existentes
+        # Leer el contenido CSV y buscar la columna correspondiente
         reader = csv.reader(content)
         filas = list(reader)
+        encabezados = filas[0]
         
-        # Buscar la fila con el id correspondiente
-        for fila in filas:
-            if fila[0] == respuesta_id:  # La primera columna es el ID
-                # Cambiar el estado a 'Solucionado'
-                fila[1] = 'Solucionado'  # La segunda columna es el estado
+        # Verificar si la columna existe
+        if columna not in encabezados:
+            print(f"La columna '{columna}' no existe en el archivo.")
+            return
+        
+        # Encontrar el índice de la columna que se va a editar
+        indice_columna = encabezados.index(columna)
+        
+        # Buscar la fila con el ID correspondiente
+        id_encontrado = False
+        for fila in filas[1:]:  # Omitir encabezados
+            if fila[0] == id_input:  # La primera columna es el ID
+                fila[indice_columna] = valor  # Asignar el nuevo valor
+                id_encontrado = True
                 break
-        else:
-            # Si no se encuentra el id, informar al usuario
-            st.error(f"No se encontró el id {respuesta_id} en el archivo.")
+        
+        if not id_encontrado:
+            print(f"No se encontró el id {id_input} en el archivo.")
             return
         
         # Escribir el contenido CSV actualizado en un buffer de texto
@@ -140,13 +153,12 @@ def actualizar_estado(respuesta_id):
         writer.writerows(filas)
         content_encoded = base64.b64encode(output.getvalue().encode('utf-8')).decode('utf-8')
         
-        # Subir el archivo actualizado a GitHub
+        # Preparar los datos para la solicitud de actualización
         data = {
-            "message": f"Actualizar estado a Solucionado para ID: {respuesta_id}",
-            "content": content_encoded
+            "message": f"Actualizar {columna} a '{valor}' para ID: {id_input}",
+            "content": content_encoded,
+            "sha": file_info["sha"]  # SHA actual del archivo en GitHub
         }
-        if response.status_code == 200:
-            data["sha"] = file_info["sha"]  # SHA actual del archivo en GitHub
         
         # Realizar la solicitud de actualización
         response = requests.put(url, json=data, headers=headers)
@@ -156,5 +168,5 @@ def actualizar_estado(respuesta_id):
         else:
             print(f"Error al actualizar el archivo en GitHub: {response.status_code} - {response.text}")
     else:
-        st.error(f"Error al obtener el archivo desde GitHub. Código de estado: {response.status_code}")
+        print(f"Error al obtener el archivo desde GitHub. Código de estado: {response.status_code}")
 
