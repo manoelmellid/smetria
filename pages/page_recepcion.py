@@ -17,10 +17,11 @@ if st.session_state.logged_in == False:
     
     if tipo_opc == 'Cambio de estado':
         id_input = st.text_input("Ingrese el ID de la incidencia a solucionar:")
+        cambio_estado = st.selectbox('Cambio a realizar:', ['Solucionado', 'Activo', 'Inactivo'])
         if st.button("Marcar como Solucionado"):
             if id_input:
                 if id_input in df['id'].values:
-                    git.actualizar(id_input, 'estado', "Solucionado")
+                    git.actualizar(id_input, 'estado', cambio_estado)
                 else:
                     st.error(f"No se encontró una incidencia con el ID {id_input}.")
             else:
