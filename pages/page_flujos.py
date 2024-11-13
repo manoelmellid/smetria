@@ -37,6 +37,7 @@ def add_marker_with_dynamic_size(map, df):
         lat, lon = row['latitud'], row['longitud']
         tipo_incidencia = row['tipo_incidencia']
         tipo_alerta = row['tipo_alerta']
+        id_inci = row['id']
       
         if tipo_alerta == "Baja":
           color='yellow'
@@ -61,8 +62,8 @@ def add_marker_with_dynamic_size(map, df):
         marker.add_child(folium.Tooltip(tooltip_text))
         
         # Popup que aparece al hacer clic en el marcador
-        #popup_text = f"tipo_alerta: {tipo_alerta}<br>Tipo de Incidencia: {tipo_incidencia}"
-        #marker.add_child(folium.Popup(popup_text))
+        popup_text = f"Id: {id_inci}<br>Tipo de Incidencia: {tipo_incidencia}"
+        marker.add_child(folium.Popup(popup_text))
         
         # Añadir el marcador al mapa
         marker.add_to(map)
