@@ -14,7 +14,7 @@ import streamlit as st
 import pandas as pd
 
 # Leer el archivo CSV
-opciones_df = pd.read_csv('opciones_incidentes.csv')
+opciones_df = pd.read_csv('opciones_incidencias.csv')
 
 # Crear el selectbox con las opciones del CSV (suponiendo que las columnas se llaman 'tipo' y 'alerta')
 tipo_opc = st.selectbox('Selecciona el tipo de incidencia:', opciones_df['tipo'].tolist())
