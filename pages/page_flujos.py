@@ -14,16 +14,35 @@ import pandas as pd
 import folium
 import streamlit as st
 from folium.plugins import MarkerCluster
+from geopy.distance import geodesic
 
 # Cargar el archivo CSV
-# Asume que el archivo CSV tiene el formato mencionado, ajusta el path si es necesario
-df = pd.read_csv("respuestas.csv")
+df = pd.read_csv("tu_archivo.csv")
 
 # Filtrar solo los registros donde el estado es "Activo"
 df_activo = df[df['estado'] == 'Activo']
 
-# Crear un mapa base
-m = folium.Map(location=[20.0, 0.0], zoom_start=2)
+# Calcular el centro del mapa (promedio de latitudes y longitudes)
+mean_lat = df_activo['latitud'].mean()
+mean_lon = df_activo['longitud'].mean()
+
+# Calcular el zoom adecuado basado en la dispersión de los puntos
+# Vamos a medir la distancia máxima entre los puntos para determinar el zoom
+max_distance = 0
+for _, row1 in df_activo.iterrows():
+    for _, row2 in df_activo.iterrows():
+        point1 = (row1['latitud'], row1['longitud'])
+        point2 = (row2['latitud'], row2['longitud'])
+        distance = geodesic(point1, point2).km  # Distancia en kilómetros
+        if distance > max_distance:
+            max_distance = distance
+
+# Usar la distancia máxima para calcular un nivel de zoom
+# Cuanto mayor sea la distancia, menor será el zoom
+zoom_level = 10 if max_distance < 50 else (12 if max_distance < 100 else 8)
+
+# Crear el mapa base con el centro calculado y el zoom ajustado
+m = folium.Map(location=[mean_lat, mean_lon], zoom_start=zoom_level)
 
 # Crear un grupo de marcadores
 marker_cluster = MarkerCluster().add_to(m)
@@ -60,6 +79,7 @@ add_marker_with_dynamic_size(m, df_activo)
 
 # Mostrar el mapa en Streamlit
 st.components.v1.html(m._repr_html_(), height=500)
+
 
 
 
