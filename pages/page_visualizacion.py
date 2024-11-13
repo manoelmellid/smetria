@@ -7,7 +7,7 @@ st.header("Mapa de visualización de incidencias")
 st.error("Esta sección de SMETRIA está en desarrollo todavía")
 # ---------------------------------------------------------------------------------
 # Cargar los datos con solo las columnas necesarias
-df = git.cargar_datos(columnas_necesarias=['id', 'estado', 'fecha', 'latitud', 'longitud', 'tipo_incidencia'])
+df = git.cargar_datos(columnas_necesarias=['id', 'estado', 'fecha', 'latitud', 'longitud', 'tipo_incidencia', 'tipo_alerta'])
 
 # Filtrar el DataFrame para que solo contenga filas con 'estado' == 'Activo'
 df_activo = df[df['estado'] == 'Activo']
