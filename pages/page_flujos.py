@@ -16,33 +16,14 @@ import streamlit as st
 from folium.plugins import MarkerCluster
 
 # Cargar el archivo CSV
+# Asume que el archivo CSV tiene el formato mencionado, ajusta el path si es necesario
 df = pd.read_csv("respuestas.csv")
 
 # Filtrar solo los registros donde el estado es "Activo"
 df_activo = df[df['estado'] == 'Activo']
 
-# Calcular los límites geográficos de las ubicaciones (min y max de latitud y longitud)
-min_lat = df_activo['latitud'].min()
-max_lat = df_activo['latitud'].max()
-min_lon = df_activo['longitud'].min()
-max_lon = df_activo['longitud'].max()
-
-# Calcular el centro del mapa (promedio de latitudes y longitudes)
-center_lat = (min_lat + max_lat) / 2
-center_lon = (min_lon + max_lon) / 2
-
-# Calcular el zoom inicial basado en la distancia entre los puntos
-# Vamos a calcular un zoom que garantice que todos los puntos estén visibles
-# Este es un truco para ajustarlo dinámicamente. Podríamos calcular el zoom de manera manual
-# pero folium no ofrece una función automática para ello.
-map_zoom = 10  # Establecer un zoom básico
-if (max_lat - min_lat) > 10 or (max_lon - min_lon) > 10:
-    map_zoom = 5  # Si el rango geográfico es muy grande, usar un zoom menor
-elif (max_lat - min_lat) < 2 and (max_lon - min_lon) < 2:
-    map_zoom = 12  # Si el rango geográfico es pequeño, usar un zoom mayor
-
-# Crear un mapa base centrado en el centro calculado
-m = folium.Map(location=[center_lat, center_lon], zoom_start=map_zoom)
+# Crear un mapa base
+m = folium.Map(location=[20.0, 0.0], zoom_start=10)
 
 # Crear un grupo de marcadores
 marker_cluster = MarkerCluster().add_to(m)
