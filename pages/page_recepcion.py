@@ -13,18 +13,46 @@ if st.session_state.logged_in == False:
     # Mostrar la tabla en Streamlit
     st.write(df)
     
-    tipo_opc = st.selectbox('Selecciona la opción:', ['Cambio de estado', 'Cambio del nivel de alerta', 'Cambio de tipo'])
+    tipo_opc = st.selectbox('Selecciona la opción:', ['Cambio de estado', 'Cambio del nivel de alerta', 'Cambio de tipo de incidencia'])
     
     if tipo_opc == 'Cambio de estado':
-        id_input = st.text_input("Ingrese el ID de la incidencia a solucionar:")
+        id_input = st.text_input("Ingrese el ID de la incidencia a modificar:")
         cambio_estado = st.selectbox('Cambio a realizar:', ['Solucionado', 'Activo', 'Inactivo'])
-        if st.button("Marcar como Solucionado"):
+        if st.button("Cambiar estado"):
             if id_input:
                 if id_input in df['id'].values:
-                    git.actualizar(id_input, 'estado', cambio_estado)
+                    st.warning("Esta herramienta es funcional pero está descactivada temporalmente")
+                    #git.actualizar(id_input, 'estado', cambio_estado)
                 else:
                     st.error(f"No se encontró una incidencia con el ID {id_input}.")
             else:
                 st.error("Por favor, ingrese un ID para la incidencia.")
+                
     elif tipo_opc == 'Cambio del nivel de alerta':
-        st.warning("Gracias por colaborar")
+        id_input = st.text_input("Ingrese el ID de la incidencia a modificar:")
+        cambio_alerta = st.selectbox('Cambio a realizar:', ['Alta', 'Media', 'Baja'])
+        if st.button("Cambiar nivel de alerta"):
+            if id_input:
+                if id_input in df['id'].values:
+                    st.warning("Esta herramienta es funcional pero está descactivada temporalmente")
+                    #git.actualizar(id_input, 'tipo_alerta', cambio_alerta)
+                else:
+                    st.error(f"No se encontró una incidencia con el ID {id_input}.")
+            else:
+                st.error("Por favor, ingrese un ID para la incidencia.")
+                
+    elif tipo_opc == 'Cambio de tipo de incidencia':
+        opciones_df = pd.read_csv('opciones_incidencias.csv')
+        id_input = st.text_input("Ingrese el ID de la incidencia a modificar:")
+        cambio_tipo = st.selectbox('Cambio a realizar:', opciones_df['tipo'].tolist())
+        cambio_alerta = opciones_df.loc[opciones_df['tipo'] == tipo_opc, 'alerta'].iloc[0]
+        if st.button("Cambiar tipo de incidencia"):
+            if id_input:
+                if id_input in df['id'].values:
+                    st.warning("Esta herramienta es funcional pero está descactivada temporalmente")
+                    #git.actualizar(id_input, 'tipo', cambio_tipo)
+                    #git.actualizar(id_input, 'tipo_alerta', cambio_alerta)
+                else:
+                    st.error(f"No se encontró una incidencia con el ID {id_input}.")
+            else:
+                st.error("Por favor, ingrese un ID para la incidencia.")
