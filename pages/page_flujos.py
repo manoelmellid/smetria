@@ -17,8 +17,7 @@ from folium.plugins import MarkerCluster
 
 # Cargar el archivo CSV
 # Asume que el archivo CSV tiene el formato mencionado, ajusta el path si es necesario
-# Por ejemplo: df = pd.read_csv('ruta/a/tu/archivo.csv')
-df = pd.read_csv("tu_archivo.csv")
+df = pd.read_csv("respuestas.csv")
 
 # Filtrar solo los registros donde el estado es "Activo"
 df_activo = df[df['estado'] == 'Activo']
