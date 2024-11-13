@@ -7,3 +7,4 @@ pydeck
 openrouteservice
 requests
 matplotlib
+folium
