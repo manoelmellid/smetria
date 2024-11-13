@@ -35,25 +35,34 @@ def add_marker_with_dynamic_size(map, df):
     
     for _, row in df.iterrows():
         lat, lon = row['latitud'], row['longitud']
-        fecha = row['fecha']
         tipo_incidencia = row['tipo_incidencia']
-        
+        tipo_alerta = row['tipo_alerta']
+      
+        if tipo_alerta == "Alta":
+          color='yellow'
+        elif tipo_alerta == "Media":
+          color='orange'
+        elif tipo_alerta == "Alta":
+          color='red'
+        else:
+          color='blue'
+          
         # Crear un marcador con un tamaño dinámico en función del zoom
         marker = folium.CircleMarker(
             location=[lat, lon], 
             radius=8, 
-            color='blue', 
+            color=color, 
             fill=True, 
             fill_opacity=0.6
         )
         
         # Tooltip que aparece al pasar el ratón por encima
-        tooltip_text = f"Fecha: {fecha}\nTipo de Incidencia: {tipo_incidencia}"
+        tooltip_text = f"Tipo de Incidencia: {tipo_incidencia}"
         marker.add_child(folium.Tooltip(tooltip_text))
         
         # Popup que aparece al hacer clic en el marcador
-        popup_text = f"Fecha: {fecha}<br>Tipo de Incidencia: {tipo_incidencia}"
-        marker.add_child(folium.Popup(popup_text))
+        #popup_text = f"tipo_alerta: {tipo_alerta}<br>Tipo de Incidencia: {tipo_incidencia}"
+        #marker.add_child(folium.Popup(popup_text))
         
         # Añadir el marcador al mapa
         marker.add_to(map)
