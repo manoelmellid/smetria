@@ -17,7 +17,7 @@ from folium.plugins import MarkerCluster
 from geopy.distance import geodesic
 
 # Cargar el archivo CSV
-df = pd.read_csv("tu_archivo.csv")
+df = pd.read_csv("respuestas.csv")
 
 # Filtrar solo los registros donde el estado es "Activo"
 df_activo = df[df['estado'] == 'Activo']
