@@ -65,6 +65,7 @@ if submit_button:
     else:
         # Filtrar el dataframe por tipo de ubicación seleccionado
         df_filtrado = gdf[gdf['tipo'].isin(tipo_seleccionado)]
+        st.write(df_filtrado)
 
         # Calcular distancias
         punto_usuario = (latitud, longitud)
