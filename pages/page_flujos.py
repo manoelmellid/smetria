@@ -61,12 +61,12 @@ max_km_value = concam.query_max_km_value()
 
 # Crear un formulario para procesar la búsqueda al enviar
 with st.form(key='my_form'):
-    submit_button = st.form_submit_button(label='Enviar')
+  submit_button = st.form_submit_button(label='Enviar')
 
 # Usamos st.session_state para controlar el estado entre ejecuciones
 if 'longitud' in st.session_state and 'latitud' in st.session_state:
-    longitud = st.session_state.longitud
-    latitud = st.session_state.latitud
+  longitud = st.session_state.longitud
+  latitud = st.session_state.latitud
 
 if submit_button:
   # Procesar la ubicación solo si el botón es presionado
@@ -77,7 +77,7 @@ if submit_button:
   st.session_state.latitud = latitud
 
   if longitud is None and latitud is None:
-      st.error("No se encontraron resultados para el valor de Km proporcionado.")
+    st.error("No se encontraron resultados para el valor de Km proporcionado.")
   else:
     # Filtrar el dataframe por tipo de ubicación seleccionado
     df_filtrado = gdf[gdf['tipo'].isin(tipo_seleccionado)]
@@ -85,7 +85,7 @@ if submit_button:
     # Calcular distancias
     punto_usuario = (latitud, longitud)
     df_filtrado['distancia_km'] = df_filtrado['geometry'].apply(
-        lambda x: geodesic(punto_usuario, (x.y, x.x)).km
+      lambda x: geodesic(punto_usuario, (x.y, x.x)).km
     )
     df_filtrado = df_filtrado[df_filtrado['distancia_km'] <= radio_km]
     st.write(df_filtrado)
@@ -96,37 +96,37 @@ if submit_button:
 
     # Añadir marcadores para cada ubicación
     for _, row in df_filtrado.iterrows():
-        lat, lon = row['lat'], row['lon']
-        tipo_ubicacion = row['tipo']
-        nombre = row['nome']
-        distancia = row['distancia_km']
+      lat, lon = row['lat'], row['lon']
+      tipo_ubicacion = row['tipo']
+      nombre = row['nome']
+      distancia = row['distancia_km']
         
         # Color del marcador según el tipo de ubicación
         if tipo_ubicacion == tipos[0]:
-            color = 'blue'
+          color = 'blue'
         elif tipo_ubicacion == tipos[1]:
-            color = 'green'
+          color = 'green'
         elif tipo_ubicacion == tipos[2]:
-            color = 'purple'
+          color = 'purple'
         else:
-            color = 'orange'
+          color = 'orange'
 
         # Crear marcador con Tooltip y Popup
         folium.CircleMarker(
-            location=[lat, lon],
-            radius=8,
-            color=color,
-            fill=True,
-            fill_opacity=0.6,
-            tooltip=f"{nombre} - {distancia:.2f} km",
-            popup=f"Ubicación: {nombre}<br>Tipo: {tipo_ubicacion}<br>Distancia: {distancia:.2f} km"
+          location=[lat, lon],
+          radius=8,
+          color=color,
+          fill=True,
+          fill_opacity=0.6,
+          tooltip=f"{nombre} - {distancia:.2f} km",
+          popup=f"Ubicación: {nombre}<br>Tipo: {tipo_ubicacion}<br>Distancia: {distancia:.2f} km"
         ).add_to(marker_cluster)
 
     # Añadir un marcador rojo para la posición del usuario
     folium.Marker(
-        location=[latitud, longitud],
-        icon=folium.Icon(color='red', icon='user'),
-        tooltip="Tu posición"
+      location=[latitud, longitud],
+      icon=folium.Icon(color='red', icon='user'),
+      tooltip="Tu posición"
     ).add_to(m)
 
     # Mostrar el mapa en Streamlit
