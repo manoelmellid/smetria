@@ -90,48 +90,49 @@ if submit_button:
     df_filtrado = df_filtrado[df_filtrado['distancia_km'] <= radio_km]
     st.write(df_filtrado)
 
-    # Crear mapa base centrado en la ubicación del usuario
+    # Crear el mapa base centrado en la ubicación del usuario
     m = folium.Map(location=[latitud, longitud], zoom_start=12)
     marker_cluster = MarkerCluster().add_to(m)
-
+    
     # Añadir marcadores para cada ubicación
     for _, row in df_filtrado.iterrows():
-      lat, lon = row['lat'], row['lon']
-      tipo_ubicacion = row['tipo']
-      nombre = row['nome']
-      distancia = row['distancia_km']
+        lat, lon = row['lat'], row['lon']
+        tipo_ubicacion = row['tipo']
+        nombre = row['nome']
+        distancia = row['distancia_km']
         
         # Color del marcador según el tipo de ubicación
-      if tipo_ubicacion == tipos[0]:
-        color = 'blue'
-      elif tipo_ubicacion == tipos[1]:
-        color = 'green'
-      elif tipo_ubicacion == tipos[2]:
-        color = 'purple'
-      else:
-        color = 'orange'
-
-      # Crear marcador con Tooltip y Popup
-      folium.CircleMarker(
-        location=[lat, lon],
-        radius=8,
-        color=color,
-        fill=True,
-        fill_opacity=0.6,
-        tooltip=f"{nombre} - {distancia:.2f} km",
-        popup=f"Ubicación: {nombre}<br>Tipo: {tipo_ubicacion}<br>Distancia: {distancia:.2f} km"
-      ).add_to(marker_cluster)
-
-      # Añadir un marcador rojo para la posición del usuario
-      folium.Marker(
+        if tipo_ubicacion == tipos[0]:
+            color = 'blue'
+        elif tipo_ubicacion == tipos[1]:
+            color = 'green'
+        elif tipo_ubicacion == tipos[2]:
+            color = 'purple'
+        else:
+            color = 'orange'
+    
+        # Crear marcador con Tooltip y Popup
+        folium.CircleMarker(
+            location=[lat, lon],
+            radius=8,
+            color=color,
+            fill=True,
+            fill_opacity=0.6,
+            tooltip=f"{nombre} - {distancia:.2f} km",
+            popup=f"Ubicación: {nombre}<br>Tipo: {tipo_ubicacion}<br>Distancia: {distancia:.2f} km"
+        ).add_to(marker_cluster)
+    
+    # Añadir un marcador rojo para la posición del usuario
+    folium.Marker(
         location=[latitud, longitud],
         icon=folium.Icon(color='red', icon='user'),
         tooltip="Tu posición"
-      ).add_to(m)
+    ).add_to(m)
+    
+    # Mostrar el mapa en Streamlit (fuera del bucle for)
+    st.components.v1.html(m._repr_html_(), height=500)
+    seleccion = 1
 
-      # Mostrar el mapa en Streamlit
-      st.components.v1.html(m._repr_html_(), height=500)
-      seleccion = 1
 
 else:
   st.warning("Por favor, introduce una distancia en kilómetros.")
