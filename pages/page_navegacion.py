@@ -65,7 +65,6 @@ if submit_button:
     else:
         # Filtrar el dataframe por tipo de ubicación seleccionado
         df_filtrado = gdf[gdf['tipo'].isin(tipo_seleccionado)]
-        st.write(df_filtrado)
 
         # Calcular distancias
         punto_usuario = (latitud, longitud)
@@ -73,7 +72,8 @@ if submit_button:
             lambda x: geodesic(punto_usuario, (x.y, x.x)).km
         )
         df_filtrado = df_filtrado[df_filtrado['distancia_km'] <= radio_km]
-
+        st.write(df_filtrado)
+        
         # Definir un diccionario de colores para cada tipo de ubicación
         colores_limitados = [
             [0, 255, 255],    # Cian
