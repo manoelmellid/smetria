@@ -73,9 +73,6 @@ if submit_button:
         )
         df_filtrado = df_filtrado[df_filtrado['distancia_km'] <= radio_km]
 
-        # Almacenar df_filtrado en session_state para mantenerlo entre interacciones
-        st.session_state.df_filtrado = df_filtrado
-
         # Definir un diccionario de colores para cada tipo de ubicación
         colores_limitados = [
             [0, 255, 255],    # Cian
@@ -88,7 +85,7 @@ if submit_button:
             [255, 105, 180],  # Rosa
             [34, 139, 34],    # Verde oscuro
             [75, 0, 130],     # Índigo
-            [240, 230, 140]   # Amarillo claro
+            [255, 255, 255]   # Amarillo claro
         ]
         
         color_por_tipo = {
@@ -97,7 +94,6 @@ if submit_button:
 
         # Añadir una columna de color al DataFrame según el tipo de ubicación
         df_filtrado['color'] = df_filtrado['tipo'].map(lambda tipo: color_por_tipo.get(tipo, [255, 255, 255]))
-
 
         # Crear datos para pydeck, incluyendo el color
         data_ubicaciones = df_filtrado[['lat', 'lon', 'color']].to_dict(orient='records')
