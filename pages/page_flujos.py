@@ -138,7 +138,7 @@ else:
   st.warning("Por favor, introduce una distancia en kilómetros.")
 
 # Recuperar df_filtrado de session_state, si está disponible
-#df_filtrado = st.session_state.get('df_filtrado', None)
+df_filtrado = st.session_state.get('df_filtrado', None)
 
 if seleccion is not None:
   rut.mostrar_seleccion(df_filtrado, latitud, longitud)
