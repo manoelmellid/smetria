@@ -25,6 +25,7 @@ from folium.plugins import MarkerCluster
 longitud = None
 latitud = None
 df_filtrado = None
+seleccion = None
 
 st.header("Herramientas de navegación")
 st.write("### Parámetros de filtro")
@@ -129,6 +130,7 @@ if submit_button:
 
         # Mostrar el mapa en Streamlit
         st.components.v1.html(m._repr_html_(), height=500)
+        seleccion = 1
 
 else:
     st.warning("Por favor, introduce una distancia en kilómetros.")
@@ -136,5 +138,5 @@ else:
 # Recuperar df_filtrado de session_state, si está disponible
 df_filtrado = st.session_state.get('df_filtrado', None)
 
-if df_filtrado is not None:
+if seleccion is not None:
     rut.mostrar_seleccion(df_filtrado, latitud, longitud)
