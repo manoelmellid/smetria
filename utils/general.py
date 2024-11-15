@@ -2,6 +2,10 @@ import streamlit as st
 import pydeck as pdk
 import re
 
+def camino()
+    camino = st.selectbox('Selecciona el Camino de Santiago que estás recorriendo:', ['Camino Portugués'])
+    return camino
+    
 def login():
     if 'logged_in' not in st.session_state:
         st.session_state.logged_in = False
