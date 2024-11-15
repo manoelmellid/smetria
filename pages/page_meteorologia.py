@@ -13,6 +13,9 @@ adelante = None
 start_date = None
 end_date = None
 days=None
+
+camino = gen.camino()
+
 # Entradas del formulario
 input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
 
