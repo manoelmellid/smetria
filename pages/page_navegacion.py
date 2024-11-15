@@ -15,16 +15,24 @@ st.header("Herramientas de navegación")
 st.write("### Parámetros de filtro")
 
 camino = gen.camino()
-archivo = "puntos_interes.csv"
-
-# Función para cargar el archivo CSV de ubicaciones
-@st.cache_data
-def cargar_datos(archivo):
-    df = pd.read_csv(archivo)
-    return df
+if camino == "Camino Portugués":
+    archivo = "vertices_250_camino_pt.csv"
+elif camino == "Camino Francés":
+    archivo = "vertices_250_camino_pt.csv"
+    st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
+    camino = "Camino Portugués"
+elif camino == "Camino Inglés":
+    st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
+    archivo = "vertices_250_camino_pt.csv"
+    camino = "Camino Portugués"
+elif camino == "Camino del Norte":
+    st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
+    archivo = "vertices_250_camino_pt.csv"
+    camino = "Camino Portugués"
 
 # Cargar el archivo CSV
-df = cargar_datos(archivo)
+@st.cache_data
+df = cargar_datos("puntos_interes.csv")
 
 # Convertir datos en un GeoDataFrame
 df['geometry'] = df['geom'].apply(lambda x: Point(map(float, x.replace("POINT (", "").replace(")", "").split())))
