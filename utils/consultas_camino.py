@@ -33,8 +33,8 @@ def query_max_km_value(archivo):
         # Si el DataFrame está vacío, retornar None
         return None
 
-def procesar_ubicacion(input_text):
-    max_km_value = query_max_km_value()
+def procesar_ubicacion(input_text, archivo):
+    max_km_value = query_max_km_value(archivo)
     if not input_text:
         print("Por favor, introduce una distancia en kilómetros.")
         return None, None, None, None  # Valores predeterminados cuando no hay input
