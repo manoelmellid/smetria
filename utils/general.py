@@ -2,7 +2,7 @@ import streamlit as st
 import pydeck as pdk
 import re
 
-def camino()
+def camino():
     camino = st.selectbox('Selecciona el Camino de Santiago que estás recorriendo:', ['Camino Portugués'])
     return camino
     
