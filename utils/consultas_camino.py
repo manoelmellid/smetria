@@ -1,9 +1,9 @@
 import streamlit as st
 import pandas as pd
 
-def query_csv_data(km_value, archivo):
+def query_csv_data(km_value):
     # Cargar el archivo CSV
-    df = pd.read_csv(archivo)  # Asegúrate de que la ruta sea correcta
+    df = pd.read_csv('vertices_250_camino_pt.csv')  # Asegúrate de que la ruta sea correcta
 
     # Filtrar los datos donde la columna 'km' es igual a km_value
     filtered_df = df[df['km'] == km_value][['longitud', 'latitud', 'concello_id', 'ubicacion']]
@@ -20,9 +20,9 @@ def query_csv_data(km_value, archivo):
         # Si no se encuentra el km_value, retornar None para los valores de longitud y latitud
         return None, None, None, None
 
-def query_max_km_value(archivo):
+def query_max_km_value():
     # Cargar el archivo CSV
-    df = pd.read_csv(archivo)  # Asegúrate de que la ruta sea correcta
+    df = pd.read_csv('vertices_250_camino_pt.csv')  # Asegúrate de que la ruta sea correcta
 
     # Verificar si el DataFrame no está vacío
     if not df.empty:
@@ -33,8 +33,8 @@ def query_max_km_value(archivo):
         # Si el DataFrame está vacío, retornar None
         return None
 
-def procesar_ubicacion(input_text, archivo="vertices_250_camino_pt.csv"):
-    max_km_value = query_max_km_value(archivo)
+def procesar_ubicacion(input_text):
+    max_km_value = query_max_km_value()
     if not input_text:
         print("Por favor, introduce una distancia en kilómetros.")
         return None, None, None, None  # Valores predeterminados cuando no hay input
