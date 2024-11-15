@@ -41,7 +41,7 @@ with st.form(key='my_form'):
 
 # Obtener las coordenadas del punto kilometrico
 if submit_button:
-    longitud, latitud, concello_id, ubicacion = concam.procesar_ubicacion(input_text)
+    longitud, latitud, concello_id, ubicacion = concam.procesar_ubicacion(input_text, "vertices_250_camino_pt.csv")
     adelante=1
 
 if concello_id is not None:
