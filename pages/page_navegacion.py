@@ -4,7 +4,7 @@ import geopandas as gpd
 from shapely.geometry import Point
 from geopy.distance import geodesic
 import pydeck as pdk
-from utils import consultas_camino as concam, rutas as rut
+from utils import consultas_camino as concam, rutas as rut, general as gen
 
 # Variables de longitud y latitud inicializadas como None
 longitud = None
