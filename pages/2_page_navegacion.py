@@ -78,7 +78,7 @@ if submit_button:
     else:
         st.error("No se encontraron resultados para el valor de Km proporcionado.")
 
-    if st.session_state['df_filtrado'] is not None;
+    if st.session_state['df_filtrado'] is not None:
         st.write(st.session_state['df_filtrado'])
     
         m = folium.Map(location=[latitud, longitud], zoom_start=12)
