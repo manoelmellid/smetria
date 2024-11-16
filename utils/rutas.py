@@ -46,7 +46,10 @@ def obtener_ruta_a_pie(api_key, origen, destino):
         st.error("Error al obtener la ruta: " + str(e))
         return None
 
-# Función para mostrar el mapa con la ruta
+import folium
+from folium import PolyLine, Marker
+
+# Función para mostrar el mapa con la ruta usando Folium
 def mostrar_mapa(origen, destino):
     # Obtener el token de Streamlit secrets
     api_key = st.secrets["openrouteservice"]["api_key"]
@@ -56,52 +59,35 @@ def mostrar_mapa(origen, destino):
     
     # Extraer las coordenadas de la ruta
     coords = ruta['features'][0]['geometry']['coordinates']
+    coords = [(lat, lon) for lon, lat in coords]  # Cambiar el orden a (lat, lon) para Folium
     
-    # Definir la vista inicial del mapa centrada entre los dos puntos
+    # Definir el centro del mapa entre el origen y el destino
     centro = [(origen[1] + destino[1]) / 2, (origen[0] + destino[0]) / 2]
-    vista = pdk.ViewState(
-        latitude=centro[0],
-        longitude=centro[1],
-        zoom=14  # Nivel de zoom inicial
-    )
     
-    # Crear la capa de ruta (polyline)
-    ruta_capa = pdk.Layer(
-        "PathLayer",
-        data=[{
-            'coordinates': coords,
-            'color': [255, 0, 0],  # Color rojo para la ruta
-            'width': 15  # Grosor inicial de la línea (esto se ajustará según el zoom)
-        }],
-        get_path='coordinates',
-        get_color='color',
-        get_width='width',
-        width_scale=0.5  # Este valor ajusta cómo cambia el grosor con el zoom
-    )
+    # Crear el mapa centrado
+    m = folium.Map(location=centro, zoom_start=14, tiles="OpenStreetMap")
     
-    # Crear una capa de marcadores para el origen y destino
-    puntos_capa = pdk.Layer(
-        "ScatterplotLayer",
-        data=[{
-            'position': origen,
-            'color': [0, 255, 0],  # Verde para el origen
-            'radius': 30  # Tamaño del marcador de origen
-        }, {
-            'position': destino,
-            'color': [0, 0, 255],  # Azul para el destino
-            'radius': 30  # Tamaño del marcador de destino
-        }],
-        get_position='position',
-        get_color='color',
-        get_radius='radius'
-    )
+    # Agregar la ruta al mapa como una línea poligonal
+    PolyLine(
+        locations=coords,
+        color="red",  # Color de la línea
+        weight=5,  # Grosor de la línea
+        opacity=0.8  # Opacidad de la línea
+    ).add_to(m)
     
-    # Crear el mapa con las capas y el zoom adaptativo
-    deck = pdk.Deck(
-        layers=[ruta_capa, puntos_capa],
-        initial_view_state=vista,
-        map_style="mapbox://styles/mapbox/streets-v11",
-    )
+    # Agregar un marcador para el punto de origen
+    Marker(
+        location=[origen[1], origen[0]],  # Latitud y longitud
+        icon=folium.Icon(color="green", icon="info-sign"),
+        popup="Origen"
+    ).add_to(m)
     
-    # Mostrar el mapa en streamlit
-    st.pydeck_chart(deck)
+    # Agregar un marcador para el punto de destino
+    Marker(
+        location=[destino[1], destino[0]],  # Latitud y longitud
+        icon=folium.Icon(color="blue", icon="flag"),
+        popup="Destino"
+    ).add_to(m)
+    
+    # Mostrar el mapa en Streamlit
+    st.components.v1.html(m._repr_html_(), height=500)
