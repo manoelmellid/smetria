@@ -123,8 +123,8 @@ if submit_button:
             if bounds:
                 map.fit_bounds(bounds)
     
-        # Añadir los marcadores solo para los registros activos
-        add_marker_with_dynamic_size(m, df_activo)
+        # Añadir los marcadores solo para los registros flitrados
+        add_marker_with_dynamic_size(m, df_filtrado)
         
         # Mostrar el mapa en Streamlit
         st.components.v1.html(m._repr_html_(), height=500)
