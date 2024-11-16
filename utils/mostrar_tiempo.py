@@ -70,6 +70,7 @@ def tabla_tiempo(archivo_csv):
 
     # Generar una tabla para cada día
     for dia in dias_unicos:
+        df_dia = df[df['date_time'].dt.date == dia]
         # Extraer la hora de la columna 'date_time'
         df_dia = df_dia.copy()
         df_dia['hour'] = df_dia['date_time'].dt.hour
