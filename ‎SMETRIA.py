@@ -13,16 +13,16 @@ st.divider()
 
 pages = {
     "Menú": [
-        st.Page("pages/page_inicio.py", title="Inicio"),
-        st.Page("pages/page_meteorologia.py", title="Predicción meteorologica"),
-        st.Page("pages/page_navegacion.py", title="Herramienta de navegación"),
-        st.Page("pages/page_ocupacion.py", title="Modelo predictivo de ocupación"),
-        st.Page("pages/page_notificacion.py", title="Notificación de incidencias"),
-        st.Page("pages/page_visualizacion.py", title="Mapa de incidencias"),
+        st.Page("pages/0_page_inicio.py", title="Inicio"),
+        st.Page("pages/1_page_meteorologia.py", title="Predicción meteorologica"),
+        st.Page("pages/2_page_navegacion.py", title="Herramienta de navegación"),
+        st.Page("pages/3_page_ocupacion.py", title="Modelo predictivo de ocupación"),
+        st.Page("pages/4_page_notificacion.py", title="Notificación de incidencias"),
+        st.Page("pages/5_page_visualizacion.py", title="Mapa de incidencias"),
     ],
     "Área privada": [
-        st.Page("pages/page_recepcion.py", title="Recepción de incidencias"),
-        st.Page("pages/page_flujos.py", title="Modelo predictivo de flujos"),
+        st.Page("pages/6_page_recepcion.py", title="Recepción de incidencias"),
+        st.Page("pages/7_page_flujos.py", title="Modelo predictivo de flujos"),
     ],
 }
 pg = st.navigation(pages)
