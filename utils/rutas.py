@@ -4,16 +4,18 @@ import pydeck as pdk
 import json
 
 def mostrar_seleccion(df, latitud_ori, longitud_ori):
+    st.session_state['df'] = df
+    
     # Crear una nueva columna combinando 'nome' y 'distancia_km' para mostrar en el desplegable
-    df['nombre_con_distancia'] = df['nome'] + ' - ' + df['distancia_km'].round(3).astype(str) + ' km'
+    #df['nombre_con_distancia'] = df['nome'] + ' - ' + df['distancia_km'].round(3).astype(str) + ' km'
     
     # Mostrar un desplegable con los valores de 'nombre_con_distancia'
-    opcion_seleccionada = st.selectbox('Selecciona un lugar', df['nombre_con_distancia'])
+    opcion_seleccionada = st.selectbox('Selecciona un lugar', df['nome'])
     
     if st.button("Calcular ruta"):
         if opcion_seleccionada:
             # Extraer el nombre de la opción seleccionada (antes del "-")
-            nombre_seleccionado = opcion_seleccionada.split(' - ')[0]
+            #nombre_seleccionado = opcion_seleccionada.split(' - ')[0]
             
             # Filtrar la fila correspondiente al nombre seleccionado
             fila_seleccionada = df[df['nome'] == nombre_seleccionado].iloc[0]
