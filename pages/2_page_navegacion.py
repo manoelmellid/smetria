@@ -8,11 +8,14 @@ import folium
 from folium.plugins import MarkerCluster
 from utils import consultas_camino as concam, rutas as rut, general as gen
 
-# Variables de longitud y latitud inicializadas como None
-longitud = None
-latitud = None
-busqueda = None
-st.session_state['df_filtrado'] = None
+if 'df_filtrado' not in st.session_state:
+    st.session_state['df_filtrado'] = None
+if 'longitud' not in st.session_state:
+    st.session_state['longitud'] = None
+if 'latitud' not in st.session_state:
+    st.session_state['latitud'] = None
+if 'camino' not in st.session_state:
+    st.session_state['camino'] = None
 
 st.header("Herramientas de navegación")
 st.write("### Parámetros de filtro")
