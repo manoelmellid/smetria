@@ -5,7 +5,7 @@ from shapely.geometry import Point
 from geopy.distance import geodesic
 import folium
 from folium.plugins import MarkerCluster
-from utils import consultas_camino as concam, rutas as rut, general as gen
+from utils import rutas as rut, general as gen
 
 # Diccionario global para los colores
 COLOR_MAP = {
@@ -107,7 +107,7 @@ with st.form(key='my_form'):
 
 # Procesar resultados
 if submit_button and input_text:
-    longitud, latitud, concello_id, ubicacion, km_camino = concam.procesar_ubicacion(input_text, archivo)
+    longitud, latitud, concello_id, ubicacion, km_camino = gen.procesar_ubicacion(input_text, archivo)
     if longitud and latitud:
         st.session_state.longitud = longitud
         st.session_state.latitud = latitud
