@@ -49,8 +49,13 @@ def obtener_ruta_a_pie(api_key, origen, destino):
 import folium
 from folium import PolyLine, Marker
 
+import folium
+from folium import PolyLine, Marker
+
 # Función para mostrar el mapa con la ruta usando Folium
 def mostrar_mapa(origen, destino):
+    bounds = []  # Lista para almacenar los límites de los puntos
+    
     # Obtener el token de Streamlit secrets
     api_key = st.secrets["openrouteservice"]["api_key"]
     
@@ -60,6 +65,9 @@ def mostrar_mapa(origen, destino):
     # Extraer las coordenadas de la ruta
     coords = ruta['features'][0]['geometry']['coordinates']
     coords = [(lat, lon) for lon, lat in coords]  # Cambiar el orden a (lat, lon) para Folium
+    
+    # Agregar los puntos de la ruta a los bounds
+    bounds.extend(coords)
     
     # Definir el centro del mapa entre el origen y el destino
     centro = [(origen[1] + destino[1]) / 2, (origen[0] + destino[0]) / 2]
@@ -88,6 +96,14 @@ def mostrar_mapa(origen, destino):
         icon=folium.Icon(color="blue", icon="flag"),
         popup="Destino"
     ).add_to(m)
+    
+    # Agregar el origen y destino a los bounds
+    bounds.append((origen[1], origen[0]))
+    bounds.append((destino[1], destino[0]))
+    
+    # Ajustar el mapa para incluir todos los puntos
+    if bounds:
+        m.fit_bounds(bounds)
     
     # Mostrar el mapa en Streamlit
     st.components.v1.html(m._repr_html_(), height=500)
