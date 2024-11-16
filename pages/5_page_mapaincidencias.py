@@ -94,7 +94,7 @@ add_marker_with_dynamic_size(m, df_activo)
 st.components.v1.html(m._repr_html_(), height=500)
 
 # Configurar el tamaño de la figura
-fig, ax = plt.subplots(figsize=(5, 2))
+fig, ax = plt.subplots(figsize=(3, 1))
 
 # Colores y etiquetas de los círculos
 colors = ["yellow", "orange", "red"]
