@@ -16,19 +16,19 @@ elif camino == "Camino Francés":
     archivo = "vertices_250_camino_pt.csv"
     st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
     camino = "Camino Portugués"
-    abrv = "PT"
+    abrv = "FR"
     
 elif camino == "Camino Inglés":
     st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
     archivo = "vertices_250_camino_pt.csv"
     camino = "Camino Portugués"
-    abrv = "PT"
+    abrv = "EN"
 
 elif camino == "Camino del Norte":
     st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
     archivo = "vertices_250_camino_pt.csv"
     camino = "Camino Portugués"
-    abrv = "PT"
+    abrv = "NO"
 
 # Cargar los datos con solo las columnas necesarias
 df = git.cargar_datos(columnas_necesarias=['id', 'estado', 'fecha', 'camino', 'km', 'latitud', 'longitud', 'tipo_incidencia', 'tipo_alerta'])
