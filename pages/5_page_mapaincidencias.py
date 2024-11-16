@@ -112,6 +112,8 @@ ax.set_xlim(0.5, 3.5)
 ax.set_ylim(0, 2)
 ax.axis("off")  # Quitar los ejes
 
+# Establecer la relación de aspecto igual para evitar óvalos
+ax.set_aspect('equal')
+
 # Mostrar la figura en Streamlit
 st.pyplot(fig)
-
