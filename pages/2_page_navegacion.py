@@ -95,7 +95,7 @@ if submit_button:
                 lat, lon = row['latitud'], row['longitud']
                 nome = row['nome']
                 tipo = row['tipo']
-                distancia = row['distancia_km']
+                distancia = round(row['distancia_km'], 2)
 
                 if tipo == 'centro_saude':
                     color = 'red'  # Para centros de salud
@@ -141,12 +141,12 @@ if submit_button:
                 )
             
                 # Tooltip que aparece al pasar el ratón por encima
-                tooltip_text = f"{distancia}"
+                tooltip_text = f"A {distancia} Km"
                 marker.add_child(folium.Tooltip(tooltip_text))
                 
                 # Popup que aparece al hacer clic en el marcador
-                #popup_text = f"{nome}"
-                #marker.add_child(folium.Popup(popup_text))
+                popup_text = f"{nome}"
+                marker.add_child(folium.Popup(popup_text))
                 
                 # Añadir el marcador al mapa
                 marker.add_to(map)
