@@ -41,6 +41,14 @@ def add_marker_with_dynamic_size(map, df):
             fill=True,
             fill_opacity=0.6
         )
+        # Posición del usuario
+        
+        folium.Marker(
+            location=[latitud, longitud],
+            icon=folium.Icon(color='red', icon='user'),
+            tooltip="Tu posición"
+        ).add_to(m)
+        
         marker.add_child(folium.Popup(f"{distancia} Km"))
         marker.add_child(folium.Tooltip(nome))
         marker.add_to(map)
