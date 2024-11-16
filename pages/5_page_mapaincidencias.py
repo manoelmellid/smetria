@@ -102,7 +102,8 @@ labels = ["Baja", "Media", "Alta"]
 
 # Dibujar los círculos
 for i, (color, label) in enumerate(zip(colors, labels)):
-    circle = plt.Circle((i + 1, 1), 0.3, color=color, ec="black")
+    # Reducir el tamaño del círculo (radio 0.2 en lugar de 0.3)
+    circle = plt.Circle((i + 1, 1), 0.2, color=color, ec="black")
     ax.add_artist(circle)
     ax.text(i + 1, 0.4, label, ha="center", fontsize=10)
 
