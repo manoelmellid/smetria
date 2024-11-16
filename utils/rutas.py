@@ -80,7 +80,7 @@ def mostrar_mapa(origen, destino):
         locations=coords,
         color="red",  # Color de la línea
         weight=5,  # Grosor de la línea
-        opacity=0.8  # Opacidad de la línea
+        opacity=0.8,  # Opacidad de la línea
         tooltip="Ruta"
     ).add_to(m)
     
