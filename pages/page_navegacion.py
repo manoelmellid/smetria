@@ -51,9 +51,6 @@ input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
 # Barra deslizante para seleccionar el radio de distancia
 radio_km = st.slider("Radio de distancia (km)", min_value=1, max_value=10, value=5)
 
-# Obtener valor máximo de Km permitido desde la función
-max_km_value = concam.query_max_km_value(archivo)
-
 # Crear un formulario para procesar la búsqueda al enviar
 with st.form(key='my_form'):
     submit_button = st.form_submit_button(label='Enviar')
