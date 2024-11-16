@@ -82,81 +82,50 @@ if submit_button:
         df_filtrado = df_filtrado[df_filtrado['distancia_km'] <= radio_km]
         st.write(df_filtrado)
         
-        # Definir un diccionario de colores para cada tipo de ubicación
-        colores_limitados = [
-            [0, 255, 255],    # Cian
-            [0, 255, 0],      # Verde
-            [0, 0, 255],      # Azul
-            [255, 255, 0],    # Amarillo
-            [128, 0, 128],    # Púrpura
-            [0, 128, 128],    # Teal
-            [255, 165, 0],    # Naranja
-            [255, 105, 180],  # Rosa
-            [34, 139, 34],    # Verde oscuro
-            [75, 0, 130],     # Índigo
-            [255, 255, 255]   # Amarillo claro
-        ]
-        
-        color_por_tipo = {
-            tipos[i]: color for i, color in enumerate(colores_limitados[:len(tipos)])
-        }
+        m = folium.Map(location=[20.0, 0.0], zoom_start=10)
+        marker_cluster = MarkerCluster().add_to(m)
 
-        # Añadir una columna de color al DataFrame según el tipo de ubicación
-        df_filtrado['color'] = df_filtrado['tipo'].map(lambda tipo: color_por_tipo.get(tipo, [255, 255, 255]))
-
-        # Crear datos para pydeck, incluyendo el color
-        data_ubicaciones = df_filtrado[['lat', 'lon', 'color']].to_dict(orient='records')
-        data_usuario = [{'lat': latitud, 'lon': longitud}]
-
-        # Configurar el mapa con pydeck
-        view_state = pdk.ViewState(
-            latitude=latitud,
-            longitude=longitud,
-            zoom=12,
-            pitch=0
-        )
-
-        # Capa para las ubicaciones con colores dinámicos
-        ubicaciones_layer = pdk.Layer(
-            'ScatterplotLayer',
-            data=data_ubicaciones,
-            get_position='[lon, lat]',
-            get_color='color',  # Usar la columna de color
-            get_radius=100,
-        )
-
-        # Capa para el punto de usuario
-        usuario_layer = pdk.Layer(
-            'ScatterplotLayer',
-            data=data_usuario,
-            get_position='[lon, lat]',
-            get_color='[255, 0, 0, 200]',  # Color rojo para el usuario
-            get_radius=150,
-        )
-
-        col1, col2 = st.columns([4, 2])
-        with col1:
-            # Renderizar el mapa
-            st.pydeck_chart(pdk.Deck(
-                map_style='mapbox://styles/mapbox/streets-v11',
-                initial_view_state=view_state,
-                layers=[ubicaciones_layer, usuario_layer]
-            ))        
-        with col2:
-            # Crear una columna HTML para las muestras de color
-            df_filtrado['color_muestra_html'] = df_filtrado['color'].apply(
-                lambda color: f'<div style="background-color: rgb({color[0]}, {color[1]}, {color[2]}); width: 30px; height: 30px;"></div>'
-            )
+        def add_marker_with_dynamic_size(map, df):
+            # Lista para almacenar las coordenadas de todos los puntos
+            bounds = []
             
-            # Mostrar el DataFrame con las muestras de color usando st.markdown
-            for _, row in df_filtrado[['enderezo', 'nome', 'distancia_km', 'lon', 'lat', 'color_muestra_html']].iterrows():
-                st.markdown(f"""
-                    <div style="display: flex; align-items: center; border-bottom: 1px solid #ccc; padding-bottom: 10px; margin-bottom: 10px;">
-                        <div style="width: 100px;">{row['nome']}</div>
-                        <div style="width: 100px;">{row['distancia_km']:.2f} km</div>
-                        <div>{row['color_muestra_html']}</div>
-                    </div>
-                """, unsafe_allow_html=True)
+            for _, row in df.iterrows():
+                lat, lon = row['latitud'], row['longitud']
+                nome = row['nome']
+                tipo = row['tipo']
+
+                # Crear un marcador con un tamaño dinámico en función del zoom
+                marker = folium.CircleMarker(
+                    location=[lat, lon], 
+                    radius=8, 
+                    color=color, 
+                    fill=True, 
+                    fill_opacity=0.6
+                )
+            
+                # Tooltip que aparece al pasar el ratón por encima
+                tooltip_text = f"Tipo de Incidencia: {tipo_incidencia}"
+                marker.add_child(folium.Tooltip(tooltip_text))
+                
+                # Popup que aparece al hacer clic en el marcador
+                popup_text = f"Km {km}"
+                marker.add_child(folium.Popup(popup_text))
+                
+                # Añadir el marcador al mapa
+                marker.add_to(map)
+                
+                # Añadir las coordenadas del punto a la lista de bounds
+                bounds.append([lat, lon])
+        
+            # Ajustar el zoom y el centro para que se ajusten a todos los puntos
+            if bounds:
+                map.fit_bounds(bounds)
+    
+        # Añadir los marcadores solo para los registros activos
+        add_marker_with_dynamic_size(m, df_activo)
+        
+        # Mostrar el mapa en Streamlit
+        st.components.v1.html(m._repr_html_(), height=500)
 
 else:
     st.warning("Por favor, introduce una distancia en kilómetros.")
