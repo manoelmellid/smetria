@@ -14,24 +14,7 @@ start_date = None
 end_date = None
 days=None
 
-camino = gen.camino()
-if camino == "Camino Portugués":
-    archivo = "vertices_250_camino_pt.csv"
-elif camino == "Camino Francés":
-    archivo = "vertices_250_camino_pt.csv"
-    st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
-    camino = "Camino Portugués"
-elif camino == "Camino Inglés":
-    st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
-    archivo = "vertices_250_camino_pt.csv"
-    camino = "Camino Portugués"
-elif camino == "Camino del Norte":
-    st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
-    archivo = "vertices_250_camino_pt.csv"
-    camino = "Camino Portugués"
-
-
-# Entradas del formulario
+camino, arcivo,  abrv = gen.camino()
 input_text = st.text_input(f"Indica el Km del {camino} dónde te encuentras")
 
 today = datetime.date.today()
