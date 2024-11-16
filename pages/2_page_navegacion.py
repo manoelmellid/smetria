@@ -12,6 +12,7 @@ from utils import consultas_camino as concam, rutas as rut, general as gen
 longitud = None
 latitud = None
 busqueda = None
+st.session_state['df_filtrado'] = None
 
 st.header("Herramientas de navegación")
 st.write("### Parámetros de filtro")
@@ -80,7 +81,7 @@ if submit_button:
     if st.session_state['df_filtrado'] is not None:
         m = folium.Map(location=[latitud, longitud], zoom_start=12)
         marker_cluster = MarkerCluster().add_to(m)
-        st.write(st.session_state['df_filtrado'])
+        
         def add_marker_with_dynamic_size(map, df):
             # Lista para almacenar las coordenadas de todos los puntos
             bounds = []
