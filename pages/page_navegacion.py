@@ -31,8 +31,9 @@ elif camino == "Camino del Norte":
     camino = "Camino Portugués"
 
 # Cargar el archivo CSV
-@st.cache_data
-df = pd.read_csv("puntos_interes.csv")
+def cargar_datos():
+    return pd.read_csv("puntos_interes.csv")
+df = cargar_datos()
 
 # Convertir datos en un GeoDataFrame
 df['geometry'] = df['geom'].apply(lambda x: Point(map(float, x.replace("POINT (", "").replace(")", "").split())))
