@@ -65,7 +65,7 @@ if 'longitud' in st.session_state and 'latitud' in st.session_state:
 
 if submit_button:
     # Procesar la ubicación solo si el botón es presionado
-    longitud, latitud, concello_id, ubicacion = concam.procesar_ubicacion(input_text)
+    longitud, latitud, concello_id, ubicacion = concam.procesar_ubicacion(input_text, archivo)
 
     # Guardar en session_state para mantener el estado entre interacciones
     st.session_state.longitud = longitud
