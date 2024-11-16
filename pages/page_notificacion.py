@@ -48,7 +48,8 @@ if st.button("Enviar"):
             input_text=input_text,
             tipo_opc=tipo_opc,
             mensaje=mensaje,
-            alerta_opc=alerta_opc
+            alerta_opc=alerta_opc,
+            archivo=archivo
         )
         st.success("Notificación enviada con éxito.")
     else:
