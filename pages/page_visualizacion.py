@@ -76,7 +76,7 @@ def add_marker_with_dynamic_size(map, df):
         marker.add_child(folium.Tooltip(tooltip_text))
         
         # Popup que aparece al hacer clic en el marcador
-        popup_text = f"Tipo de Incidencia: {km}"
+        popup_text = f"Km - {km}"
         marker.add_child(folium.Popup(popup_text))
         
         # Añadir el marcador al mapa
