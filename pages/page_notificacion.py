@@ -32,7 +32,7 @@ elif camino == "Camino Francés":
     archivo = "vertices_250_camino_pt.csv"
     st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
     camino = "Camino Portugués"
-    respuestas = "respuestas_pt.csv"
+    respuestas = "respuestas_fr.csv"
     abrv = "PT"
     
 elif camino == "Camino Inglés":
