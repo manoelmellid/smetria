@@ -81,7 +81,7 @@ def mostrar_mapa(origen, destino):
         color="red",  # Color de la línea
         weight=5,  # Grosor de la línea
         opacity=0.8  # Opacidad de la línea
-        tooltio="Ruta"
+        tooltip="Ruta"
     ).add_to(m)
     
     # Agregar un marcador para el punto de origen
