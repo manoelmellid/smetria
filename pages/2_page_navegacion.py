@@ -96,6 +96,8 @@ if submit_button:
                 nome = row['nome']
                 tipo = row['tipo']
 
+                color = 'yellow'
+                
                 # Crear un marcador con un tamaño dinámico en función del zoom
                 marker = folium.CircleMarker(
                     location=[lat, lon], 
