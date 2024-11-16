@@ -73,7 +73,6 @@ if submit_button:
         )
         df_filtrado = df_filtrado[df_filtrado['distancia_km'] <= radio_km]
         st.session_state['df_filtrado'] = df_filtrado
-        st.write(st.session_state['df_filtrado'])
 
     else:
         st.error("No se encontraron resultados para el valor de Km proporcionado.")
@@ -160,11 +159,10 @@ if submit_button:
         
         # Mostrar el mapa en Streamlit
         st.components.v1.html(m._repr_html_(), height=500)
-        busqueda = 1
 
 else:
     st.warning("Por favor, introduce una distancia en kilómetros.")
     
-if busqueda is not None:
-    st.write(df_filtrado)
-    rut.mostrar_seleccion(df_filtrado, latitud, longitud)
+if st.session_state['df_filtrado'] is not None:
+    st.write(st.session_state['df_filtrado'])
+    rut.mostrar_seleccion(st.session_state['df_filtrado'], latitud, longitud)
