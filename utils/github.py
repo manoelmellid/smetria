@@ -47,8 +47,9 @@ def cargar_datos(columnas_necesarias=None):
         st.error(f"Error al obtener el archivo desde GitHub. Código de estado: {response.status_code}")
         return pd.DataFrame()  # Retorna un DataFrame vacío si hay un error
 
-def guardar_respuesta_en_csv(nombre, telefono, email, input_text, tipo_opc, mensaje, alerta_opc, archivo, camino):
+def guardar_respuesta_en_csv(nombre, telefono, email, input_text, tipo_opc, mensaje, alerta_opc, archivo, abrv):
     fecha = datetime.datetime.now()
+    camino = abrv
     longitud, latitud, concello_id, ubicacion, km = concam.procesar_ubicacion(input_text, archivo)
     estado="Activo"
     # Generar un ID único para cada respuesta
