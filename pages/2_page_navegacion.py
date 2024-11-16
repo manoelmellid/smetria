@@ -8,6 +8,7 @@ from folium.plugins import MarkerCluster
 from utils import consultas_camino as concam, rutas as rut, general as gen
 
 # Inicializa variables en session_state al inicio
+st.session_state['busqueda'] = False
 if 'longitud' not in st.session_state:
     st.session_state['longitud'] = None
     st.session_state['latitud'] = None
