@@ -20,7 +20,7 @@ color = {
             'turismo_rural': 'gray',
             'hospital': 'darkred',
             'oficina_turismo': 'lightblue'
-        }.get(tipo, 'black')  # Color negro para tipos no especificados
+        }
 
 # Definir la función para añadir marcadores al mapa
 def add_marker_with_dynamic_size(map, df):
