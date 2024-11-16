@@ -14,7 +14,7 @@ start_date = None
 end_date = None
 days=None
 
-camino, arcivo,  abrv = gen.camino()
+camino, archivo, abrv = gen.camino()
 input_text = st.text_input(f"Indica el Km del {camino} dónde te encuentras")
 
 today = datetime.date.today()
