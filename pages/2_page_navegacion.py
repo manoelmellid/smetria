@@ -158,5 +158,3 @@ if submit_button:
 
 else:
     st.warning("Por favor, introduce una distancia en kilómetros.")
-
-rut.mostrar_seleccion(df_filtrado, latitud, longitud)
