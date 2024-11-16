@@ -96,20 +96,32 @@ if submit_button:
                 nome = row['nome']
                 tipo = row['tipo']
 
-                tipo_colores = {
-                    'centro_saude': 'red',
-                    'desfibrilador': 'green',
-                    'vivendas_turisticas': 'blue',
-                    'farmacia': 'purple',
-                    'apartamentos': 'orange',
-                    'pensiones': 'darkblue',
-                    'hotel': 'pink',
-                    'camping': 'brown',
-                    'albergues_turisticos': 'yellow',
-                    'turismo_rural': 'gray',
-                    'hospital': 'darkred',
-                    'oficina_turismo': 'lightblue'
-                }
+                if tipo == 'centro_saude':
+                    color = 'red'  # Para centros de salud
+                elif tipo == 'desfibrilador':
+                    color = 'green'  # Para desfibriladores
+                elif tipo == 'vivendas_turisticas':
+                    color = 'blue'  # Para viviendas turísticas
+                elif tipo == 'farmacia':
+                    color = 'purple'  # Para farmacias
+                elif tipo == 'apartamentos':
+                    color = 'orange'  # Para apartamentos
+                elif tipo == 'pensiones':
+                    color = 'darkblue'  # Para pensiones
+                elif tipo == 'hotel':
+                    color = 'pink'  # Para hoteles
+                elif tipo == 'camping':
+                    color = 'brown'  # Para campings
+                elif tipo == 'albergues_turisticos':
+                    color = 'yellow'  # Para albergues turísticos
+                elif tipo == 'turismo_rural':
+                    color = 'gray'  # Para turismo rural
+                elif tipo == 'hospital':
+                    color = 'darkred'  # Para hospitales
+                elif tipo == 'oficina_turismo':
+                    color = 'lightblue'  # Para oficinas de turismo
+                else:
+                    color = 'black'  # Para otros tipos no especificados
                 
                 # Obtener el color desde el diccionario, o 'black' si no existe
                 color = tipo_colores.get(tipo, 'black')
