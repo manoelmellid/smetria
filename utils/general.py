@@ -4,7 +4,25 @@ import re
 
 def camino():
     camino = st.selectbox('Selecciona el Camino de Santiago que estás recorriendo:', ['Camino Portugués', 'Camino Francés', 'Camino Inglés', 'Camino del Norte'])
-    return camino
+    if camino == "Camino Portugués":
+        archivo = "vertices_250_camino_pt.csv"
+        abrv = "PT"
+    elif camino == "Camino Francés":
+        archivo = "vertices_250_camino_pt.csv"
+        st.warning(f"La función específica del {camino} aún está en desarrollo. Se utilizará el Portugués.")
+        camino = "Camino Portugués"
+        abrv = "FR"
+    elif camino in ["Camino Inglés"]:
+        st.warning(f"La función específica del {camino} aún está en desarrollo. Se utilizará el Portugués.")
+        archivo = "vertices_250_camino_pt.csv"
+        camino = "Camino Portugués"
+        abrv = "EN"
+    elif camino == "Camino del Norte":
+        st.warning(f"La función específica del {camino} aún está en desarrollo. Se utilizará el Portugués.")
+        archivo = "vertices_250_camino_pt.csv"
+        camino = "Camino Portugués"
+        abrv = "NO"
+    return camino, archivo, abrv
     
 def login():
     if 'logged_in' not in st.session_state:
