@@ -70,11 +70,9 @@ def tabla_tiempo(archivo_csv):
 
     # Generar una tabla para cada día
     for dia in dias_unicos:
-        # Filtrar el DataFrame por el día actual
-        df_dia = df[df['date_time'].dt.date == dia]
-
         # Extraer la hora de la columna 'date_time'
-        df_dia.loc[:, 'hour'] = df_dia['date_time'].dt.hour
+        df_dia = df_dia.copy()
+        df_dia['hour'] = df_dia['date_time'].dt.hour
 
         # Ordenar los datos para que comiencen desde las 0:00
         df_dia = df_dia.sort_values(by='hour')
