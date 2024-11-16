@@ -123,9 +123,6 @@ if submit_button:
                 else:
                     color = 'black'  # Para otros tipos no especificados
                 
-                # Obtener el color desde el diccionario, o 'black' si no existe
-                color = tipo_colores.get(tipo, 'black')
-                
                 # Crear un marcador con un tamaño dinámico en función del zoom
                 marker = folium.CircleMarker(
                     location=[lat, lon], 
