@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import datetime
-from utils import general as gen, consultas_camino as concam, pronostico as prn, tabla_tiempo as ttiempo
+from utils import general as gen, consultas_camino as concam, pronostico as prn, mostrar_tiempo as showweather
 
 st.header("Predicción meteorológica")
 longitud = None
@@ -64,7 +64,7 @@ if adelante is not None and longitud is not None:
     prn.pronostico(ubicacion, start_date, end_date)
 
     # Tablas de horas
-    ttiempo.tabla_tiempo("salida_forecast_data.csv")
+    showweather.tabla_tiempo("salida_forecast_data.csv")
 
     # Carga de los datos
     df = pd.read_csv("salida_forecast_data.csv")
