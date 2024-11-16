@@ -170,6 +170,7 @@ else:
 if st.session_state['df_filtrado'] is not None:
     st.write(st.session_state['df_filtrado'])
     rut.mostrar_seleccion(st.session_state['df_filtrado'], latitud, longitud)
+    
     m = folium.Map(location=[st.session_state.latitud, st.session_state.longitud], zoom_start=12)
     add_marker_with_dynamic_size(m, df_filtrado)
     st.components.v1.html(m._repr_html_(), height=500)
