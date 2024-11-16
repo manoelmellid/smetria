@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import folium
 from folium.plugins import MarkerCluster
-from utils import github as git
+from utils import github as git, general as gen
 
 st.header("Mapa de visualización de incidencias")
 st.error("Esta sección de SMETRIA está en desarrollo todavía")
