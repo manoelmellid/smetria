@@ -25,7 +25,7 @@ def add_marker_with_dynamic_size(map, df):
             'farmacia': 'purple',
             'apartamentos': 'orange',
             'pensiones': 'darkblue',
-            'hotel': 'pink',
+            'hotel': 'black',
             'camping': 'brown',
             'albergues_turisticos': 'yellow',
             'turismo_rural': 'gray',
