@@ -16,31 +16,12 @@ if telefono:
         st.error("Por favor, ingrese un número de teléfono válido.")
         
 email = st.text_input("Correo electrónico")
-camino = gen.camino()
+camino, archivo, abrv = gen.camino()
 input_text = st.text_input("Indique el Km del Camino dónde se encuentra")
 opciones = ['Crecida de río', 'Incendio', 'Desprendimiento de tierra', 'Tramo colapsado/cerrado', 'Mobiliario deteriorado', 'Accidente en el camino', 'Animales sueltos', 'Fuente sin agua']
 tipo_opc = st.selectbox('Selecciona el tipo de incidencia:', opciones_df['tipo'].tolist())
 alerta_opc = opciones_df.loc[opciones_df['tipo'] == tipo_opc, 'alerta'].iloc[0]
 mensaje = st.text_area("Añada más detalles si lo considera necesario:")
-
-if camino == "Camino Portugués":
-    archivo = "vertices_250_camino_pt.csv"
-    abrv = "PT"
-    
-elif camino == "Camino Francés":
-    archivo = "vertices_250_camino_pt.csv"
-    camino = "Camino Portugués"
-    abrv = "FR"
-    
-elif camino == "Camino Inglés":
-    archivo = "vertices_250_camino_pt.csv"
-    camino = "Camino Portugués"
-    abrv = "EN"
-
-elif camino == "Camino del Norte":
-    archivo = "vertices_250_camino_pt.csv"
-    camino = "Camino Portugués"
-    abrv = "NO"
 
 if st.button("Enviar"):
     if nombre and email and telefono and input_text:
