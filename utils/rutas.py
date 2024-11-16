@@ -86,8 +86,8 @@ def mostrar_mapa(origen, destino):
     # Agregar un marcador para el punto de origen
     Marker(
         location=[origen[1], origen[0]],  # Latitud y longitud
-        icon=folium.Icon(color="green", icon="info-sign"),
-        popup="Origen"
+        icon=folium.Icon(color="green", icon="home"),
+        popup="Inicio de la ruta"
     ).add_to(m)
     
     # Agregar un marcador para el punto de destino
