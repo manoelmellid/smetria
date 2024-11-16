@@ -1,7 +1,7 @@
 import requests
 import json
 from datetime import datetime, timedelta
-from utils import csv_json as cj
+from utils import general as gen
 import streamlit as st
 
 API_KEY = st.secrets["API_KEY"]
@@ -55,7 +55,7 @@ def pronostico(location_id, start_date, end_date):
             print(f"Error al guardar el archivo: {e}")
 
         # Convierte el JSON a CSV
-        cj.json_to_csv(nombre_archivo, 'salida_forecast_data.csv')
+        gen.json_to_csv(nombre_archivo, 'salida_forecast_data.csv')
     else:
         # En caso de error, mostrar mensaje de error
         print(f"Error: {response.status_code}")
