@@ -119,6 +119,23 @@ if submit_button and input_text:
     else:
         st.error("No se encontraron resultados para el valor de Km proporcionado.")
 
+
+circles_html = "".join(
+    f"<div style='display: inline-block; width: 20px; height: 20px; margin: 0 5px; border-radius: 50%; background-color: {color};'></div>"
+    for color in color.values()
+)
+
+# Mostrar los círculos en una línea
+st.markdown(
+    f"""
+    <div style='display: flex; justify-content: center; align-items: center;'>
+        {circles_html}
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+
 # Mostrar resultados
 if st.session_state['df_filtrado'] is not None:
     m = folium.Map(location=[st.session_state.latitud, st.session_state.longitud], zoom_start=12)
