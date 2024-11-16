@@ -10,11 +10,38 @@ from folium.plugins import MarkerCluster
 st.header("Mapa de visualización de incidencias")
 st.error("Esta sección de SMETRIA está en desarrollo todavía")
 # ---------------------------------------------------------------------------------
-# Cargar los datos con solo las columnas necesarias
-df = git.cargar_datos(columnas_necesarias=['id', 'estado', 'fecha', 'latitud', 'longitud', 'tipo_incidencia', 'tipo_alerta'])
+camino = gen.camino()
+if camino == "Camino Portugués":
+    archivo = "vertices_250_camino_pt.csv"
+    respuestas = "respuestas_pt.csv"
+    abrv = "PT"
+    
+elif camino == "Camino Francés":
+    archivo = "vertices_250_camino_pt.csv"
+    st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
+    camino = "Camino Portugués"
+    respuestas = "respuestas_pt.csv"
+    abrv = "PT"
+    
+elif camino == "Camino Inglés":
+    st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
+    archivo = "vertices_250_camino_pt.csv"
+    camino = "Camino Portugués"
+    respuestas = "respuestas_ig.csv"
+    abrv = "PT"
 
-# Filtrar solo los registros donde el estado es "Activo"
-df_activo = df[df['estado'] == 'Activo']
+elif camino == "Camino del Norte":
+    st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
+    archivo = "vertices_250_camino_pt.csv"
+    respuestas = "respuestas_nt.csv"
+    camino = "Camino Portugués"
+    abrv = "PT"
+
+# Cargar los datos con solo las columnas necesarias
+df = git.cargar_datos(columnas_necesarias=['id', 'estado', 'fecha', 'latitud', 'longitud', 'tipo_incidencia', 'tipo_alerta'], respuestas)
+
+# Filtrar solo los registros donde el estado es "Activo" y el camino es "PT"
+df_activo = df[(df['estado'] == 'Activo') & (df['camino'] == abrv)]
 
 # Crear un mapa base (cualquier coordenada inicial, luego ajustamos el zoom)
 m = folium.Map(location=[20.0, 0.0], zoom_start=10)
