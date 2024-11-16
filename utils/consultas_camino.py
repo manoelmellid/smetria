@@ -75,4 +75,4 @@ def procesar_ubicacion(input_text, archivo):
         print("No se encontraron resultados para el valor de Km proporcionado.")
         return None, None, None, None
 
-    return longitud, latitud, concello_id, ubicacion
+    return longitud, latitud, concello_id, ubicacion, km_camino
