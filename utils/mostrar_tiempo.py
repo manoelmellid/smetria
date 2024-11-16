@@ -74,7 +74,7 @@ def tabla_tiempo(archivo_csv):
         df_dia = df[df['date_time'].dt.date == dia]
 
         # Extraer la hora de la columna 'date_time'
-        df_dia['hour'] = df_dia['date_time'].dt.hour
+        df_dia.loc[:, 'hour'] = df_dia['date_time'].dt.hour
 
         # Ordenar los datos para que comiencen desde las 0:00
         df_dia = df_dia.sort_values(by='hour')
