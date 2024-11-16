@@ -141,11 +141,11 @@ if submit_button:
                 )
             
                 # Tooltip que aparece al pasar el ratón por encima
-                #tooltip_text = f"Tipo de Incidencia: {tipo_incidencia}"
-                #marker.add_child(folium.Tooltip(tooltip_text))
+                tooltip_text = f"{distancia}"
+                marker.add_child(folium.Tooltip(tooltip_text))
                 
                 # Popup que aparece al hacer clic en el marcador
-                #popup_text = f"Km {km}"
+                #popup_text = f"{nome}"
                 #marker.add_child(folium.Popup(popup_text))
                 
                 # Añadir el marcador al mapa
