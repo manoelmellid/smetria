@@ -81,17 +81,7 @@ st.header("Herramientas de navegación")
 st.write("### Parámetros de filtro")
 
 # Seleccionar camino
-camino = gen.camino()
-if camino == "Camino Portugués":
-    archivo = "vertices_250_camino_pt.csv"
-elif camino == "Camino Francés":
-    archivo = "vertices_250_camino_pt.csv"
-    st.warning(f"La función específica del {camino} aún está en desarrollo. Se utilizará el Portugués.")
-    camino = "Camino Portugués"
-elif camino in ["Camino Inglés", "Camino del Norte"]:
-    st.warning(f"La función específica del {camino} aún está en desarrollo. Se utilizará el Portugués.")
-    archivo = "vertices_250_camino_pt.csv"
-    camino = "Camino Portugués"
+camino, archivo, abrv = gen.camino()
 
 # Cargar datos
 def cargar_datos():
