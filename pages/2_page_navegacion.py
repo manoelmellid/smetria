@@ -166,9 +166,5 @@ if submit_button:
 
 else:
     st.warning("Por favor, introduce una distancia en kilómetros.")
-
-# Recuperar df_filtrado de session_state, si está disponible
-df_filtrado = st.session_state.get('df_filtrado', None)
-
-if df_filtrado is not None:
-    rut.mostrar_seleccion(df_filtrado, latitud, longitud)
+st.write(df_filtrado)
+rut.mostrar_seleccion(df_filtrado, latitud, longitud)
