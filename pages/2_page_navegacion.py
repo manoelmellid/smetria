@@ -6,7 +6,7 @@ from geopy.distance import geodesic
 import folium
 from folium.plugins import MarkerCluster
 from utils import consultas_camino as concam, rutas as rut, general as gen
-
+color = None
 # Definir la función para añadir marcadores al mapa
 def add_marker_with_dynamic_size(map, df):
     bounds = []  # Lista para almacenar las coordenadas de todos los puntos
