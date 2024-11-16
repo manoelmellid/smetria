@@ -11,7 +11,7 @@ from utils import consultas_camino as concam, rutas as rut, general as gen
 # Variables de longitud y latitud inicializadas como None
 longitud = None
 latitud = None
-df_filtrado = None
+busqueda = None
 
 st.header("Herramientas de navegación")
 st.write("### Parámetros de filtro")
@@ -163,8 +163,11 @@ if submit_button:
         
         # Mostrar el mapa en Streamlit
         st.components.v1.html(m._repr_html_(), height=500)
+        busqueda = 1
 
 else:
     st.warning("Por favor, introduce una distancia en kilómetros.")
-st.write(df_filtrado)
-rut.mostrar_seleccion(df_filtrado, latitud, longitud)
+    
+if busqueda is not None:
+    st.write(df_filtrado)
+    rut.mostrar_seleccion(df_filtrado, latitud, longitud)
