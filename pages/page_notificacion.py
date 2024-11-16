@@ -25,30 +25,25 @@ mensaje = st.text_area("Añada más detalles si lo considera necesario:")
 
 if camino == "Camino Portugués":
     archivo = "vertices_250_camino_pt.csv"
-    respuestas = "respuestas_pt.csv"
     abrv = "PT"
     
 elif camino == "Camino Francés":
     archivo = "vertices_250_camino_pt.csv"
     st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
     camino = "Camino Portugués"
-    respuestas = "respuestas_fr.csv"
     abrv = "PT"
     
 elif camino == "Camino Inglés":
     st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
     archivo = "vertices_250_camino_pt.csv"
     camino = "Camino Portugués"
-    respuestas = "respuestas_ig.csv"
     abrv = "PT"
 
 elif camino == "Camino del Norte":
     st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
     archivo = "vertices_250_camino_pt.csv"
-    respuestas = "respuestas_nt.csv"
     camino = "Camino Portugués"
     abrv = "PT"
-
 
 if st.button("Enviar"):
     if nombre and email and telefono and input_text:
@@ -62,8 +57,7 @@ if st.button("Enviar"):
             mensaje=mensaje,
             alerta_opc=alerta_opc,
             archivo=archivo,
-            abrv=abrv,
-            respuestas=respuestas
+            abrv=abrv
         )
         st.success("Notificación enviada con éxito.")
     else:
