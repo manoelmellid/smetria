@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import folium
+import matplotlib.pyplot as plt
 from folium.plugins import MarkerCluster
 from utils import github as git, general as gen
 
@@ -91,3 +92,25 @@ add_marker_with_dynamic_size(m, df_activo)
 
 # Mostrar el mapa en Streamlit
 st.components.v1.html(m._repr_html_(), height=500)
+
+# Configurar el tamaño de la figura
+fig, ax = plt.subplots(figsize=(5, 2))
+
+# Colores y etiquetas de los círculos
+colors = ["yellow", "orange", "red"]
+labels = ["Baja", "Media", "Alta"]
+
+# Dibujar los círculos
+for i, (color, label) in enumerate(zip(colors, labels)):
+    circle = plt.Circle((i + 1, 1), 0.3, color=color, ec="black")
+    ax.add_artist(circle)
+    ax.text(i + 1, 0.4, label, ha="center", fontsize=10)
+
+# Configurar el eje
+ax.set_xlim(0.5, 3.5)
+ax.set_ylim(0, 2)
+ax.axis("off")  # Quitar los ejes
+
+# Mostrar la figura en Streamlit
+st.pyplot(fig)
+
