@@ -1,5 +1,6 @@
 import streamlit as st
 import pydeck as pdk
+import pandas as pd
 import re
 
 def camino():
@@ -56,76 +57,78 @@ def validar_telefono(telefono):
         return True
     return False
 
-# Función para crear el mapa
-def mostrar_puntos_con_arcos(latitud, longitud, altura_columna=500):
-    # Puntos predefinidos
-    puntos = [
-        ("Tui", -8.647561062369814, 42.03689869234378),
-        ("Porriño", -8.621155902537511, 42.161771976830565),
-        ("Redondela", -8.608127425736257, 42.28321455965748),
-        ("Ponte Sampaio", -8.60739744888831, 42.34692538060731),
-        ("Pontevedra", -8.64485792166723, 42.43147462464597),
-        ("Caldas de Rei", -8.643032777153794, 42.60372324695396),
-        ("Padrón", -8.661625079278618, 42.738909894811925),
-        ("Milladoiro", -8.580879782625436, 42.844542908024806),
-        ("Santiago de Compostela", -8.54365852835325, 42.8805986746478),
-    ]
+def query_csv_data(km_value, archivo):
+    # Cargar el archivo CSV
+    df = pd.read_csv(archivo)  # Asegúrate de que la ruta sea correcta
 
-    # Agregar el punto recibido como argumento
-    punto_adicional = ("Punto Adicional", longitud, latitud)
+    # Filtrar los datos donde la columna 'km' es igual a km_value
+    filtered_df = df[df['km'] == km_value][['longitud', 'latitud', 'concello_id', 'ubicacion']]
+    
+    # Verificar si el DataFrame filtrado no está vacío
+    if not filtered_df.empty:
+        # Retornar el primer elemento de cada columna como flotante, excepto concello_id y ubicacion
+        longitud = float(filtered_df['longitud'].iloc[0])  # Convertir a float
+        latitud = float(filtered_df['latitud'].iloc[0])    # Convertir a float
+        concello_id = filtered_df['concello_id'].iloc[0]   # Texto
+        ubicacion = filtered_df['ubicacion'].iloc[0]       # Texto
+        return longitud, latitud, concello_id, ubicacion
+    else:
+        # Si no se encuentra el km_value, retornar None para los valores de longitud y latitud
+        return None, None, None, None
 
-    # Crear las líneas de arco solo entre los puntos predefinidos
-    arcos = []
-    for i in range(len(puntos) - 1):
-        lat1, lon1 = puntos[i][2], puntos[i][1]
-        lat2, lon2 = puntos[i + 1][2], puntos[i + 1][1]
-        arcos.append({
-            "source": [lon1, lat1],
-            "target": [lon2, lat2],
-            "outbound": 100  # Ancho de la línea (puedes ajustarlo)
-        })
+def query_max_km_value(archivo):
+    # Cargar el archivo CSV
+    df = pd.read_csv(archivo)  # Asegúrate de que la ruta sea correcta
 
-    # Agregar la capa del arco
-    arc_layer = pdk.Layer(
-        "ArcLayer",
-        data=arcos,
-        get_source_position="source",
-        get_target_position="target",
-        get_source_color=[200, 30, 0, 160],
-        get_target_color=[200, 30, 0, 160],
-        auto_highlight=True,
-        width_scale=0.0001,
-        get_width="outbound",
-        width_min_pixels=3,
-        width_max_pixels=30,
-    )
+    # Verificar si el DataFrame no está vacío
+    if not df.empty:
+        # Obtener el valor máximo de la columna 'km'
+        max_km_value = df['km'].max()
+        return max_km_value
+    else:
+        # Si el DataFrame está vacío, retornar None
+        return None
 
-    # Crear la capa de la columna para el punto adicional
-    columna_layer = pdk.Layer(
-        "ColumnLayer",
-        data=[{
-            "lat": latitud,
-            "lon": longitud,
-            "elevation": altura_columna
-        }],
-        get_position=["lon", "lat"],
-        get_elevation="elevation",
-        elevation_scale=5,  # Escala de la columna
-        radius=200,
-        get_fill_color=[255, 0, 0, 140],  # Color rojo
-    )
+def procesar_ubicacion(input_text, archivo):
+    max_km_value = query_max_km_value(archivo)
+    if not input_text:
+        print("Por favor, introduce una distancia en kilómetros.")
+        return None, None, None, None  # Valores predeterminados cuando no hay input
 
-    # Configuración del mapa
-    deck = pdk.Deck(
-        map_style="mapbox://styles/mapbox/light-v9",
-        initial_view_state={
-            "latitude": latitud,
-            "longitude": longitud,
-            "zoom": 10,
-            "pitch": 50,
-        },
-        layers=[arc_layer, columna_layer],
-    )
+    try:
+        input_km = float(input_text.replace(',', '.'))  # Convierte el input a un número flotante
+    except ValueError:
+        print("Por favor, ingresa un número válido.")
+        return None, None, None, None
 
-    # Mostrar el mapa en Streamlit
-    st.pydeck_chart(deck)
+    # Verifica si el valor de km excede el máximo permitido
+    if input_km > max_km_value:
+        print(f"El valor {input_km} es mayor que el máximo permitido: {max_km_value}.")
+        return None, None, None, None
+
+    # Ajusta el valor de `km_camino` según las reglas dadas
+    km_camino = input_km
+    n = int(km_camino)
+
+    if km_camino == max_km_value:
+        resultado = km_camino
+    elif n < km_camino < n + 0.25:
+        resultado = n + 0.25
+    elif n + 0.25 < km_camino < n + 0.5:
+        resultado = n + 0.5
+    elif n + 0.5 < km_camino < n + 0.75:
+        resultado = n + 0.75
+    elif n + 0.75 < km_camino < n + 1:
+        resultado = n + 1
+    else:
+        resultado = km_camino
+
+    # Consulta el CSV usando el resultado ajustado
+    longitud, latitud, concello_id, ubicacion = query_csv_data(resultado, archivo)
+
+    # Si no se encontraron resultados, devuelve una advertencia
+    if longitud is None and latitud is None:
+        print("No se encontraron resultados para el valor de Km proporcionado.")
+        return None, None, None, None
+
+    return longitud, latitud, concello_id, ubicacion, km_camino
