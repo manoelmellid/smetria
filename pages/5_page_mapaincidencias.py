@@ -8,25 +8,7 @@ from utils import github as git, general as gen
 st.header("Mapa de visualización de incidencias")
 st.error("Esta sección de SMETRIA está en desarrollo todavía")
 # ---------------------------------------------------------------------------------
-camino = gen.camino()
-if camino == "Camino Portugués":
-    archivo = "vertices_250_camino_pt.csv"
-    abrv = "PT"
-    
-elif camino == "Camino Francés":
-    archivo = "vertices_250_camino_pt.csv"
-    camino = "Camino Portugués"
-    abrv = "FR"
-    
-elif camino == "Camino Inglés":
-    archivo = "vertices_250_camino_pt.csv"
-    camino = "Camino Portugués"
-    abrv = "EN"
-
-elif camino == "Camino del Norte":
-    archivo = "vertices_250_camino_pt.csv"
-    camino = "Camino Portugués"
-    abrv = "NO"
+camino, archivo, abrv = gen.camino()
 
 # Cargar los datos con solo las columnas necesarias
 df = git.cargar_datos(columnas_necesarias=['id', 'estado', 'fecha', 'camino', 'km', 'latitud', 'longitud', 'tipo_incidencia', 'tipo_alerta'])
