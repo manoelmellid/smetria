@@ -12,6 +12,7 @@ from utils import consultas_camino as concam, rutas as rut, general as gen
 longitud = None
 latitud = None
 busqueda = None
+st.session_state['df_filtrado'] = None
 
 st.header("Herramientas de navegación")
 st.write("### Parámetros de filtro")
