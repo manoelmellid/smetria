@@ -81,13 +81,14 @@ def mostrar_mapa(origen, destino):
         color="red",  # Color de la línea
         weight=5,  # Grosor de la línea
         opacity=0.8  # Opacidad de la línea
+        tooltio="Ruta"
     ).add_to(m)
     
     # Agregar un marcador para el punto de origen
     Marker(
         location=[origen[1], origen[0]],  # Latitud y longitud
         icon=folium.Icon(color="green", icon="home"),
-        popup="Inicio de la ruta"
+        tooltip="Inicio de la ruta"
     ).add_to(m)
     
     # Agregar un marcador para el punto de destino
