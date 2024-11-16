@@ -15,9 +15,24 @@ end_date = None
 days=None
 
 camino = gen.camino()
+if camino == "Camino Portugués":
+    archivo = "vertices_250_camino_pt.csv"
+elif camino == "Camino Francés":
+    archivo = "vertices_250_camino_pt.csv"
+    st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
+    camino = "Camino Portugués"
+elif camino == "Camino Inglés":
+    st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
+    archivo = "vertices_250_camino_pt.csv"
+    camino = "Camino Portugués"
+elif camino == "Camino del Norte":
+    st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
+    archivo = "vertices_250_camino_pt.csv"
+    camino = "Camino Portugués"
+
 
 # Entradas del formulario
-input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
+input_text = st.text_input(f"Indica el Km del {camino} dónde te encuentras")
 
 today = datetime.date.today()
 # Selección de solo un día
@@ -41,11 +56,11 @@ with st.form(key='my_form'):
 
 # Obtener las coordenadas del punto kilometrico
 if submit_button:
-    longitud, latitud, concello_id, ubicacion = concam.procesar_ubicacion(input_text)
+    longitud, latitud, concello_id, ubicacion = concam.procesar_ubicacion(input_text, archivo)
     adelante=1
-
+    
 if concello_id is not None:
-    st.write(f"### Predicción para tu ubicación: {concello_id}")
+    st.write(f"### Tu ubicación: {concello_id} - {camino}")
 
 if latitud is not None and longitud is not None:
     # Crear el DataFrame solo si ambos valores son válidos
@@ -56,7 +71,8 @@ if latitud is not None and longitud is not None:
 
     col1, col2 = st.columns([2,2])
     #with col1:
-        #gen.mostrar_puntos_con_arcos(latitud, longitud, altura_columna=500)
+        #if concello_id is not None:
+            #st.write(f"### {concello_id} - {camino}")
     #with col2:
         #st.map(data) # Mostrar el mapa solo si los datos son válidos
 
