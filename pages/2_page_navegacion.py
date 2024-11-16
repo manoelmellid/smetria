@@ -141,7 +141,7 @@ if submit_button:
                 )
             
                 # Tooltip que aparece al pasar el ratón por encima
-                tooltip_text = f"A {distancia} Km"
+                tooltip_text = f"{distancia} Km"
                 marker.add_child(folium.Tooltip(tooltip_text))
                 
                 # Popup que aparece al hacer clic en el marcador
