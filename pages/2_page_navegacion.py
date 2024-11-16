@@ -12,7 +12,6 @@ from utils import consultas_camino as concam, rutas as rut, general as gen
 longitud = None
 latitud = None
 busqueda = None
-st.session_state['df_filtrado'] = None
 
 st.header("Herramientas de navegación")
 st.write("### Parámetros de filtro")
@@ -79,9 +78,11 @@ if submit_button:
         st.error("No se encontraron resultados para el valor de Km proporcionado.")
 
     if st.session_state['df_filtrado'] is not None:
+        st.write(st.session_state['df_filtrado'])
+    
         m = folium.Map(location=[latitud, longitud], zoom_start=12)
         marker_cluster = MarkerCluster().add_to(m)
-        
+
         def add_marker_with_dynamic_size(map, df):
             # Lista para almacenar las coordenadas de todos los puntos
             bounds = []
@@ -161,8 +162,7 @@ if submit_button:
 
 else:
     st.warning("Por favor, introduce una distancia en kilómetros.")
-
+    
 if st.session_state['df_filtrado'] is not None:
     st.write(st.session_state['df_filtrado'])
     rut.mostrar_seleccion(st.session_state['df_filtrado'], latitud, longitud)
-    
