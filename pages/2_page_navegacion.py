@@ -8,7 +8,7 @@ from folium.plugins import MarkerCluster
 from utils import consultas_camino as concam, rutas as rut, general as gen
 
 # Definir la función para añadir marcadores al mapa
-def add_marker_with_dynamic_size(map, df):
+def add_marker_with_dynamic_size(map, df, latitud, longitud):
     bounds = []  # Lista para almacenar las coordenadas de todos los puntos
 
     for _, row in df.iterrows():
@@ -167,7 +167,7 @@ st.markdown(
 # Mostrar resultados
 if st.session_state['df_filtrado'] is not None:
     m = folium.Map(location=[st.session_state.latitud, st.session_state.longitud], zoom_start=12)
-    add_marker_with_dynamic_size(m, st.session_state['df_filtrado'])
+    add_marker_with_dynamic_size(m, st.session_state['df_filtrado'], latitud, longitud)
     st.components.v1.html(m._repr_html_(), height=500)
     rut.mostrar_seleccion(st.session_state['df_filtrado'], st.session_state.latitud, st.session_state.longitud)
 else:
