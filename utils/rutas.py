@@ -94,7 +94,7 @@ def mostrar_mapa(origen, destino):
     Marker(
         location=[destino[1], destino[0]],  # Latitud y longitud
         icon=folium.Icon(color="blue", icon="flag"),
-        popup="Destino"
+        tooltip="Destino"
     ).add_to(m)
     
     # Agregar el origen y destino a los bounds
