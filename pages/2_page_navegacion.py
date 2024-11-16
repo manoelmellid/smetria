@@ -96,7 +96,23 @@ if submit_button:
                 nome = row['nome']
                 tipo = row['tipo']
 
-                color = 'yellow'
+                tipo_colores = {
+                    'centro_saude': 'red',
+                    'desfibrilador': 'green',
+                    'vivendas_turisticas': 'blue',
+                    'farmacia': 'purple',
+                    'apartamentos': 'orange',
+                    'pensiones': 'darkblue',
+                    'hotel': 'pink',
+                    'camping': 'brown',
+                    'albergues_turisticos': 'yellow',
+                    'turismo_rural': 'gray',
+                    'hospital': 'darkred',
+                    'oficina_turismo': 'lightblue'
+                }
+                
+                # Obtener el color desde el diccionario, o 'black' si no existe
+                color = tipo_colores.get(tipo, 'black')
                 
                 # Crear un marcador con un tamaño dinámico en función del zoom
                 marker = folium.CircleMarker(
