@@ -84,7 +84,7 @@ if submit_button:
         df_filtrado = df_filtrado[df_filtrado['distancia_km'] <= radio_km]
         st.write(df_filtrado)
         
-        m = folium.Map(location=[20.0, 0.0], zoom_start=10)
+        m = folium.Map(location=[latitud, longitud], zoom_start=12)
         marker_cluster = MarkerCluster().add_to(m)
 
         def add_marker_with_dynamic_size(map, df):
@@ -95,6 +95,7 @@ if submit_button:
                 lat, lon = row['latitud'], row['longitud']
                 nome = row['nome']
                 tipo = row['tipo']
+                distancia = row['distancia_km']
 
                 if tipo == 'centro_saude':
                     color = 'red'  # Para centros de salud
@@ -122,6 +123,13 @@ if submit_button:
                     color = 'lightblue'  # Para oficinas de turismo
                 else:
                     color = 'black'  # Para otros tipos no especificados
+
+                # Añadir un marcador rojo para la posición del usuario
+                folium.Marker(
+                    location=[latitud, longitud],
+                    icon=folium.Icon(color='red', icon='user'),
+                    tooltip="Tu posición"
+                ).add_to(m)
                 
                 # Crear un marcador con un tamaño dinámico en función del zoom
                 marker = folium.CircleMarker(
@@ -158,3 +166,9 @@ if submit_button:
 
 else:
     st.warning("Por favor, introduce una distancia en kilómetros.")
+
+# Recuperar df_filtrado de session_state, si está disponible
+df_filtrado = st.session_state.get('df_filtrado', None)
+
+if df_filtrado is not None:
+    rut.mostrar_seleccion(df_filtrado, latitud, longitud)
