@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import datetime
-from utils import general as gen, consultas_camino as concam, pronostico as prn, mostrar_tiempo as showweather
+from utils import general as gen, pronostico as prn, mostrar_tiempo as showweather
 
 st.header("Predicción meteorológica")
 longitud = None
@@ -39,7 +39,7 @@ with st.form(key='my_form'):
 
 # Obtener las coordenadas del punto kilometrico
 if submit_button:
-    longitud, latitud, concello_id, ubicacion, km = concam.procesar_ubicacion(input_text, archivo)
+    longitud, latitud, concello_id, ubicacion, km = gen.procesar_ubicacion(input_text, archivo)
     adelante=1
     
 if concello_id is not None:
