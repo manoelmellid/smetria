@@ -61,7 +61,7 @@ if 'longitud' in st.session_state and 'latitud' in st.session_state:
     latitud = st.session_state.latitud
 
 if submit_button:
-    longitud, latitud, _, _, _ = concam.procesar_ubicacion(input_text, archivo)
+    longitud, latitud, concello_id, ubicacion, km_camino = concam.procesar_ubicacion(input_text, archivo)
     if longitud and latitud:
         st.session_state.longitud = longitud
         st.session_state.latitud = latitud
