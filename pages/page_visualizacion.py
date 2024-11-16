@@ -13,32 +13,28 @@ st.error("Esta sección de SMETRIA está en desarrollo todavía")
 camino = gen.camino()
 if camino == "Camino Portugués":
     archivo = "vertices_250_camino_pt.csv"
-    respuestas = "respuestas_pt.csv"
     abrv = "PT"
     
 elif camino == "Camino Francés":
     archivo = "vertices_250_camino_pt.csv"
     st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
     camino = "Camino Portugués"
-    respuestas = "respuestas_fr.csv"
     abrv = "PT"
     
 elif camino == "Camino Inglés":
     st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
     archivo = "vertices_250_camino_pt.csv"
     camino = "Camino Portugués"
-    respuestas = "respuestas_ig.csv"
     abrv = "PT"
 
 elif camino == "Camino del Norte":
     st.warning(f"La función especifica del {camino} aún está en desarrollo, se utilizará el Portugués, gracias.")
     archivo = "vertices_250_camino_pt.csv"
-    respuestas = "respuestas_nt.csv"
     camino = "Camino Portugués"
     abrv = "PT"
 
 # Cargar los datos con solo las columnas necesarias
-df = git.cargar_datos(columnas_necesarias=['id', 'estado', 'fecha', 'latitud', 'longitud', 'tipo_incidencia', 'tipo_alerta'], respuestas)
+df = git.cargar_datos(columnas_necesarias=['id', 'estado', 'fecha', 'camino', 'km', 'latitud', 'longitud', 'tipo_incidencia', 'tipo_alerta'])
 
 # Filtrar solo los registros donde el estado es "Activo" y el camino es "PT"
 df_activo = df[(df['estado'] == 'Activo') & (df['camino'] == abrv)]
