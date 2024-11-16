@@ -7,7 +7,18 @@ import folium
 from folium.plugins import MarkerCluster
 from utils import consultas_camino as concam, rutas as rut, general as gen
 
-color = {
+# Definir la función para añadir marcadores al mapa
+def add_marker_with_dynamic_size(map, df):
+    bounds = []  # Lista para almacenar las coordenadas de todos los puntos
+
+    for _, row in df.iterrows():
+        lat, lon = row['latitud'], row['longitud']
+        nome = row['nome']
+        tipo = row['tipo']
+        distancia = round(row['distancia_km'], 2)
+
+        # Definir el color según el tipo
+        color = {
             'centro_saude': 'red',
             'desfibrilador': 'green',
             'vivendas_turisticas': 'blue',
@@ -20,17 +31,7 @@ color = {
             'turismo_rural': 'gray',
             'hospital': 'darkred',
             'oficina_turismo': 'lightblue'
-        }
-
-# Definir la función para añadir marcadores al mapa
-def add_marker_with_dynamic_size(map, df):
-    bounds = []  # Lista para almacenar las coordenadas de todos los puntos
-
-    for _, row in df.iterrows():
-        lat, lon = row['latitud'], row['longitud']
-        nome = row['nome']
-        tipo = row['tipo']
-        distancia = round(row['distancia_km'], 2)
+        }.get(tipo, 'black')  # Color negro para tipos no especificados
 
         # Añadir un marcador con círculo dinámico
         marker = folium.CircleMarker(
@@ -118,7 +119,22 @@ if submit_button and input_text:
     else:
         st.error("No se encontraron resultados para el valor de Km proporcionado.")
 
+color = {
+    'centro_saude': 'red',
+    'desfibrilador': 'green',
+    'vivendas_turisticas': 'blue',
+    'farmacia': 'purple',
+    'apartamentos': 'orange',
+    'pensiones': 'darkblue',
+    'hotel': 'black',
+    'camping': 'brown',
+    'albergues_turisticos': 'yellow',
+    'turismo_rural': 'gray',
+    'hospital': 'darkred',
+    'oficina_turismo': 'lightblue'
+}
 
+# Crear círculos con nombres como elementos HTML
 circles_with_labels_html = "".join(
     f"""
     <div style='display: flex; align-items: center; margin: 0 10px;'>
