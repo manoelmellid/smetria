@@ -74,6 +74,7 @@ if submit_button:
         )
         df_filtrado = df_filtrado[df_filtrado['distancia_km'] <= radio_km]
         st.session_state['df_filtrado'] = df_filtrado
+        mierda = df_filtrado
 
     else:
         st.error("No se encontraron resultados para el valor de Km proporcionado.")
@@ -167,3 +168,5 @@ else:
 if st.session_state['df_filtrado'] is not None:
     st.write(st.session_state['df_filtrado'])
     rut.mostrar_seleccion(st.session_state['df_filtrado'], latitud, longitud)
+    rut.mostrar_seleccion(mierda, latitud, longitud)
+
