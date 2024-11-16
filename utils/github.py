@@ -11,10 +11,11 @@ from utils import consultas_camino as concam
 # Configuración de GitHub desde los secretos de Streamlit
 github_token = st.secrets["github"]["github_token"]
 repo = st.secrets["github"]["repo"]
+file_path = st.secrets["github"]["file_path"]
+url = f"https://api.github.com/repos/{repo}/contents/{file_path}"
 
 @st.cache_data
-def cargar_datos(columnas_necesarias=None, respuestas_camino):
-    url = f"https://api.github.com/repos/{repo}/contents/{respuestas_camino}"
+def cargar_datos(columnas_necesarias=None):
     headers = {
         "Authorization": f"token {github_token}"
     }
@@ -46,8 +47,7 @@ def cargar_datos(columnas_necesarias=None, respuestas_camino):
         st.error(f"Error al obtener el archivo desde GitHub. Código de estado: {response.status_code}")
         return pd.DataFrame()  # Retorna un DataFrame vacío si hay un error
 
-def guardar_respuesta_en_csv(nombre, telefono, email, input_text, tipo_opc, mensaje, alerta_opc, archivo, camino, respuestas_camino):
-    url = f"https://api.github.com/repos/{repo}/contents/{respuestas_camino}"
+def guardar_respuesta_en_csv(nombre, telefono, email, input_text, tipo_opc, mensaje, alerta_opc, archivo, camino):
     fecha = datetime.datetime.now()
     longitud, latitud, concello_id, ubicacion, km = concam.procesar_ubicacion(input_text, archivo)
     estado="Activo"
@@ -169,4 +169,3 @@ def actualizar(id_input, columna, valor):
             print(f"Error al actualizar el archivo en GitHub: {response.status_code} - {response.text}")
     else:
         print(f"Error al obtener el archivo desde GitHub. Código de estado: {response.status_code}")
-
