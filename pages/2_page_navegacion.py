@@ -7,18 +7,7 @@ import folium
 from folium.plugins import MarkerCluster
 from utils import consultas_camino as concam, rutas as rut, general as gen
 
-# Definir la función para añadir marcadores al mapa
-def add_marker_with_dynamic_size(map, df):
-    bounds = []  # Lista para almacenar las coordenadas de todos los puntos
-
-    for _, row in df.iterrows():
-        lat, lon = row['latitud'], row['longitud']
-        nome = row['nome']
-        tipo = row['tipo']
-        distancia = round(row['distancia_km'], 2)
-
-        # Definir el color según el tipo
-        color = {
+color = {
             'centro_saude': 'red',
             'desfibrilador': 'green',
             'vivendas_turisticas': 'blue',
@@ -32,6 +21,16 @@ def add_marker_with_dynamic_size(map, df):
             'hospital': 'darkred',
             'oficina_turismo': 'lightblue'
         }.get(tipo, 'black')  # Color negro para tipos no especificados
+
+# Definir la función para añadir marcadores al mapa
+def add_marker_with_dynamic_size(map, df):
+    bounds = []  # Lista para almacenar las coordenadas de todos los puntos
+
+    for _, row in df.iterrows():
+        lat, lon = row['latitud'], row['longitud']
+        nome = row['nome']
+        tipo = row['tipo']
+        distancia = round(row['distancia_km'], 2)
 
         # Añadir un marcador con círculo dinámico
         marker = folium.CircleMarker(
@@ -119,32 +118,22 @@ if submit_button and input_text:
     else:
         st.error("No se encontraron resultados para el valor de Km proporcionado.")
 
-color = {
-    'centro_saude': 'red',
-    'desfibrilador': 'green',
-    'vivendas_turisticas': 'blue',
-    'farmacia': 'purple',
-    'apartamentos': 'orange',
-    'pensiones': 'darkblue',
-    'hotel': 'black',
-    'camping': 'brown',
-    'albergues_turisticos': 'yellow',
-    'turismo_rural': 'gray',
-    'hospital': 'darkred',
-    'oficina_turismo': 'lightblue'
-}
 
-# Crear círculos como elementos HTML
-circles_html = "".join(
-    f"<div style='display: inline-block; width: 20px; height: 20px; margin: 0 5px; border-radius: 50%; background-color: {color};'></div>"
-    for color in color.values()
+circles_with_labels_html = "".join(
+    f"""
+    <div style='display: flex; align-items: center; margin: 0 10px;'>
+        <div style='width: 20px; height: 20px; border-radius: 50%; background-color: {color}; margin-right: 8px;'></div>
+        <span style='font-size: 14px;'>{name.replace('_', ' ').capitalize()}</span>
+    </div>
+    """
+    for name, color in color.items()
 )
 
-# Mostrar los círculos en una línea
+# Mostrar los círculos y nombres en una línea
 st.markdown(
     f"""
-    <div style='display: flex; justify-content: center; align-items: center;'>
-        {circles_html}
+    <div style='display: flex; justify-content: center; align-items: center; flex-wrap: wrap;'>
+        {circles_with_labels_html}
     </div>
     """,
     unsafe_allow_html=True
