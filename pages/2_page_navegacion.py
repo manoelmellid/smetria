@@ -41,8 +41,8 @@ def add_marker_with_dynamic_size(map, df):
             fill=True,
             fill_opacity=0.6
         )
-        marker.add_child(folium.Tooltip(f"{distancia} Km"))
-        marker.add_child(folium.Popup(nome))
+        marker.add_child(folium.Popup(f"{distancia} Km"))
+        marker.add_child(folium.Tooltip(nome))
         marker.add_to(map)
 
         bounds.append([lat, lon])  # Añadir las coordenadas a los bounds
