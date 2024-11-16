@@ -11,11 +11,10 @@ from utils import consultas_camino as concam
 # Configuración de GitHub desde los secretos de Streamlit
 github_token = st.secrets["github"]["github_token"]
 repo = st.secrets["github"]["repo"]
-file_path = st.secrets["github"]["file_path"]
-url = f"https://api.github.com/repos/{repo}/contents/{file_path}"
 
 @st.cache_data
-def cargar_datos(columnas_necesarias=None):
+def cargar_datos(columnas_necesarias=None, respuestas_camino):
+    url = f"https://api.github.com/repos/{repo}/contents/{respuestas_camino}"
     headers = {
         "Authorization": f"token {github_token}"
     }
@@ -47,7 +46,8 @@ def cargar_datos(columnas_necesarias=None):
         st.error(f"Error al obtener el archivo desde GitHub. Código de estado: {response.status_code}")
         return pd.DataFrame()  # Retorna un DataFrame vacío si hay un error
 
-def guardar_respuesta_en_csv(nombre, telefono, email, input_text, tipo_opc, mensaje, alerta_opc, archivo, camino):
+def guardar_respuesta_en_csv(nombre, telefono, email, input_text, tipo_opc, mensaje, alerta_opc, archivo, camino, respuestas_camino):
+    url = f"https://api.github.com/repos/{repo}/contents/{respuestas_camino}"
     fecha = datetime.datetime.now()
     longitud, latitud, concello_id, ubicacion, km = concam.procesar_ubicacion(input_text, archivo)
     estado="Activo"
