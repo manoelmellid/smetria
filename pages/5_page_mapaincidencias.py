@@ -6,7 +6,6 @@ from folium.plugins import MarkerCluster
 from utils import github as git, general as gen
 
 st.header("Mapa de visualización de incidencias")
-st.error("Esta sección de SMETRIA está en desarrollo todavía")
 # ---------------------------------------------------------------------------------
 camino, archivo, abrv = gen.camino()
 
