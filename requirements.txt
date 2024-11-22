@@ -8,3 +8,6 @@ openrouteservice
 requests
 matplotlib
 folium
+spacy
+scikit-learn
+imbalanced-learn
