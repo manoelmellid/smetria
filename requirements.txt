@@ -1,4 +1,4 @@
-# Paquetes principales para la aplicación de Streamlit
+# Paquetes principales
 streamlit>=1.25.0
 pandas>=1.5.0
 geopandas>=0.12.2
@@ -11,19 +11,16 @@ matplotlib>=3.7.0
 folium>=0.14.0
 
 # Paquetes de NLP
-spacy>=3.5.0,<3.6.0
+spacy==3.5.0
 thinc>=8.1.10,<8.1.12
 
-# Modelos de spacy
+# Modelos de spaCy
 es_core_news_sm @ https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-3.5.0/es_core_news_sm-3.5.0.tar.gz
 
 # Paquetes para manejar desbalance de datos
 imbalanced-learn>=0.11.0
 
-# Paquetes necesarios para la instalación y compilación
-pip>=24.3.1
-setuptools>=67.0.0
-wheel>=0.38.0
-
-# Dependencia de numpy compatible
-numpy==1.24.0  # Usar una versión de numpy compatible y más reciente sin problemas de compilación
+# Dependencias para instalación y compilación
+setuptools>=68.0.0
+numpy>=1.25.0
+python3-distutils  # Asegúrate de que distutils esté disponible
