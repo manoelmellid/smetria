@@ -150,5 +150,3 @@ if st.session_state['df_filtrado'] is not None:
     add_marker_with_dynamic_size(m, st.session_state['df_filtrado'], st.session_state.latitud, st.session_state.longitud)
     st.components.v1.html(m._repr_html_(), height=500)
     rut.mostrar_seleccion(st.session_state['df_filtrado'], st.session_state.latitud, st.session_state.longitud)
-elif input_text is not None and input_text < 0:
-    st.warning("Por favor, introduce una distancia en kilómetros.")
