@@ -20,7 +20,14 @@ from sklearn.svm import SVC
 from imblearn.over_sampling import SMOTE
 
 # Cargar modelo spaCy
-nlp = spacy.load("es_core_news_sm")
+import spacy
+
+# Asegúrate de que el modelo está instalado
+try:
+    spacy.cli.download("es_core_news_sm")
+    nlp = spacy.load("es_core_news_sm")
+except Exception as e:
+    st.error(f"Error al cargar el modelo: {e}")
 
 # Función para preprocesar texto
 def preprocesar_texto(texto):
