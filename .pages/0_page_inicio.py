@@ -24,16 +24,16 @@ b1, b2, b3, b4 = st.columns([3,3,3,3])
 
 with b1:
     if st.button("Predicción meteorológica"):
-        st.switch_page("pages/page_meteorologia.py")
+        st.switch_page(".pages/page_meteorologia.py")
 with b2:
     if st.button("Navegación geoespacial"):
-        st.switch_page("pages/page_navegacion.py")
+        st.switch_page(".pages/page_navegacion.py")
 with b3:
     if st.button("Ocupación hotelera"):
-        st.switch_page("pages/page_ocupacion.py")
+        st.switch_page(".pages/page_ocupacion.py")
 with b4:
     if st.button("Notificación de incidencias"):
-        st.switch_page("pages/page_notificacion.py")
+        st.switch_page(".pages/page_notificacion.py")
         
 st.write("#### Contexto de desarrollo:")
 st.write("""
