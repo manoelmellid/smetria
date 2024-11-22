@@ -1,26 +1,10 @@
-# Paquetes principales
-streamlit>=1.25.0
-pandas>=1.5.0
-geopandas>=0.12.2
-shapely>=2.0.0
-geopy>=2.3.0
-pydeck>=0.8.0
-openrouteservice>=2.3.0
-requests>=2.31.0
-matplotlib>=3.7.0
-folium>=0.14.0
-
-# Paquetes de NLP
-spacy==3.5.0
-thinc>=8.1.10,<8.1.12
-
-# Modelos de spaCy
-es_core_news_sm @ https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-3.5.0/es_core_news_sm-3.5.0.tar.gz
-
-# Paquetes para manejar desbalance de datos
-imbalanced-learn>=0.11.0
-
-# Dependencias para instalación y compilación
-setuptools>=68.0.0
-numpy>=1.25.0
-python3-distutils  # Asegúrate de que distutils esté disponible
+streamlit
+pandas
+geopandas
+shapely
+geopy
+pydeck
+openrouteservice
+requests
+matplotlib
+folium
