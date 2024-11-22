@@ -1,5 +1,14 @@
 import streamlit as st
-from utils import general as gen, rutas as rut
+#from utils import general as gen, rutas as rut
+
+import sys
+import os
+
+# Añadir el directorio que contiene .utils a sys.path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+# Ahora puedes importar desde .utils
+from .utils import general as gen, rutas as rut
 
 st.header("Modelo predictivo de flujos")
 # ---------------------------------------------------------------------------------
