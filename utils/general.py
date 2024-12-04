@@ -3,6 +3,7 @@ import pydeck as pdk
 import pandas as pd
 import csv
 import json
+import re
 
 def camino():
     camino = st.selectbox('Selecciona el Camino de Santiago que estás recorriendo:', ['Camino Portugués', 'Camino Francés', 'Camino Inglés', 'Camino del Norte'])
