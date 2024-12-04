@@ -35,7 +35,7 @@ camino, archivo, abrv = gen.camino()
 input_text = st.text_input("Indique el Km del Camino dónde se encuentra")
 
 # Campo para el mensaje de incidencia
-comentario = st.text_area("Añada más detalles si lo considera necesario:")
+comentario = st.text_area("Añada una descripción:")
 
 # Preprocesamiento y clasificación del tipo de incidencia
 if comentario:
@@ -46,9 +46,26 @@ if comentario:
     comentario_vectorizado = vectorizador.transform([comentario_preprocesado])
     
     # Hacer la predicción
-    tipo_opc_predicho = modelo_svm.predict(comentario_vectorizado)[0]
+    tipo_opc_predict = modelo_svm.predict(comentario_vectorizado)[0]
     
     # Mostrar el tipo de incidencia clasificada
+    # Mensaje de éxito
+    st.success("¡La operación fue exitosa!")
+    
+    # Mensaje informativo
+    st.info("Aquí tienes algunos detalles sobre el proceso.")
+    
+    # Mensaje de advertencia
+    st.warning("Ten cuidado, podrías perder datos.")
+    
+    # Mensaje de error
+    st.error("Ocurrió un error inesperado.")
+    
+    # Mostrar un mensaje en la barra lateral
+    st.sidebar.warning("Este es un aviso en la barra lateral.")
+    
+    st.exception("Esto es una prueba de excepción")
+    
     st.write(f"El tipo de incidencia se va a clasficiar como: **{tipo_opc_predicho}**")
 
     # Buscar la alerta asociada al tipo de incidencia clasificado
@@ -59,14 +76,14 @@ else:
 
 # Botón para enviar la notificación
 if st.button("Enviar"):
-    if nombre and email and telefono and input_text and tipo_opc_predicho:
+    if nombre and email and telefono and input_text and tipo_opc_predict:
         # Llamar a la función para guardar en GitHub
         git.guardar_respuesta_en_csv(
             nombre=nombre,
             telefono=telefono,
             email=email,
             input_text=input_text,
-            tipo_opc=tipo_opc_predicho,
+            tipo_opc=tipo_opc_predict,
             mensaje=comentario,
             alerta_opc=alerta_opc,
             archivo=archivo,
