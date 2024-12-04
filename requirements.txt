@@ -1,4 +1,3 @@
-# Dependencias generales para la aplicación
 numpy>=1.21,<1.26
 streamlit>=1.25
 pandas>=1.3,<1.6
@@ -10,13 +9,11 @@ openrouteservice>=2.3.3,<3.0
 requests>=2.31,<3.0
 matplotlib>=3.6,<4.0
 folium>=0.14,<0.15
-
-# Dependencias para el modelo predictivo
 spacy>=3.6,<4.0
 scikit-learn>=1.3,<1.4
 imbalanced-learn>=0.11,<0.12
 joblib>=1.2
-
+Cython>=0.29
+llvmlite>=0.38
 # Modelo de lenguaje SpaCy
 https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-3.6.0/es_core_news_sm-3.6.0-py3-none-any.whl
-
