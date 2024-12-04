@@ -29,13 +29,12 @@ telefono = st.text_input("Teléfono")
 if telefono:
     if not gen.validar_telefono(telefono):
         st.error("Por favor, ingrese un número de teléfono válido.")
-        
-email = st.text_input("Correo electrónico")
-camino, archivo, abrv = gen.camino()
-input_text = st.text_input("Indique el Km del Camino dónde se encuentra")
-
-# Campo para el mensaje de incidencia
-comentario = st.text_area("Añada una descripción:")
+    else:
+        email = st.text_input("Correo electrónico")
+    camino, archivo, abrv = gen.camino()
+    input_text = st.text_input("Indique el Km del Camino dónde se encuentra")
+    # Campo para el mensaje de incidencia
+    comentario = st.text_area("Añada una descripción:")
 
 # Preprocesamiento y clasificación del tipo de incidencia
 if comentario:
