@@ -51,7 +51,7 @@ if comentario:
     # Mostrar el tipo de incidencia clasificada
     st.write(f"El tipo de incidencia se va a clasficiar como: **{tipo_opc_predict}**")
     # Mensaje informativo
-    st.info(f"Tenga en cuenta que el **tipo de incidencia** es generado **automáticamente** a través de un modelo predictivo")
+    st.info(f"Tenga en cuenta que el **tipo de incidencia** es generado **automáticamente** a través de un modelo predictivo entrenado con datos de IA generativa.")
 
     # Buscar la alerta asociada al tipo de incidencia clasificado
     alerta_opc = opciones_df.loc[opciones_df['tipo'] == tipo_opc_predict, 'alerta'].iloc[0]
