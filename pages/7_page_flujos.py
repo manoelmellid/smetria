@@ -35,7 +35,7 @@ st.write("Ingrese un comentario para clasificar el tipo de incidencia y ver la p
 @st.cache(allow_output_mutation=True)
 def cargar_y_entrenar_modelo():
     # Cargar datos
-    df = pd.read_csv("/Users/manoelmelide/Documents/respuestas.csv")
+    df = pd.read_csv("respuestas.csv")
     df['comentario'] = df['comentario'].apply(preprocesar_texto)
     X = df['comentario']
     y = df['tipo_incidencia']
