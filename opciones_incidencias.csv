@@ -1,11 +1,6 @@
 tipo,alerta
 "Crecida de río",Alta
 "Incendio",Alta
-"Desprendimiento de tierra",Media
-"Tramo colapsado/cerrado",Media
-"Mobiliario deteriorado",Baja
+"Tramo colapsado/cerrado/mal señalizado",Media
+"Problemas mobiliario",Baja
 "Accidente en el camino",Alta
-"Animales sueltos",Media
-"Fuente sin agua",Baja
-"Condiciones meteorológicas extremas",Alta
-"Rutas mal señalizadas",Media
