@@ -49,7 +49,7 @@ if comentario:
     tipo_opc_predict = modelo_svm.predict(comentario_vectorizado)[0]
     
     # Mostrar el tipo de incidencia clasificada
-    st.write(f"El tipo de incidencia se va a clasficiar como: **{tipo_opc_predict}**")
+    st.write(f"El tipo de incidencia se va a clasificar como: **{tipo_opc_predict}**")
     # Mensaje informativo
     st.info(
     "El tipo de incidencia ha sido clasificado **automáticamente** mediante un modelo predictivo basado en **inteligencia artificial**. "
