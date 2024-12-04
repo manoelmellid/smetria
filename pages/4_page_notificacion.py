@@ -66,12 +66,12 @@ if comentario:
     
     st.exception("Esto es una prueba de excepción")
     
-    st.write(f"El tipo de incidencia se va a clasficiar como: **{tipo_opc_predicho}**")
+    st.write(f"El tipo de incidencia se va a clasficiar como: **{tipo_opc_predict}**")
 
     # Buscar la alerta asociada al tipo de incidencia clasificado
-    alerta_opc = opciones_df.loc[opciones_df['tipo'] == tipo_opc_predicho, 'alerta'].iloc[0]
+    alerta_opc = opciones_df.loc[opciones_df['tipo'] == tipo_opc_predict, 'alerta'].iloc[0]
 else:
-    tipo_opc_predicho = None
+    tipo_opc_predict = None
     alerta_opc = None
 
 # Botón para enviar la notificación
