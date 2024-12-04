@@ -28,12 +28,15 @@ camino, archivo, abrv = gen.camino()
 input_text = st.text_input("Indique el Km del Camino dónde se encuentra")
 nombre = st.text_input("Nombre y apellidos")
 telefono = st.text_input("Teléfono")
-
 if telefono:
     if not gen.validar_telefono(telefono):
         st.error("Por favor, ingrese un número de teléfono válido.")
         
 email = st.text_input("Correo electrónico")
+if email:
+    if not gen.validar_correo(email):
+        st.error("Por favor, ingrese un email válido.")
+        
 # Campo para el mensaje de incidencia
 comentario = st.text_area("Añada una descripción:")
 
@@ -64,7 +67,7 @@ else:
 
 # Botón para enviar la notificación
 if st.button("Enviar"):
-    if not gen.validar_telefono(telefono):
+    if not gen.validar_telefono(telefono) or gen.validar_correo(email):
         st.warning("Hay algún error en los datos")
     elif nombre and email and telefono and input_text and tipo_opc_predict:
         # Llamar a la función para guardar en GitHub
