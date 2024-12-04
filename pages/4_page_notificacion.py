@@ -52,7 +52,7 @@ if comentario:
     st.write(f"El tipo de incidencia se va a clasficiar como: **{tipo_opc_predict}**")
     # Mensaje informativo
     st.info(
-    "El tipo de incidencia ha sido clasificado **automáticamente** mediante un modelo predictivo basado en **inteligencia artificial**"
+    "El tipo de incidencia ha sido clasificado **automáticamente** mediante un modelo predictivo basado en **inteligencia artificial**. "
     "Le recomendamos revisar la clasificación antes de proceder con el envío."
     )
     
