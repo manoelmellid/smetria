@@ -11,8 +11,9 @@ from utils import general as gen
 # Configuración de GitHub desde los secretos de Streamlit
 github_token = st.secrets["github"]["github_token"]
 repo = st.secrets["github"]["repo"]
+user = st.secrets["github"]["usuario"]
 file_path = st.secrets["github"]["archivo"]
-url = f"https://api.github.com/repos/{repo}/contents/{file_path}"
+url = f"https://api.github.com/user/repos/{repo}/contents/{file_path}"
 
 @st.cache_data
 def cargar_datos(columnas_necesarias=None):
