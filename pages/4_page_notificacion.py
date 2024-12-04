@@ -49,24 +49,9 @@ if comentario:
     tipo_opc_predict = modelo_svm.predict(comentario_vectorizado)[0]
     
     # Mostrar el tipo de incidencia clasificada
-    # Mensaje de éxito
-    st.success("¡La operación fue exitosa!")
-    
-    # Mensaje informativo
-    st.info("Aquí tienes algunos detalles sobre el proceso.")
-    
-    # Mensaje de advertencia
-    st.warning("Ten cuidado, podrías perder datos.")
-    
-    # Mensaje de error
-    st.error("Ocurrió un error inesperado.")
-    
-    # Mostrar un mensaje en la barra lateral
-    st.sidebar.warning("Este es un aviso en la barra lateral.")
-    
-    st.exception("Esto es una prueba de excepción")
-    
     st.write(f"El tipo de incidencia se va a clasficiar como: **{tipo_opc_predict}**")
+    # Mensaje informativo
+    st.info("Tenga en cuenta que el tipo de incidencia es generado automáticamente a través de un modelo predictivo")
 
     # Buscar la alerta asociada al tipo de incidencia clasificado
     alerta_opc = opciones_df.loc[opciones_df['tipo'] == tipo_opc_predict, 'alerta'].iloc[0]
