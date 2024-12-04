@@ -22,6 +22,9 @@ def cargar_datos(columnas_necesarias=None):
     }
     response = requests.get(url, headers=headers)
     
+    st.write("Columnas disponibles:", df.columns)
+    st.write("Datos cargados:", df.head())
+    
     # Verificar si la solicitud fue exitosa
     if response.status_code == 200:
         content = response.json()
