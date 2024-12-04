@@ -6,6 +6,7 @@ from utils import general as gen, github as git
 
 # Cargar el modelo de spaCy para preprocesamiento
 nlp = spacy.load("es_core_news_sm")
+comentario = None
 
 # Función para preprocesar texto
 def preprocesar_texto(texto):
@@ -23,6 +24,8 @@ st.header("Sistema de notificación de incidencias")
 opciones_df = pd.read_csv('opciones_incidencias.csv')
 
 # Campos del formulario
+camino, archivo, abrv = gen.camino()
+input_text = st.text_input("Indique el Km del Camino dónde se encuentra")
 nombre = st.text_input("Nombre y apellidos")
 telefono = st.text_input("Teléfono")
 
@@ -31,10 +34,8 @@ if telefono:
         st.error("Por favor, ingrese un número de teléfono válido.")
     else:
         email = st.text_input("Correo electrónico")
-        camino, archivo, abrv = gen.camino()
-        input_text = st.text_input("Indique el Km del Camino dónde se encuentra")
         # Campo para el mensaje de incidencia
-comentario = st.text_area("Añada una descripción:")
+        comentario = st.text_area("Añada una descripción:")
 
 # Preprocesamiento y clasificación del tipo de incidencia
 if comentario:
