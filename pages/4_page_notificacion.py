@@ -64,7 +64,9 @@ else:
 
 # Botón para enviar la notificación
 if st.button("Enviar"):
-    if nombre and email and telefono and input_text and tipo_opc_predict:
+    if not gen.validar_telefono(telefono):
+        st.error("Por favor, ingrese un número de teléfono válido.")
+    elif nombre and email and telefono and input_text and tipo_opc_predict:
         # Llamar a la función para guardar en GitHub
         git.guardar_respuesta_en_csv(
             nombre=nombre,
