@@ -17,7 +17,7 @@ modelo_svm = joblib.load('modelo_svm.sav')
 vectorizador = joblib.load('vectorizador_tfidf.sav')
 
 # Título de la aplicación
-st.title("Sistema de notificación de incidencias")
+st.header("Sistema de notificación de incidencias")
 
 # Leer las opciones de incidencias
 opciones_df = pd.read_csv('opciones_incidencias.csv')
@@ -49,7 +49,7 @@ if comentario:
     tipo_opc_predicho = modelo_svm.predict(comentario_vectorizado)[0]
     
     # Mostrar el tipo de incidencia clasificada
-    st.write(f"El tipo de incidencia clasificada es: **{tipo_opc_predicho}**")
+    st.write(f"El tipo de incidencia se va a clasficiar como: **{tipo_opc_predicho}**")
 
     # Buscar la alerta asociada al tipo de incidencia clasificado
     alerta_opc = opciones_df.loc[opciones_df['tipo'] == tipo_opc_predicho, 'alerta'].iloc[0]
