@@ -59,6 +59,13 @@ def validar_telefono(telefono):
         return True
     return False
 
+def validar_correo(correo):
+    # Expresión regular para un formato de correo electrónico (ej. usuario@dominio.com)
+    patron = r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+    if re.match(patron, correo):
+        return True
+    return False
+
 def query_csv_data(km_value, archivo):
     # Cargar el archivo CSV
     df = pd.read_csv(archivo)  # Asegúrate de que la ruta sea correcta
