@@ -32,10 +32,10 @@ telefono = st.text_input("Teléfono")
 if telefono:
     if not gen.validar_telefono(telefono):
         st.error("Por favor, ingrese un número de teléfono válido.")
-    else:
-        email = st.text_input("Correo electrónico")
-        # Campo para el mensaje de incidencia
-        comentario = st.text_area("Añada una descripción:")
+        
+email = st.text_input("Correo electrónico")
+# Campo para el mensaje de incidencia
+comentario = st.text_area("Añada una descripción:")
 
 # Preprocesamiento y clasificación del tipo de incidencia
 if comentario:
