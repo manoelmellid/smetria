@@ -34,8 +34,6 @@ def cargar_datos(columnas_necesarias=None):
         
         # Convertir el contenido a un DataFrame de pandas
         df = pd.read_csv(io.BytesIO(file_content))
-        st.write("Columnas disponibles:", df.columns)
-        st.write("Datos cargados:", df.head())
         
         # Filtrar solo las columnas necesarias si se especificaron
         if columnas_necesarias is not None:
