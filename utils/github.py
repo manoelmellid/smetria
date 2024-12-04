@@ -22,9 +22,6 @@ def cargar_datos(columnas_necesarias=None):
     }
     response = requests.get(url, headers=headers)
     
-    st.write("Columnas disponibles:", df.columns)
-    st.write("Datos cargados:", df.head())
-    
     # Verificar si la solicitud fue exitosa
     if response.status_code == 200:
         content = response.json()
@@ -37,6 +34,8 @@ def cargar_datos(columnas_necesarias=None):
         
         # Convertir el contenido a un DataFrame de pandas
         df = pd.read_csv(io.BytesIO(file_content))
+        st.write("Columnas disponibles:", df.columns)
+        st.write("Datos cargados:", df.head())
         
         # Filtrar solo las columnas necesarias si se especificaron
         if columnas_necesarias is not None:
