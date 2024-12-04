@@ -45,7 +45,7 @@ def cargar_y_entrenar_modelo():
     X_tfidf = vectorizador.fit_transform(X)
 
     # Aplicar SMOTE
-    smote = SMOTE(random_state=42, k_neighbors=3)
+    smote = SMOTE(random_state=42)
     X_bal, y_bal = smote.fit_resample(X_tfidf, y)
 
     # Entrenar modelo SVM
