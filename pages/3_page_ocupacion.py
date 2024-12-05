@@ -39,8 +39,7 @@ if tipo_opc in albergues_por_concello:
     albergue_selec = st.selectbox('Selecciona el albergue:', albergues)
 
     # Mostrar la provincia correspondiente al albergue seleccionado
-    provincia = albergues_por_provincia.get(albergue_selec, "Provincia no encontrada")
-    st.write(f"Provincia: {provincia}")
+    provincia = albergues_por_provincia.get(albergue_selec)
 
 # Fecha de hoy
 today = datetime.date.today()
