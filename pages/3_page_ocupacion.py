@@ -110,4 +110,4 @@ def predecir_ocupacion(dia, alojamiento, municipio, provincia):
     return prediccion[0]
 
 ocupacion = predecir_ocupacion(dia, albergue_selec, tipo_opc, provincia)
-print(f"Predicción de ocupación: {ocupacion}")
+st.write(f"Predicción de ocupación: {ocupacion}")
