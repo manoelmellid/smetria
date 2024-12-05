@@ -15,6 +15,7 @@ albergues_por_concello = {}
 for _, row in albergues_df.iterrows():
     concello = row["Concello"]
     albergue = row["Albergue"]
+    provincia = row["Provincia"]
     if concello not in albergues_por_concello:
         albergues_por_concello[concello] = []
     albergues_por_concello[concello].append(albergue)
@@ -44,3 +45,5 @@ dia = st.date_input(
 if st.button("Enviar"):
     st.write(dia)
     st.write(tipo_opc)
+    st.write(albergue_selec)
+    st.write(provincia)
