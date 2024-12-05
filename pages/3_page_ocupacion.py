@@ -57,3 +57,57 @@ if st.button("Enviar"):
     st.write(tipo_opc)
     st.write(albergue_selec)
     st.write(provincia)
+
+import pandas as pd
+import joblib
+import holidays
+
+def predecir_ocupacion(dia, alojamiento, municipio, provincia):
+    # Cargar modelo y codificadores
+    rf = joblib.load('Documents/Ocupacion/rf_model.sav')
+    label_encoders = joblib.load('Documents/Ocupacion/label_encoders.sav')
+
+    # Crear una fila con los datos ingresados
+    galicia_calendar = holidays.ES(prov='GA')
+    nueva_fila = {
+        'dia': pd.to_datetime(dia),
+        'alojamiento': alojamiento,
+        'municipio': municipio,
+        'provincia': provincia
+    }
+
+    nueva_fila['estacion'] = 'Primavera' if nueva_fila['dia'].month in [3, 4, 5] else \
+                             'Verano' if nueva_fila['dia'].month in [6, 7, 8] else \
+                             'Otoño' if nueva_fila['dia'].month in [9, 10, 11] else 'Invierno'
+
+    nueva_fila['trimestre'] = 'Trimestre1' if nueva_fila['dia'].month in [1, 2, 3] else \
+                              'Trimestre2' if nueva_fila['dia'].month in [4, 5, 6] else \
+                              'Trimestre3' if nueva_fila['dia'].month in [7, 8, 9] else 'Trimestre4'
+
+    nueva_fila['mes'] = nueva_fila['dia'].month_name()
+    nueva_fila['dia_semana'] = nueva_fila['dia'].day_name()
+    nueva_fila['es_festivo'] = 1 if nueva_fila['dia'] in galicia_calendar else 0
+    nueva_fila['temporada_alta'] = 1 if nueva_fila['dia'].month in [5, 6, 7, 8] else 0
+    nueva_fila['festivo_temporada'] = nueva_fila['es_festivo'] * nueva_fila['temporada_alta']
+    nueva_fila['cercano_a_festivo'] = 1 if any((nueva_fila['dia'] + pd.Timedelta(days=delta)) in galicia_calendar for delta in range(-2, 3)) else 0
+    nueva_fila['fin_de_semana'] = 1 if nueva_fila['dia'].dayofweek >= 5 else 0
+
+    nueva_fila = pd.DataFrame([nueva_fila]).drop(columns=['dia'], errors='ignore')
+
+    # Codificar las columnas categóricas
+    for col, encoder in label_encoders.items():
+        if col in nueva_fila.columns:
+            nueva_fila[col] = nueva_fila[col].map(
+                lambda x: encoder.transform([x])[0] if x in encoder.classes_ else -1
+            )
+
+    # Reindexar columnas para asegurar compatibilidad con el modelo
+    X = pd.DataFrame(columns=joblib.load('Documents/Ocupacion/rf_model_columns.sav'))  # Cargar columnas usadas al entrenar el modelo
+    nueva_fila = nueva_fila.reindex(columns=X.columns, fill_value=0)
+
+    # Realizar la predicción
+    prediccion = rf.predict(nueva_fila)
+    return prediccion[0]
+
+ocupacion = predecir_ocupacion(dia, albergue_selec, tipo_opc, provincia)
+print(f"Predicción de ocupación: {ocupacion}")
