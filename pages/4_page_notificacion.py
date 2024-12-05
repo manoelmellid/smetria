@@ -53,11 +53,6 @@ if comentario:
     
     # Mostrar el tipo de incidencia clasificada
     st.write(f"El tipo de incidencia se va a clasificar como: **{tipo_opc_predict}**")
-    # Mensaje informativo
-    st.info(
-    "El tipo de incidencia ha sido clasificado **automáticamente** mediante un modelo predictivo basado en **inteligencia artificial**. "
-    "Le recomendamos revisar la clasificación antes de proceder con el envío."
-    )
     
     # Buscar la alerta asociada al tipo de incidencia clasificado
     alerta_opc = opciones_df.loc[opciones_df['tipo'] == tipo_opc_predict, 'alerta'].iloc[0]
@@ -70,6 +65,11 @@ if st.button("Enviar"):
     if not gen.validar_telefono(telefono) or gen.validar_correo(email):
         st.warning("Hay algún error en los datos")
     elif nombre and email and telefono and input_text and tipo_opc_predict:
+        # Mensaje informativo
+        st.info(
+        "El tipo de incidencia ha sido clasificado **automáticamente** mediante un modelo predictivo basado en **inteligencia artificial**. "
+        "Le recomendamos revisar la clasificación antes de proceder con el envío."
+        )
         # Llamar a la función para guardar en GitHub
         git.guardar_respuesta_en_csv(
             nombre=nombre,
