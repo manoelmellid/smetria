@@ -64,8 +64,8 @@ import holidays
 
 def predecir_ocupacion(dia, alojamiento, municipio, provincia):
     # Cargar modelo y codificadores
-    rf = joblib.load('Documents/Ocupacion/rf_model.sav')
-    label_encoders = joblib.load('Documents/Ocupacion/label_encoders.sav')
+    rf = joblib.load('rf_model.sav')
+    label_encoders = joblib.load('label_encoders.sav')
 
     # Crear una fila con los datos ingresados
     galicia_calendar = holidays.ES(prov='GA')
@@ -102,7 +102,7 @@ def predecir_ocupacion(dia, alojamiento, municipio, provincia):
             )
 
     # Reindexar columnas para asegurar compatibilidad con el modelo
-    X = pd.DataFrame(columns=joblib.load('Documents/Ocupacion/rf_model_columns.sav'))  # Cargar columnas usadas al entrenar el modelo
+    X = pd.DataFrame(columns=joblib.load('rf_model_columns.sav'))  # Cargar columnas usadas al entrenar el modelo
     nueva_fila = nueva_fila.reindex(columns=X.columns, fill_value=0)
 
     # Realizar la predicción
