@@ -10,15 +10,22 @@ st.error("Esta sección de SMETRIA está en desarrollo todavía")
 # Cargar datos desde el archivo CSV
 albergues_df = pd.read_csv("albergues_por_concello.csv")
 
-# Crear el diccionario de albergues por concello a partir del DataFrame
+# Crear el diccionario de albergues por concello y el diccionario de provincias por albergue
 albergues_por_concello = {}
+albergues_por_provincia = {}
+
 for _, row in albergues_df.iterrows():
     concello = row["Concello"]
     albergue = row["Albergue"]
     provincia = row["Provincia"]
+    
+    # Para el diccionario de concellos
     if concello not in albergues_por_concello:
         albergues_por_concello[concello] = []
     albergues_por_concello[concello].append(albergue)
+    
+    # Para el diccionario de provincias
+    albergues_por_provincia[albergue] = provincia
 
 # Crear la lista de concellos a partir de las claves del diccionario
 concellos = list(albergues_por_concello.keys())
@@ -30,6 +37,10 @@ tipo_opc = st.selectbox('Selecciona el concello:', concellos)
 if tipo_opc in albergues_por_concello:
     albergues = albergues_por_concello[tipo_opc]
     albergue_selec = st.selectbox('Selecciona el albergue:', albergues)
+
+    # Mostrar la provincia correspondiente al albergue seleccionado
+    provincia = albergues_por_provincia.get(albergue_selec, "Provincia no encontrada")
+    st.write(f"Provincia: {provincia}")
 
 # Fecha de hoy
 today = datetime.date.today()
