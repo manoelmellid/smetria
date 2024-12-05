@@ -7,7 +7,6 @@ import holidays
 st.header("Modelo predictivo de ocupación")
 
 # ---------------------------------------------------------------------
-st.error("Esta sección de SMETRIA está en desarrollo todavía")
 
 # Cargar datos desde el archivo CSV
 albergues_df = pd.read_csv("albergues_por_concello.csv")
