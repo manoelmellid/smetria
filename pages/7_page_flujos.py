@@ -126,12 +126,6 @@ if st.button("Enviar"):
     try:
         predicted_visitors = predict_visitors(zone_id, date, hour)
         st.markdown(
-            f""" ### Para el sensor <span style="color: rgb(13, 101, 183); font-weight: bold;">{zone_id}</span> """ +
-            f"""en la fecha <span style="color: rgb(13, 101, 183); font-weight: bold;">{date}</span> """ +
-            f"""a las <span style="color: rgb(13, 101, 183); font-weight: bold;">{hour}:00</span> """,
-            unsafe_allow_html=True
-        )
-        st.markdown(
             f"""
             <div style="text-align: center;"> 
                 <h1 style="font-size: 18px;"> 
@@ -143,18 +137,7 @@ if st.button("Enviar"):
             """,
             unsafe_allow_html=True
         )
-        st.markdown(
-            f"""
-            ### <div style="text-align: center;"> 
-                <span style="font-size: 18px;"> 
-                    Para el sensor <span style="color: rgb(13, 101, 183); font-weight: bold;">{zone_id}</span> 
-                    en la fecha <span style="color: rgb(13, 101, 183); font-weight: bold;">{date}</span> 
-                    a las <span style="color: rgb(13, 101, 183); font-weight: bold;">{hour}:00</span>
-                </span>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        
         col1, col2, col3 = st.columns([2, 2, 2])
         # Mostrar en la interfaz de Streamlit
         with col2:
