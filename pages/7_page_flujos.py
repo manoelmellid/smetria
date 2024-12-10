@@ -131,6 +131,14 @@ if st.button("Enviar"):
             f"""a las <span style="color: rgb(13, 101, 183); font-weight: bold;">{hour}:00</span> """,
             unsafe_allow_html=True
         )
+        st.markdown(
+            f"""<div style="text-align: center;">
+                <p>### Para el sensor <span style="color: rgb(13, 101, 183); font-weight: bold;">{zone_id}</span></p>
+                <p>en la fecha <span style="color: rgb(13, 101, 183); font-weight: bold;">{date}</span></p>
+                <p>a las <span style="color: rgb(13, 101, 183); font-weight: bold;">{hour}:00</span></p>
+            </div>""",
+            unsafe_allow_html=True
+        )
         col1, col2, col3 = st.columns([2, 2, 2])
         # Mostrar en la interfaz de Streamlit
         with col2:
