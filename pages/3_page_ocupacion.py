@@ -103,3 +103,4 @@ if st.button("Enviar"):
     
     ocupacion = predecir_ocupacion(dia, albergue_selec, tipo_opc, provincia)
     st.write(f"Predicción de ocupación: {ocupacion}")
+    st.write(f"####{ocupacion}") 
