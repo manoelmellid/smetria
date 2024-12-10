@@ -21,9 +21,9 @@ if st.session_state.logged_in == False:
 data = pd.read_csv('sensores_flujo.csv')
 st.write(data.columns)
 
-ids = data['id'].tolist()
-selected_id = st.selectbox('Selecciona un ID:', ids)
-st.write(f'ID seleccionado: {selected_id}')
+#ids = data['id'].tolist()
+#selected_id = st.selectbox('Selecciona un ID:', ids)
+#st.write(f'ID seleccionado: {selected_id}')
 
 hora = st.time_input(
     'Selecciona una hora', 
