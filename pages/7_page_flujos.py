@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import joblib
 import holidays
+import datetime
 import os
 from utils import general as gen, rutas as rut
 
@@ -23,6 +24,17 @@ data = pd.read_csv('sensores.csv')
 
 ids = data['id'].tolist()
 zone_id = st.selectbox('Selecciona un ID:', ids)
+
+# Fecha de hoy
+today = datetime.date.today()
+
+# Selección de solo un día
+dia = st.date_input(
+    "Selecciona el día",
+    today,  # Por defecto selecciona el día de hoy
+    min_value=today,  # Fecha mínima (hoy)
+    format="DD/MM/YYYY",
+)
 
 hora = st.time_input(
     'Selecciona una hora', 
