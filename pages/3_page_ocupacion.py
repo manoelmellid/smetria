@@ -106,20 +106,25 @@ if st.button("Enviar"):
     if ocupacion == "Ocupacion muy reducida":
         color = "🟩"
         porcentaje = "0-20%"
+        mensaje = "No hay mucha demanda, puedes proceder con calma."
     elif ocupacion == "Ocupacion moderada baja":
         color = "🟨"
         porcentaje = "21-40%"
+        mensaje = "Aún hay tiempo, pero es recomendable actuar pronto."
     elif ocupacion == "Ocupacion media":
         color = "🟧"
         porcentaje = "41-60%"
+        mensaje = "Es recomendable no esperar demasiado para asegurar tu lugar."
     elif ocupacion == "Ocupacion moderada alta":
         color = "🟥"
         porcentaje = "61-80%"
+        mensaje = "Considera hacer la reserva pronto para evitar inconvenientes."
     elif ocupacion == "Ocupacion muy elevada":
-        color = "❌"
+        color = "‼️"
         porcentaje = "81-100%"
+        mensaje = "Se recomienda llamar cuanto antes para asegurar tu lugar."
     else:
-        color, porcentaje = None
+        color, porcentaje, mensaje = ""
 
     col1, col2, col3 = st.columns([4, 2, 1])
     # Mostrar en la interfaz de Streamlit
@@ -129,4 +134,5 @@ if st.button("Enviar"):
         st.write(f"#### {porcentaje}")
     with col3:
         st.write(f"#### {color}")
+    st.write({mensaje})
     
