@@ -115,9 +115,11 @@ if st.button("Enviar"):
     elif ocupacion == "Ocupacion moderada alta":
         color = "🟥"
         porcentaje = "61-80%"
-    elif ocupacion == "Ocupacion moderada alta":
+    elif ocupacion == "Ocupacion muy elevada":
         color = "❌"
         porcentaje = "81-100%"
+    else:
+        color, porcentaje = None
 
     col1, col2, col3 = st.columns([4, 2, 1])
     # Mostrar en la interfaz de Streamlit
