@@ -46,6 +46,8 @@ hour = hora.hour  # Extrae solo la parte de la hora como número
 
 # Ejemplo de predicción
 date = '2024-03-02'
+st.write(date)
+st.write(dia)
 
 # Cargar el modelo
 filename = f'sav/random_forest_model_{zone_id}.sav'
