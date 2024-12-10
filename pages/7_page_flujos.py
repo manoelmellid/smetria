@@ -34,12 +34,12 @@ date = '2024-03-02'
 hour = 12
 
 # Cargar el modelo
-filename = f'sav/random_forest_model_{zone_id}.sav'
+filename = f'/sav/random_forest_model_{zone_id}.sav'
 loaded_model = joblib.load(filename)
 print(f"Modelo cargado desde {filename}")
 
 # Cargar el escalador usado previamente
-scaler_filename = f'/Users/manoelmelide/Documents/flujo/sav/scaler_{zone_id}.sav'
+scaler_filename = f'/sav/scaler_{zone_id}.sav'
 scaler = joblib.load(scaler_filename)
 
 # Funciones auxiliares que deben definirse
