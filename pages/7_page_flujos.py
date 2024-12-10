@@ -128,7 +128,7 @@ if st.button("Enviar"):
         st.write(f"### Para el sensor {zone_id} en la fecha {date} a las {hour}:00")
         st.markdown(
             f""" ### Para el sensor <span style="color: rgb(13, 101, 183); font-weight: bold;">{zone_id}</span> """ +
-            f"""en la fecha <span style="color: rgb(13, 101, 183); font-style: italic;">{date}</span> """ +
+            f"""en la fecha <span style="color: rgb(13, 101, 183); font-style: bold;">{date}</span> """ +
             f"""a las <span style="color: rgb(13, 101, 183); font-weight: bold;">{hour}:00</span> """,
             unsafe_allow_html=True
         )
