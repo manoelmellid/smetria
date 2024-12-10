@@ -125,7 +125,7 @@ def predict_visitors(zone_id, date, hour):
 if st.button("Enviar"):
     try:
         predicted_visitors = predict_visitors(zone_id, date, hour)
-        st.write(f"### Para el sensor {zone_id} en la fecha {date} a las {hour}:00
+        st.write(f"### Para el sensor {zone_id} en la fecha {date} a las {hour}:00)
         st.write(f"#### {predicted_visitors} visitantes")
     except Exception as e:
         st.write("")
