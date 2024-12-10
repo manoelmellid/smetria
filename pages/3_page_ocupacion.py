@@ -104,23 +104,23 @@ if st.button("Enviar"):
     ocupacion = predecir_ocupacion(dia, albergue_selec, tipo_opc, provincia)
     st.write("## Predicción de ocupación:")
     if ocupacion == "Ocupacion muy reducida":
-        color = "🟩"
+        color = "🟦"
         porcentaje = "0-20%"
         mensaje = "No hay mucha demanda, puedes proceder con calma."
     elif ocupacion == "Ocupacion moderada baja":
-        color = "🟨"
+        color = "🟩"
         porcentaje = "21-40%"
         mensaje = "Aún hay tiempo, pero es recomendable actuar pronto."
     elif ocupacion == "Ocupacion media":
-        color = "🟧"
+        color = "🟨"
         porcentaje = "41-60%"
         mensaje = "Es recomendable no esperar demasiado para asegurar tu lugar."
     elif ocupacion == "Ocupacion moderada alta":
-        color = "🟥"
+        color = "🟧"
         porcentaje = "61-80%"
         mensaje = "Considera hacer la reserva pronto para evitar inconvenientes."
     elif ocupacion == "Ocupacion muy elevada":
-        color = "‼️"
+        color = "‼️🟥"
         porcentaje = "81-100%"
         mensaje = "Se recomienda llamar cuanto antes para asegurar tu lugar."
     else:
