@@ -40,7 +40,6 @@ filename = f'sav/random_forest_model_{zone_id}.sav'
 if os.path.exists(filename):
     try:
         loaded_model = joblib.load(filename)
-        st.write(f"Modelo cargado desde {filename}")
         # Cargar el escalador usado previamente
         scaler_filename = f'sav/scaler_{zone_id}.sav'
         scaler = joblib.load(scaler_filename)
