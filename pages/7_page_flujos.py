@@ -36,7 +36,7 @@ hour = 12
 # Cargar el modelo
 filename = f'sav/random_forest_model_{zone_id}.sav'
 loaded_model = joblib.load(filename)
-print(f"Modelo cargado desde {filename}")
+st.write(f"Modelo cargado desde {filename}")
 
 # Cargar el escalador usado previamente
 scaler_filename = f'sav/scaler_{zone_id}.sav'
@@ -106,4 +106,4 @@ def predict_visitors(zone_id, date, hour):
     return round(np.round(prediction)[0])
 
 predicted_visitors = predict_visitors(zone_id, date, hour)
-print(f"\nPredicción para zona {zone_id}, fecha {date}, hora {hour}: {predicted_visitors} visitantes únicos\n")
+st.write(f"\nPredicción para zona {zone_id}, fecha {date}, hora {hour}: {predicted_visitors} visitantes únicos\n")
