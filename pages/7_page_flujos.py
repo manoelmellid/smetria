@@ -134,7 +134,7 @@ if st.button("Enviar"):
         st.markdown(
             f"""
             <div style="text-align: center;"> 
-                <span style="font-size: 18px;"> 
+                ### <span style="font-size: 18px;"> 
                     Para el sensor <span style="color: rgb(13, 101, 183); font-weight: bold;">{zone_id}</span> 
                     en la fecha <span style="color: rgb(13, 101, 183); font-weight: bold;">{date}</span> 
                     a las <span style="color: rgb(13, 101, 183); font-weight: bold;">{hour}:00</span>
