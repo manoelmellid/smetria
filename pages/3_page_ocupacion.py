@@ -126,7 +126,7 @@ if st.button("Enviar"):
     else:
         color, porcentaje, mensaje = ""
 
-    col1, col2, col3 = st.columns([4, 2, 1])
+    col1, col2, col3 = st.columns([4, 2, 2])
     # Mostrar en la interfaz de Streamlit
     with col1:
         st.write(f"#### {ocupacion}")
