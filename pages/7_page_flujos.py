@@ -120,4 +120,4 @@ if st.button("Enviar"):
         predicted_visitors = predict_visitors(zone_id, date, hour)
         st.write(f"\nPredicción para zona {zone_id}, fecha {date}, hora {hour}: {predicted_visitors} visitantes únicos\n")
     except Exception as e:
-        st.error(f"Error al realizar la predicción: {e}")
+        st.write("")
