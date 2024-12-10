@@ -29,7 +29,7 @@ zone_id = st.selectbox('Selecciona un ID:', ids)
 today = datetime.date.today()
 
 # Selección de solo un día
-dia = st.date_input(
+date = st.date_input(
     "Selecciona el día",
     today,  # Por defecto selecciona el día de hoy
     min_value=today,  # Fecha mínima (hoy)
@@ -41,13 +41,7 @@ hora = st.time_input(
     value=datetime.time(9, 0),  # Hora predeterminada (9:00 AM)
     step=datetime.timedelta(hours=1)  # Paso de 1 hora
 )
-
-hour = hora.hour  # Extrae solo la parte de la hora como número
-
-# Ejemplo de predicción
-date = '2024-03-02'
-st.write(date)
-st.write(dia)
+hour = hora.hour
 
 # Cargar el modelo
 filename = f'sav/random_forest_model_{zone_id}.sav'
@@ -131,6 +125,7 @@ def predict_visitors(zone_id, date, hour):
 if st.button("Enviar"):
     try:
         predicted_visitors = predict_visitors(zone_id, date, hour)
-        st.write(f"\nPredicción para zona {zone_id}, fecha {date}, hora {hour}: {predicted_visitors} visitantes únicos\n")
+        st.write(f"### Para el sensor {zone_id} en la fecha {date} a las {hour}:00
+        st.write(f"#### {predicted_visitors} visitantes")
     except Exception as e:
         st.write("")
