@@ -12,4 +12,10 @@ if st.session_state.logged_in == False:
   camino = gen.camino()
 # ---------------------------------------------------------------------------------
 
-hora = st.time_input('Selecciona una hora', value=None)
+hora = st.time_input(
+    'Selecciona una hora', 
+    value=datetime.time(9, 0),  # Hora predeterminada (9:00 AM)
+    step=datetime.timedelta(hours=1)  # Paso de 1 hora
+)
+
+st.write(hora)
