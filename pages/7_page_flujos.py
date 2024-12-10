@@ -23,7 +23,6 @@ data = pd.read_csv('sensores.csv')
 
 ids = data['id'].tolist()
 zone_id = st.selectbox('Selecciona un ID:', ids)
-st.write(f'ID seleccionado: {zone_id}')
 
 hora = st.time_input(
     'Selecciona una hora', 
@@ -32,7 +31,6 @@ hora = st.time_input(
 )
 
 hour = hora.hour  # Extrae solo la parte de la hora como número
-st.write(hour)
 
 # Ejemplo de predicción
 date = '2024-03-02'
@@ -46,8 +44,6 @@ if os.path.exists(filename):
         # Cargar el escalador usado previamente
         scaler_filename = f'sav/scaler_{zone_id}.sav'
         scaler = joblib.load(scaler_filename)
-    except Exception as e:
-        st.warning(f"Error al cargar el modelo o el escalador: {e}")
 else:
     st.warning(f"Modelo no encontrado para el ID: {zone_id}")
 
