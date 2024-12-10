@@ -44,6 +44,7 @@ if os.path.exists(filename):
         # Cargar el escalador usado previamente
         scaler_filename = f'sav/scaler_{zone_id}.sav'
         scaler = joblib.load(scaler_filename)
+    except:
 else:
     st.warning(f"Modelo no encontrado para el ID: {zone_id}")
 
