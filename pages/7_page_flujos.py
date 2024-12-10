@@ -11,3 +11,5 @@ if st.session_state.logged_in == False:
   #input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
   camino = gen.camino()
 # ---------------------------------------------------------------------------------
+
+hora = st.time_input('Selecciona una hora', value=None)
