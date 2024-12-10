@@ -22,8 +22,8 @@ data = pd.read_csv('sensores.csv')
 st.write(data.columns)
 
 ids = data['id'].tolist()
-selected_id = st.selectbox('Selecciona un ID:', ids)
-st.write(f'ID seleccionado: {selected_id}')
+zone_id = st.selectbox('Selecciona un ID:', ids)
+st.write(f'ID seleccionado: {zone_id}')
 
 hora = st.time_input(
     'Selecciona una hora', 
@@ -32,14 +32,11 @@ hora = st.time_input(
 )
 
 st.write(hora)
-hora_numero = hora.hour  # Extrae solo la parte de la hora como número
+hour = hora.hour  # Extrae solo la parte de la hora como número
 st.write(hora_numero)
 
-
 # Ejemplo de predicción
-zone_id = 25069
 date = '2024-03-02'
-hour = 12
 
 # Cargar el modelo
 filename = f'sav/random_forest_model_{zone_id}.sav'
