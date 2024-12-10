@@ -33,7 +33,7 @@ hora = st.time_input(
 
 st.write(hora)
 hour = hora.hour  # Extrae solo la parte de la hora como número
-st.write(hora_numero)
+st.write(hour)
 
 # Ejemplo de predicción
 date = '2024-03-02'
