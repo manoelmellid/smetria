@@ -18,7 +18,7 @@ if st.session_state.logged_in == False:
 # ---------------------------------------------------------------------------------
 
 # Cargar el archivo CSV (puedes cambiar la ruta o cargarlo de otra forma)
-data = pd.read_csv('sensores_flujo.csv')
+data = pd.read_csv('sensores.csv')
 st.write(data.columns)
 
 #ids = data['id'].tolist()
