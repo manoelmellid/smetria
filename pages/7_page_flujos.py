@@ -105,5 +105,6 @@ def predict_visitors(zone_id, date, hour):
     prediction = np.expm1(prediction_log)  # Revertir logaritmo
     return round(np.round(prediction)[0])
 
-predicted_visitors = predict_visitors(zone_id, date, hour)
-st.write(f"\nPredicción para zona {zone_id}, fecha {date}, hora {hour}: {predicted_visitors} visitantes únicos\n")
+if st.button("Enviar"):
+  predicted_visitors = predict_visitors(zone_id, date, hour)
+  st.write(f"\nPredicción para zona {zone_id}, fecha {date}, hora {hour}: {predicted_visitors} visitantes únicos\n")
