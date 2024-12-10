@@ -130,7 +130,7 @@ if st.button("Enviar"):
     ### Para el sensor <span style="color: red; font-weight: bold;">{zone_id}</span> 
     en la fecha <span style="color: blue; font-style: italic;">{date}</span> 
     a las <span style="color: green; font-weight: bold;">{hour}:00</span>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
         st.write(f"#### {predicted_visitors} visitantes")
     except Exception as e:
         st.write("")
