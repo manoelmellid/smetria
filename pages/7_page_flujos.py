@@ -19,6 +19,8 @@ if st.session_state.logged_in == False:
 
 # Cargar el archivo CSV (puedes cambiar la ruta o cargarlo de otra forma)
 data = pd.read_csv('sensores_flujo.csv')
+st.write(data.columns)
+
 ids = data['id'].tolist()
 selected_id = st.selectbox('Selecciona un ID:', ids)
 st.write(f'ID seleccionado: {selected_id}')
