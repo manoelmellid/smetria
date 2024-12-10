@@ -134,5 +134,5 @@ if st.button("Enviar"):
         st.write(f"#### {porcentaje}")
     with col3:
         st.write(f"#### {color}")
-    st.write(f"####### Consejo: {mensaje}")
+    st.write(f"##### Consejo: {mensaje}")
     
