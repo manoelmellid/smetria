@@ -45,6 +45,7 @@ if os.path.exists(filename):
         scaler_filename = f'sav/scaler_{zone_id}.sav'
         scaler = joblib.load(scaler_filename)
     except:
+        st.write("")
 else:
     st.warning(f"Modelo no encontrado para el ID: {zone_id}")
 
