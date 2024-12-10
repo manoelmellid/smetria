@@ -17,6 +17,12 @@ if st.session_state.logged_in == False:
   camino = gen.camino()
 # ---------------------------------------------------------------------------------
 
+# Cargar el archivo CSV (puedes cambiar la ruta o cargarlo de otra forma)
+data = pd.read_csv('sensores_flujo.csv')
+ids = data['id'].tolist()
+selected_id = st.selectbox('Selecciona un ID:', ids)
+st.write(f'ID seleccionado: {selected_id}')
+
 hora = st.time_input(
     'Selecciona una hora', 
     value=datetime.time(9, 0),  # Hora predeterminada (9:00 AM)
