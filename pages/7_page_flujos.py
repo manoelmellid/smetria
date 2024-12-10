@@ -127,9 +127,9 @@ if st.button("Enviar"):
         predicted_visitors = predict_visitors(zone_id, date, hour)
         st.write(f"### Para el sensor {zone_id} en la fecha {date} a las {hour}:00")
         st.markdown(
-            f""" ### Para el sensor <span style="color: red; font-weight: bold;">{zone_id}</span> 
-            en la fecha <span style="color: blue; font-style: italic;">{date}</span> 
-            a las <span style="color: green; font-weight: bold;">{hour}:00</span> """,
+            f""" ### Para el sensor <span style="color: red; font-weight: bold;">{zone_id}</span> """ +
+            f"""en la fecha <span style="color: blue; font-style: italic;">{date}</span> """ +
+            f"""a las <span style="color: green; font-weight: bold;">{hour}:00</span> """,
             unsafe_allow_html=True
         )
 
