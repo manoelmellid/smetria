@@ -101,7 +101,6 @@ if st.button("Enviar"):
         prediccion = rf.predict(nueva_fila)
         return prediccion[0]
 
-    col1, col2, col3 = st.columns([4,2,1])
     ocupacion = predecir_ocupacion(dia, albergue_selec, tipo_opc, provincia)
     st.write("## Predicción de ocupación:")
     if ocupacion == "Ocupacion muy reducida":
@@ -120,7 +119,7 @@ if st.button("Enviar"):
         color = "❌"
         porcentaje = "81-100%"
 
-    col1, col2, col3 = st.columns([2, 2, 2])
+    col1, col2, col3 = st.columns([4, 2, 1])
     # Mostrar en la interfaz de Streamlit
     with col1:
         st.write(f"#### {ocupacion}")
