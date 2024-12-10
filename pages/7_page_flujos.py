@@ -125,14 +125,15 @@ def predict_visitors(zone_id, date, hour):
 if st.button("Enviar"):
     try:
         predicted_visitors = predict_visitors(zone_id, date, hour)
-        st.write(f"### Para el sensor {zone_id} en la fecha {date} a las {hour}:00")
         st.markdown(
             f""" ### Para el sensor <span style="color: rgb(13, 101, 183); font-weight: bold;">{zone_id}</span> """ +
             f"""en la fecha <span style="color: rgb(13, 101, 183); font-weight: bold;">{date}</span> """ +
             f"""a las <span style="color: rgb(13, 101, 183); font-weight: bold;">{hour}:00</span> """,
             unsafe_allow_html=True
         )
-
-        st.write(f"#### {predicted_visitors} visitantes")
+        col1, col2, col3 = st.columns([2, 2, 2])
+        # Mostrar en la interfaz de Streamlit
+        with col2:
+            st.write(f"#### {predicted_visitors} visitantes")
     except Exception as e:
         st.write("")
