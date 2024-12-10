@@ -102,5 +102,15 @@ if st.button("Enviar"):
         return prediccion[0]
     
     ocupacion = predecir_ocupacion(dia, albergue_selec, tipo_opc, provincia)
-    st.write(f"Predicción de ocupación: {ocupacion}")
-    st.write(f"#### {ocupacion}") 
+    st.write("### Predicción de ocupación:")
+    if ocupacion == "Ocupacion muy reducida":
+        st.write(f"#### {ocupacion} 🟩 0-20%")
+    elif ocupacion == "Ocupacion moderada baja":
+        st.write(f"#### {ocupacion} 🟨 21-40%")
+    elif ocupacion == "Ocupacion media":
+        st.write(f"#### {ocupacion} 🟧 41-60%")
+    elif ocupacion == "Ocupacion moderada alta":
+        st.write(f"#### {ocupacion} 🟥 61-80%")
+    elif ocupacion == "Ocupacion moderada alta":
+        st.write(f"#### {ocupacion} ❌ 81-100%")
+    
