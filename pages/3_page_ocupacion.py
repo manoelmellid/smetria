@@ -100,7 +100,8 @@ if st.button("Enviar"):
         # Realizar la predicción
         prediccion = rf.predict(nueva_fila)
         return prediccion[0]
-    
+
+    col1, col2, col3 = st.columns[2,2,2]
     ocupacion = predecir_ocupacion(dia, albergue_selec, tipo_opc, provincia)
     st.write("### Predicción de ocupación:")
     if ocupacion == "Ocupacion muy reducida":
