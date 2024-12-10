@@ -20,7 +20,6 @@ if st.session_state.logged_in == False:
 
 # Cargar el archivo CSV (puedes cambiar la ruta o cargarlo de otra forma)
 data = pd.read_csv('sensores.csv')
-st.write(data.columns)
 
 ids = data['id'].tolist()
 zone_id = st.selectbox('Selecciona un ID:', ids)
@@ -32,7 +31,6 @@ hora = st.time_input(
     step=datetime.timedelta(hours=1)  # Paso de 1 hora
 )
 
-st.write(hora)
 hour = hora.hour  # Extrae solo la parte de la hora como número
 st.write(hour)
 
