@@ -20,3 +20,5 @@ hora = st.time_input(
 )
 
 st.write(hora)
+hora_numero = hora.hour  # Extrae solo la parte de la hora como número
+st.write(hora_numero)
