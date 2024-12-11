@@ -17,7 +17,7 @@ if st.session_state.logged_in == False:
     #input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
     camino = gen.camino()
 # ---------------------------------------------------------------------------------
-data = pd.read_csv('sensores.csv')
+data = pd.read_csv('datasets/sensores.csv')
 
 # Crear una lista de opciones combinando "id" y "lugar"
 options = [f"{row['lugar']} - {row['id']}" for index, row in data.iterrows()]
