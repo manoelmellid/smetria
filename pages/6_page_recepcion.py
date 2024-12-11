@@ -43,7 +43,7 @@ if st.session_state.logged_in == False:
                 st.error("Por favor, ingrese un ID para la incidencia.")
                 
     elif tipo_opc == 'Cambio de tipo de incidencia':
-        opciones_df = pd.read_csv('opciones_incidencias.csv')
+        opciones_df = pd.read_csv('datasets/opciones_incidencias.csv')
         id_input = st.text_input("Ingrese el ID de la incidencia a modificar:")
         cambio_tipo = st.selectbox('Cambio a realizar:', opciones_df['tipo'].tolist())
         cambio_alerta = opciones_df.loc[opciones_df['tipo'] == cambio_tipo, 'alerta'].iloc[0]
