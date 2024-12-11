@@ -21,7 +21,7 @@ vectorizador = joblib.load('sav/incidencias_vectorizador.sav')
 st.header("Sistema de notificación de incidencias")
 
 # Leer las opciones de incidencias
-opciones_df = pd.read_csv('opciones_incidencias.csv')
+opciones_df = pd.read_csv('datasets/opciones_incidencias.csv')
 
 # Campos del formulario
 camino, archivo, abrv = gen.camino()
