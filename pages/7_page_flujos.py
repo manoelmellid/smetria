@@ -23,8 +23,13 @@ data = pd.read_csv('sensores.csv')
 options = [f"{row['lugar']} - {row['id']}" for index, row in data.iterrows()]
 opciones_id = st.selectbox('Selecciona un sensor:', options)
 
+ids = data['id'].tolist()
+zone_id2 = st.selectbox('Selecciona un sensor:', ids)
+print(zone_id2)
+
 # Extraer el id de la opción seleccionada
 zone_id = options[options.index(opciones_id)].split(' - ')[1]
+print(zone_id)
 
 # Fecha de hoy
 today = datetime.date.today()
