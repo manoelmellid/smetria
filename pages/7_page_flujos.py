@@ -24,7 +24,7 @@ options = [f"{row['lugar']} - {row['id']}" for index, row in data.iterrows()]
 opciones_id = st.selectbox('Selecciona un sensor:', options)
 
 # Extraer el id de la opción seleccionada
-selected_id = options[options.index(zone_id)].split(' - ')[1]
+zone_id = options[options.index(opciones_id)].split(' - ')[1]
 
 # Fecha de hoy
 today = datetime.date.today()
