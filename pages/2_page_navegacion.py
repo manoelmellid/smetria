@@ -85,7 +85,7 @@ camino, archivo, abrv = gen.camino()
 
 # Cargar datos
 def cargar_datos():
-    return pd.read_csv("puntos_interes.csv")
+    return pd.read_csv("datasets/puntos_interes.csv")
 
 df = cargar_datos()
 df['geometry'] = df['geom'].apply(lambda x: Point(map(float, x.replace("POINT (", "").replace(")", "").split())))
