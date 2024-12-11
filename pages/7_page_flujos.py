@@ -17,18 +17,14 @@ if st.session_state.logged_in == False:
     #input_text = st.text_input("Indica el Km del Camino dónde te encuentras")
     camino = gen.camino()
 # ---------------------------------------------------------------------------------
-
-# Cargar el archivo CSV (puedes cambiar la ruta o cargarlo de otra forma)
 data = pd.read_csv('sensores.csv')
 
 # Crear una lista de opciones combinando "id" y "lugar"
-options = [f"{row['id']} - {row['lugar']}" for index, row in data.iterrows()]
-
-# Mostrar el selectbox con las opciones combinadas
+options = [f"{row['lugar']} - {row['id']}" for index, row in data.iterrows()]
 opciones_id = st.selectbox('Selecciona un sensor:', options)
 
-# Si necesitas obtener el valor de id asociado a la opción seleccionada:
-zone_id = options[options.index(opciones_id)].split(' - ')[0]
+# Extraer el id de la opción seleccionada
+selected_id = options[options.index(zone_id)].split(' - ')[1]
 
 # Fecha de hoy
 today = datetime.date.today()
