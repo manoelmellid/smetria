@@ -53,7 +53,7 @@ if os.path.exists(filename):
     except:
         st.write("")
 else:
-    st.warning(f"Este sensor se encuentra en mantenimiento: {zone_id}")
+    st.warning(f"El sensor {zone_id} se encuentra en mantenimiento.")
 
 # ---------------------------------------------------------------------------------
 
