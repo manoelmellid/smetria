@@ -9,7 +9,7 @@ st.header("Modelo predictivo de ocupación")
 # ---------------------------------------------------------------------
 
 # Cargar datos desde el archivo CSV
-albergues_df = pd.read_csv("albergues_por_concello.csv")
+albergues_df = pd.read_csv("datasets/albergues_por_concello.csv")
 
 # Crear el diccionario de albergues por concello y el diccionario de provincias por albergue
 albergues_por_concello = {}
