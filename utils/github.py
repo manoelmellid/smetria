@@ -12,8 +12,9 @@ from utils import general as gen
 github_token = st.secrets["github"]["github_token"]
 repo = st.secrets["github"]["repo"]
 user = st.secrets["github"]["usuario"]
+folder = st.secrets["github"]["folder"]
 file_path = st.secrets["github"]["archivo"]
-url = f"https://api.github.com/repos/{user}/{repo}/contents/{file_path}"
+url = f"https://api.github.com/repos/{user}/{repo}/contents/{folder}/{file_path}"
 
 @st.cache_data
 def cargar_datos(columnas_necesarias=None):
