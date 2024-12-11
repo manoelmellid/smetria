@@ -14,8 +14,8 @@ def preprocesar_texto(texto):
     return ' '.join([token.lemma_ for token in doc if not token.is_stop])
 
 # Cargar el modelo entrenado y el vectorizador
-modelo_svm = joblib.load('modelo_svm.sav')
-vectorizador = joblib.load('vectorizador_tfidf.sav')
+modelo_svm = joblib.load('sav/incidencias_modelo.sav')
+vectorizador = joblib.load('sav/incidencias_vectorizador.sav')
 
 # Título de la aplicación
 st.header("Sistema de notificación de incidencias")
