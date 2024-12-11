@@ -56,7 +56,7 @@ dia = st.date_input(
 if st.button("Enviar"):
     def predecir_ocupacion(dia, alojamiento, municipio, provincia):
         # Cargar modelo y codificadores
-        rf = joblib.load('rf_model.sav')
+        rf = joblib.load('sav/rf_model.sav')
         label_encoders = joblib.load('label_encoders.sav')
     
         # Crear una fila con los datos ingresados
