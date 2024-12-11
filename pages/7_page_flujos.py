@@ -21,8 +21,14 @@ if st.session_state.logged_in == False:
 # Cargar el archivo CSV (puedes cambiar la ruta o cargarlo de otra forma)
 data = pd.read_csv('sensores.csv')
 
-ids = data['id'].tolist()
-zone_id = st.selectbox('Selecciona un ID:', ids)
+# Crear una lista de opciones combinando "id" y "lugar"
+options = [f"{row['id']} - {row['lugar']}" for index, row in data.iterrows()]
+
+# Mostrar el selectbox con las opciones combinadas
+opciones_id = st.selectbox('Selecciona un sensor:', options)
+
+# Si necesitas obtener el valor de id asociado a la opción seleccionada:
+zone_id = options[options.index(opciones_id)].split(' - ')[0]
 
 # Fecha de hoy
 today = datetime.date.today()
@@ -37,7 +43,7 @@ date = st.date_input(
 
 hora = st.time_input(
     'Selecciona una hora', 
-    value=datetime.time(9, 0),  # Hora predeterminada (9:00 AM)
+    value=datetime.time(12, 0),
     step=datetime.timedelta(hours=1)  # Paso de 1 hora
 )
 hour = hora.hour
@@ -47,7 +53,6 @@ filename = f'sav/random_forest_model_{zone_id}.sav'
 if os.path.exists(filename):
     try:
         loaded_model = joblib.load(filename)
-        # Cargar el escalador usado previamente
         scaler_filename = f'sav/scaler_{zone_id}.sav'
         scaler = joblib.load(scaler_filename)
     except:
