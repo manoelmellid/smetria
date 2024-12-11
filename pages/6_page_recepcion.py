@@ -50,7 +50,7 @@ if st.session_state.logged_in == False:
         if st.button("Cambiar tipo de incidencia"):
             if id_input:
                 if id_input in df['id'].values:
-                    st.warning("Esta herramienta es funcional pero está descactivada temporalmente")
+                    st.warning("Esta herramienta es funcional pero está descactivada temporalmente para evitar cambios involuntarios")
                     #git.actualizar(id_input, 'tipo', cambio_tipo)
                     #git.actualizar(id_input, 'tipo_alerta', cambio_alerta)
                 else:
