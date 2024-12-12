@@ -27,10 +27,8 @@ opciones_id = st.selectbox('Selecciona un sensor:', options)
 zone_id = options[options.index(opciones_id)].split(' - ')[1]
 zone_id = int(zone_id)
 
-# Fecha de hoy
-today = datetime.date.today()
+today = datetime.date.today() # Fecha de hoy
 
-# Selección de solo un día
 date = st.date_input(
     "Selecciona el día",
     today,  # Por defecto selecciona el día de hoy
