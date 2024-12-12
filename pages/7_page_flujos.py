@@ -25,6 +25,7 @@ opciones_id = st.selectbox('Selecciona un sensor:', options)
 
 # Extraer el id de la opción seleccionada
 zone_id = options[options.index(opciones_id)].split(' - ')[1]
+zone_id = int(zone_id)
 st.write(zone_id) # pasar a número
 
 # Fecha de hoy
