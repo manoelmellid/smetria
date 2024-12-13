@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.write("#### Descripción de la plataforma:")
-st.write("SMETRIA ofrece a sus usuarios cuatro funcionalidades clave:")
+st.write("SMETRIA ofrece a sus usuarios varias funcionalidades clave para mejorar la experiencia del peregrino:")
 if st.button("Sistema de Predicción Meteorológica"):
     st.switch_page("pages/1_page_meteorologia.py")
 if st.button("Herramienta de navegación geoespacial"):
