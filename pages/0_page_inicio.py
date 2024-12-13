@@ -9,11 +9,11 @@ with b1:
 with b2:
     if st.button("Herramienta de navegación geoespacial"):
         st.switch_page("pages/2_page_navegacion.py")
-b3, b4 = st.columns([2,2])
-with b1:
+col2, b3, b4, col3 = st.columns([0.1, 4, 4, 0.1])
+with b3:
     if st.button("Modelo Predictivo de Ocupación"):
         st.switch_page("pages/3_page_ocupacion.py")
-with b2:
+with b4:
     if st.button("Notificación de incidencias en el Camino"):
         st.switch_page("pages/4_page_notificacion.py")
 b5, b6, b7 = st.columns([2,2,2])
