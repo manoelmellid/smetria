@@ -7,6 +7,8 @@ st.markdown(
     """<a href="https://smetria.streamlit.app/page_meteorologia" target="_self">• Sistema de Predicción Meteorológica</a>""",
     unsafe_allow_html=True
 )
+if st.button("Ir a Sistema de Predicción Meteorológica"):
+    st.switch_page("pages/1_page_meteorologia.py")
 st.write("Visita mi [página web](https://www.ejemplo.com) para más información.")
 st.write("• Herramienta de Consultas Geoespaciales")
 st.write("• Notificación de Incidencias")
