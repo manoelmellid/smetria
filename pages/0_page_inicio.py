@@ -21,19 +21,29 @@ navegación y seguridad, y, al mismo tiempo, facilitar las tareas de mantenimien
 las autoridades competentes.""")
 
 b1, b2, b3, b4 = st.columns([3,3,3,3])
+b5, b6, b7 = st.columns([3,3,3])
 
 with b1:
     if st.button("Predicción meteorológica"):
-        st.switch_page(".pages/page_meteorologia.py")
+        st.switch_page(".pages/1_page_meteorologia.py")
 with b2:
     if st.button("Navegación geoespacial"):
-        st.switch_page(".pages/page_navegacion.py")
+        st.switch_page(".pages/2_page_navegacion.py")
 with b3:
     if st.button("Ocupación hotelera"):
-        st.switch_page(".pages/page_ocupacion.py")
+        st.switch_page(".pages/3_page_ocupacion.py")
 with b4:
     if st.button("Notificación de incidencias"):
-        st.switch_page(".pages/page_notificacion.py")
+        st.switch_page(".pages/4_page_notificacion.py")
+with b5:
+    if st.button("Mapa de incidencias"):
+        st.switch_page(".pages/5_page_mapaincidencias.py")
+with b6:
+    if st.button("Recepción de incidencias"):
+        st.switch_page(".pages/6_page_recepcion.py")
+with b7:
+    if st.button("Flujos de peregrinos"):
+        st.switch_page(".pages/7_page_flujos.py")
         
 st.write("#### Contexto de desarrollo:")
 st.write("""
