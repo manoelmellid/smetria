@@ -21,6 +21,7 @@ navegación y seguridad, y, al mismo tiempo, facilitar las tareas de mantenimien
 las autoridades competentes.""")
 
 b1, b2, b3, b4 = st.columns([3,3,3,3])
+st.divider()
 b5, b6, b7 = st.columns([3,3,3])
 
 with b1:
@@ -35,7 +36,6 @@ with b3:
 with b4:
     if st.button("Notificación de incidencias"):
         st.switch_page("pages/4_page_notificacion.py")
-st.divider()
 with b5:
     if st.button("Mapa de incidencias"):
         st.switch_page("pages/5_page_mapaincidencias.py")
