@@ -2,15 +2,11 @@ import streamlit as st
 
 st.write("#### Descripción de la plataforma:")
 st.write("SMETRIA ofrece a sus usuarios cuatro funcionalidades clave:")
-st.write("• [Sistema de Predicción Meteorológica](https://smetria.streamlit.app/page_meteorologia)")
-st.markdown(
-    """<a href="https://smetria.streamlit.app/page_meteorologia" target="_self">• Sistema de Predicción Meteorológica</a>""",
-    unsafe_allow_html=True
-)
-if st.button("Ir a Sistema de Predicción Meteorológica"):
+if st.button("Ir al Sistema de Predicción Meteorológica"):
     st.switch_page("pages/1_page_meteorologia.py")
-st.write("Visita mi [página web](https://www.ejemplo.com) para más información.")
-st.write("• Herramienta de Consultas Geoespaciales")
+elif st.button("Herramienta de navegación geoespacial"):
+    st.switch_page("pages/2_page_navegacion.py")
+st.write("• Herramienta de navegación geoespacial")
 st.write("• Notificación de Incidencias")
 st.write("• Modelo Predictivo de Ocupación")
 
