@@ -110,7 +110,7 @@ if st.button("Enviar"):
     elif ocupacion == "Ocupacion moderada baja":
         color = "🟩"
         porcentaje = "21-40%"
-        mensaje = "Aún hay tiempo, pero es recomendable actuar pronto."
+        mensaje = "No hay prisa, pero es recomendable hacer la reserva en breve para evitar sorpresas."
     elif ocupacion == "Ocupacion media":
         color = "🟨"
         porcentaje = "41-60%"
