@@ -35,6 +35,7 @@ with b3:
 with b4:
     if st.button("Notificación de incidencias"):
         st.switch_page("pages/4_page_notificacion.py")
+st.divider()
 with b5:
     if st.button("Mapa de incidencias"):
         st.switch_page("pages/5_page_mapaincidencias.py")
