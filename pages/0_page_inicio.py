@@ -19,16 +19,13 @@ with b6:
         st.switch_page("pages/5_page_mapaincidencias.py")
 
 st.write("\nPara el personal que gestiona los Caminos de Santiago, hemos desarrollado dos herramientas que agilizan su trabajo")
-cl1, c1, c2, cl4 = st.columns([0.1, 4, 4, 0.1])
+c1, c2 = st.columns([2,2])
 with c1:
     if st.button("Recepción de incidencias"):
             st.switch_page("pages/6_page_recepcion.py")
 with c2:
     if st.button("Flujos de peregrinos"):
         st.switch_page("pages/7_page_flujos.py")
-with cl4:
-    if st.button("Puta puta puta celta"):
-        st.write("Celtarra")
 
 st.write("""Además, el personal de gestión dispone de acceso a un área privada que le permite consultar el modelo predictivo de flujos y 
 revisar los reportes de incidencias, con la capacidad de activar y desactivar las incidencias reportadas según sea necesario.""")
