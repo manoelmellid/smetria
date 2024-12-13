@@ -19,6 +19,7 @@ with b6:
         st.switch_page("pages/5_page_mapaincidencias.py")
 
 st.write("\nPara el personal que gestiona los Caminos de Santiago, hemos desarrollado dos herramientas que agilizan su trabajo")
+st.write("Dentro de un área privada pueden consultar el modelo predictivo de flujos y revisar los reportes de incidencias, con la capacidad de activar y desactivar las incidencias reportadas según sea necesario.)
 c1, c2 = st.columns([2,2])
 with c1:
     if st.button("Recepción de incidencias"):
@@ -26,9 +27,6 @@ with c1:
 with c2:
     if st.button("Flujos de peregrinos"):
         st.switch_page("pages/7_page_flujos.py")
-
-st.write("""Además, el personal de gestión dispone de acceso a un área privada que le permite consultar el modelo predictivo de flujos y 
-revisar los reportes de incidencias, con la capacidad de activar y desactivar las incidencias reportadas según sea necesario.""")
 
 st.write("#### Caso de uso")
 st.write("""La Agencia para la Modernización Tecnológica de Galicia (AMTEGA) nos propuso un caso de uso que integraría varias de las 
