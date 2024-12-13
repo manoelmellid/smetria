@@ -12,7 +12,8 @@ with b2:
     if st.button("Herramienta de navegación geoespacial"):
         st.switch_page("pages/2_page_navegacion.py")
 with b1:
-
+    if st.button("Modelo Predictivo de Ocupación"):
+        st.switch_page("pages/3_page_ocupacion.py")
 with b2:
     if st.button("Notificación de incidencias en el Camino"):
         st.switch_page("pages/4_page_notificacion.py")
