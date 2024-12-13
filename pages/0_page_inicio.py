@@ -11,10 +11,6 @@ with b1:
 with b2:
     if st.button("Herramienta de navegación geoespacial"):
         st.switch_page("pages/2_page_navegacion.py")
-#with b1:
-    #if st.button("Modelo Predictivo de Ocupación"):
-        #st.switch_page("pages/3_page_ocupacion.py")
-with b2:
     if st.button("Notificación de incidencias en el Camino"):
         st.switch_page("pages/4_page_notificacion.py")
 b5, b6, b7 = st.columns([2,2,2])
@@ -23,7 +19,7 @@ with b6:
         st.switch_page("pages/5_page_mapaincidencias.py")
 
 st.write("\nPara el personal que gestiona los Caminos de Santiago, hemos desarrollado dos herramientas que agilizan su trabajo")
-c1, c2 = st.columns([2,2])
+cl1, c1, c2, cl4 = st.columns([0.1, 4, 4, 0.1])
 with c1:
     if st.button("Recepción de incidencias"):
             st.switch_page("pages/6_page_recepcion.py")
