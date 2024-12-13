@@ -3,6 +3,10 @@ import streamlit as st
 st.write("#### Descripción de la plataforma:")
 st.write("SMETRIA ofrece a sus usuarios cuatro funcionalidades clave:")
 st.write("• [Sistema de Predicción Meteorológica](https://smetria.streamlit.app/page_meteorologia)")
+st.markdown(
+    """<a href="https://smetria.streamlit.app/page_meteorologia" target="_self">• Sistema de Predicción Meteorológica</a>""",
+    unsafe_allow_html=True
+)
 st.write("Visita mi [página web](https://www.ejemplo.com) para más información.")
 st.write("• Herramienta de Consultas Geoespaciales")
 st.write("• Notificación de Incidencias")
