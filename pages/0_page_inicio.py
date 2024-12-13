@@ -2,16 +2,24 @@ import streamlit as st
 
 st.write("#### Descripción de la plataforma:")
 st.write("SMETRIA ofrece a sus usuarios varias funcionalidades clave para mejorar la experiencia del peregrino:")
-if st.button("Sistema de Predicción Meteorológica"):
-    st.switch_page("pages/1_page_meteorologia.py")
-if st.button("Herramienta de navegación geoespacial"):
-    st.switch_page("pages/2_page_navegacion.py")
-if st.button("Modelo Predictivo de Ocupación"):
-    st.switch_page("pages/3_page_ocupacion.py")
-if st.button("Notificación de incidencias en el Camino"):
-    st.switch_page("pages/4_page_notificacion.py")
-if st.button("Mapa de incidencias"):
-    st.switch_page("pages/5_page_mapaincidencias.py")
+b1, b2 = st.columns([2,2])
+with b1:
+    if st.button("Sistema de Predicción Meteorológica"):
+        st.switch_page("pages/1_page_meteorologia.py")
+with b2:
+    if st.button("Herramienta de navegación geoespacial"):
+        st.switch_page("pages/2_page_navegacion.py")
+b3, b4 = st.columns([2,2])
+with b3:
+    if st.button("Modelo Predictivo de Ocupación"):
+        st.switch_page("pages/3_page_ocupacion.py")
+with b4:
+    if st.button("Notificación de incidencias en el Camino"):
+        st.switch_page("pages/4_page_notificacion.py")
+b5, b6, b7 = st.columns([2,2,2])
+with b6:
+    if st.button("Mapa de incidencias"):
+        st.switch_page("pages/5_page_mapaincidencias.py")
     
 st.write("\nPara el personal que gestiona los Caminos de Santiago, hemos desarrollado dos herramientas que agilizan su trabajo")
 if st.button("Recepción de incidencias"):
