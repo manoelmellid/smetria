@@ -2,7 +2,8 @@ import streamlit as st
 
 st.write("#### Descripción de la plataforma:")
 st.write("SMETRIA ofrece a sus usuarios cuatro funcionalidades clave:")
-st.write("• Sistema de Predicción Meteorológica")
+st.write("• [Sistema de Predicción Meteorológica](st.switch_page("pages/1_page_meteorologia.py")")
+st.write("Visita mi [página web](https://www.ejemplo.com) para más información.")
 st.write("• Herramienta de Consultas Geoespaciales")
 st.write("• Notificación de Incidencias")
 st.write("• Modelo Predictivo de Ocupación")
