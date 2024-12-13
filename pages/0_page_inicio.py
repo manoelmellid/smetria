@@ -2,7 +2,7 @@ import streamlit as st
 
 st.write("#### Descripción de la plataforma:")
 st.write("SMETRIA ofrece a sus usuarios varias funcionalidades clave para mejorar la experiencia del peregrino:")
-col1, b1, b2, col4 = st.columns([1, 4, 4, 1])
+col1, b1, b2, col4 = st.columns([0.1, 4, 4, 0.1])
 with b1:
     if st.button("Sistema de Predicción Meteorológica"):
         st.switch_page("pages/1_page_meteorologia.py")
