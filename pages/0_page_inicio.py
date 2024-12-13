@@ -2,13 +2,22 @@ import streamlit as st
 
 st.write("#### Descripción de la plataforma:")
 st.write("SMETRIA ofrece a sus usuarios cuatro funcionalidades clave:")
-if st.button("Ir al Sistema de Predicción Meteorológica"):
+if st.button("Sistema de Predicción Meteorológica"):
     st.switch_page("pages/1_page_meteorologia.py")
-elif st.button("Herramienta de navegación geoespacial"):
+if st.button("Herramienta de navegación geoespacial"):
     st.switch_page("pages/2_page_navegacion.py")
-st.write("• Herramienta de navegación geoespacial")
-st.write("• Notificación de Incidencias")
-st.write("• Modelo Predictivo de Ocupación")
+if st.button("Modelo Predictivo de Ocupación"):
+    st.switch_page("pages/3_page_ocupacion.py")
+if st.button("Notificación de incidencias en el Camino"):
+    st.switch_page("pages/4_page_notificacion.py")
+if st.button("Mapa de incidencias"):
+    st.switch_page("pages/5_page_mapaincidencias.py")
+    
+st.write("\nPara el personal que gestiona los Caminos de Santiago, hemos desarrollado dos herramientas que agilizan su trabajo")
+if st.button("Recepción de incidencias"):
+        st.switch_page("pages/6_page_recepcion.py")
+if st.button("Flujos de peregrinos"):
+    st.switch_page("pages/7_page_flujos.py")
 
 st.write("""Además, el personal de gestión dispone de acceso a un área privada que le permite consultar el modelo predictivo de flujos y 
 revisar los reportes de incidencias, con la capacidad de activar y desactivar las incidencias reportadas según sea necesario.""")
@@ -22,32 +31,6 @@ aceptó la solución propuesta: esta web.""")
 st.write("""El objetivo principal de SMETRIA es optimizar la experiencia de los peregrinos, brindando herramientas útiles para su 
 navegación y seguridad, y, al mismo tiempo, facilitar las tareas de mantenimiento y gestión del Camino de Santiago por parte de 
 las autoridades competentes.""")
-
-b1, b2, b3, b4 = st.columns([3,3,3,3])
-st.divider()
-b5, b6, b7 = st.columns([3,3,3])
-
-with b1:
-    if st.button("Predicción meteorológica"):
-        st.switch_page("pages/1_page_meteorologia.py")
-with b2:
-    if st.button("Navegación geoespacial"):
-        st.switch_page("pages/2_page_navegacion.py")
-with b3:
-    if st.button("Ocupación hotelera"):
-        st.switch_page("pages/3_page_ocupacion.py")
-with b4:
-    if st.button("Notificación de incidencias"):
-        st.switch_page("pages/4_page_notificacion.py")
-with b5:
-    if st.button("Mapa de incidencias"):
-        st.switch_page("pages/5_page_mapaincidencias.py")
-with b6:
-    if st.button("Recepción de incidencias"):
-        st.switch_page("pages/6_page_recepcion.py")
-with b7:
-    if st.button("Flujos de peregrinos"):
-        st.switch_page("pages/7_page_flujos.py")
         
 st.write("#### Contexto de desarrollo:")
 st.write("""
