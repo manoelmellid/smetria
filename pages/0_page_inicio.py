@@ -2,7 +2,7 @@ import streamlit as st
 
 st.write("#### Descripción de la plataforma:")
 st.write("SMETRIA ofrece a sus usuarios varias funcionalidades clave para mejorar la experiencia del peregrino:")
-b1, b2 = st.columns([2,2])
+col1, b1, b2, col4 = st.columns([1, 2, 2, 1])
 with b1:
     if st.button("Sistema de Predicción Meteorológica"):
         st.switch_page("pages/1_page_meteorologia.py")
@@ -24,7 +24,7 @@ with b6:
 st.write("\nPara el personal que gestiona los Caminos de Santiago, hemos desarrollado dos herramientas que agilizan su trabajo")
 c1, c2 = st.columns([2,2])
 with c1:
-    if st.button("Recepción de incidencias"):
+    if st.button("Recepción de incidencias", align="center"):
             st.switch_page("pages/6_page_recepcion.py")
 with c2:
     if st.button("Flujos de peregrinos"):
