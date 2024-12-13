@@ -26,6 +26,8 @@ with c1:
 with c2:
     if st.button("Flujos de peregrinos"):
         st.switch_page("pages/7_page_flujos.py")
+with cl4:
+    if st.button("Puta puta puta celta")
 
 st.write("""Además, el personal de gestión dispone de acceso a un área privada que le permite consultar el modelo predictivo de flujos y 
 revisar los reportes de incidencias, con la capacidad de activar y desactivar las incidencias reportadas según sea necesario.""")
