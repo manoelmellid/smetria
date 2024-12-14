@@ -29,8 +29,8 @@ def camino():
     
 def login():
     if 'logged_in' not in st.session_state:
-        st.session_state.logged_in = True
-        st.session_state.role = None
+        st.session_state.logged_in = False
+        st.session_state.role = False
     
     # Si no está logueado, el sistema solo permitirá el login si el usuario es admin
     if not st.session_state.logged_in:
