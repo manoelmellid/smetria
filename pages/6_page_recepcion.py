@@ -22,7 +22,8 @@ if st.session_state.logged_in == True:
         if st.button("Cambiar estado"):
             if id_input:
                 if id_input in df['id'].values:
-                    st.warning("Esta herramienta es funcional pero está descactivada temporalmente")
+                    #st.warning("Esta herramienta es funcional pero está descactivada temporalmente")
+                    st.info("Cambio realizado")
                     git.actualizar(id_input, 'estado', cambio_estado)
                 else:
                     st.error(f"No se encontró una incidencia con el ID {id_input}.")
