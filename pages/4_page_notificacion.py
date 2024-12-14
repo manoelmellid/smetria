@@ -62,9 +62,9 @@ else:
 
 # Botón para enviar la notificación
 if st.button("Enviar"):
-    if not gen.validar_telefono(telefono) or gen.validar_correo(email):
-        st.warning("Hay algún error en los datos")
-    elif nombre and input_text and tipo_opc_predict:
+    #if not gen.validar_telefono(telefono) or gen.validar_correo(email):
+        #st.warning("Hay algún error en los datos")
+    if nombre and input_text and tipo_opc_predict:
         # Mensaje informativo
         st.info(
         "El tipo de incidencia ha sido clasificado **automáticamente** mediante un modelo predictivo basado en **inteligencia artificial**. "
